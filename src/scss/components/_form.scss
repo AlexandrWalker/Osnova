@@ -1,0 +1,332 @@
+@use './../mixins' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @include md {
+    gap: 1rem;
+  }
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    @include md {
+      gap: 2rem 1rem;
+    }
+  }
+
+  &-group {
+    width: 100%;
+    position: relative;
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      width: calc(50% - 1rem);
+
+      @include md {
+        width: calc(50% - 0.5rem);
+      }
+
+      @include sm {
+        width: 100%;
+      }
+    }
+
+    &--file {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      @include md {
+        margin-top: -1rem;
+      }
+    }
+  }
+
+  &-input {
+    width: 100%;
+    padding: 2rem 2.7rem 1.8rem;
+    background: transparent;
+    border: 0.1rem solid var(--gray-30);
+    transition: all 0.3s ease;
+
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 100%;
+    color: var(--black);
+
+    @include md {
+      padding: 1.6rem 2.7rem 1.6rem;
+    }
+
+    &:not(.invalid):hover,
+    &.filled {
+      border-color: var(--gray);
+
+      &+.form-label {
+        color: var(--gray);
+      }
+    }
+
+    &.filled:not(:focus, :hover, :target) {
+      color: var(--gray);
+    }
+  }
+
+  &-label {
+    padding: 0 0.4rem 0 0.7rem;
+    background-color: var(--white-gray);
+    transition: all 0.3s ease;
+
+    font-weight: 350;
+    font-size: 1.4rem;
+    line-height: 100%;
+    color: var(--accent);
+
+    position: absolute;
+    top: -0.7rem;
+    left: 2.7rem;
+
+    @include sm {
+      font-size: 1.2rem;
+
+      top: -0.6rem;
+    }
+  }
+
+  &-textarea {
+    width: 100%;
+    padding: 2rem 2.7rem 1.8rem;
+    background: transparent;
+    border: 0.1rem solid var(--gray-30);
+    resize: none;
+    transition: all 0.3s ease;
+
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 100%;
+    color: var(--black);
+
+    &:hover {
+      border-color: var(--gray);
+
+      &+.form-label {
+        color: var(--gray);
+      }
+    }
+
+    &.filled:not(:focus, :hover, :target) {
+      color: var(--gray);
+    }
+  }
+
+  &-file {
+    display: none;
+
+    &+.form-label {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      padding: 0;
+      color: inherit;
+      position: static;
+
+      @include md {
+        font-size: 1.2rem;
+      }
+
+      &:hover {
+
+        span {
+          color: inherit;
+        }
+
+        i {
+          background-color: var(--accent);
+        }
+
+        svg {
+          stroke: var(--white);
+        }
+      }
+
+      span {
+        transition: all 0.3s ease;
+        color: var(--accent);
+        text-decoration: underline;
+      }
+
+      p {
+        font-size: 1.4rem;
+
+        @include md {
+          font-size: 1.2rem;
+        }
+      }
+
+      i {
+        --font-size: 3.4rem;
+        background-color: var(--gray-10);
+        border-radius: 50%;
+
+        @include md {
+          --font-size: 2.4rem;
+        }
+
+        svg {
+          width: 1.8rem;
+          height: 1.8rem;
+          stroke: var(--black);
+          transition: all 0.3s ease;
+
+          @include md {
+            width: 1.2rem;
+            height: 1.2rem;
+          }
+        }
+      }
+    }
+
+    &--clear {
+      font-weight: 350;
+      font-size: 1.4rem;
+      color: var(--accent);
+      transition: all 0.3s ease;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      span {}
+
+      @include md {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &-error {
+    display: none;
+    font-weight: 350;
+    font-size: 1rem;
+    line-height: 100%;
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    bottom: -1.2rem;
+  }
+
+  .invalid {
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+
+    &+label {
+      color: var(--accent) !important;
+
+      &+.form-error {
+        // display: block;
+      }
+    }
+  }
+
+  &-foot {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include md {
+      gap: 0.5rem;
+    }
+  }
+
+  &-text {
+    font-weight: 350;
+    font-size: 1.2rem;
+    color: var(--gray);
+
+    @include md {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  &-btn {
+    width: 100%;
+  }
+
+  &-checkbox {
+    display: none;
+
+    &:checked {
+
+      &+label {
+
+        .form-checkbox--item {
+
+          &::after {
+            background-color: var(--accent);
+          }
+        }
+      }
+    }
+
+    &+label {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    &--item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      border: 0.1rem solid var(--accent);
+      position: relative;
+      flex-shrink: 0;
+
+      &::before {
+        content: "";
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        background-color: var(--black);
+        flex-shrink: 0;
+      }
+
+      &::after {
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--white);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
