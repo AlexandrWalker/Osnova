@@ -5,14 +5,14 @@
 
   &-active {
 
-    .accordion-body:not(.template-box__attr-wrap),
-    &+.accordion-body:not(.template-box__attr-wrap) {
+    .accordion-body,
+    &+.accordion-body {
       grid-template-rows: 1fr;
     }
   }
 }
 
-.accordion-body:not(.template-box__attr-wrap) {
+.accordion-body {
   display: grid;
   grid-template-rows: 0fr;
   overflow: hidden;

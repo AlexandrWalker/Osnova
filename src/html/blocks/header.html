@@ -1,78 +1,26 @@
-<div class="preloader">
-  <!-- <img class="preloader__img" src="./../../images/temp/preloader.gif" alt=""> -->
-  <img class="preloader__img" src="./../../images/logo/logo-2.svg" alt="">
-</div>
 <header id="header" class="header">
-  <div class="container container--fluid">
+  <div class="container--fluid">
     <div class="header__inner">
 
-      <div class="header__content">
-        <div class="header__container container">
-          <div class="header__left">
-            <button class="burger-btn btn btn--black">
-              <span class="scale"></span>
-              <span></span>
-              <i class="icon-burger"></i>
-              <i class="icon-menu"></i>
-              <i class="pulse"></i>
-              Меню
-            </button>
-            <button class="btn btn--accent btn--icon">
-              <i class="icon-3d"></i>
-              <i class="pulse"></i>
-              <span class="scale"></span>
-            </button>
-            <button class="btn btn--accent btn--icon">
-              <i class="icon-play"></i>
-              <i class="pulse"></i>
-              <span class="scale"></span>
-            </button>
-          </div>
-
-          <div class="header__wrap">
-            <div class="header__img">
-              <img src="./images/logo/since.svg" alt="">
-            </div>
-
-            <a class="logo" href="/Ramada">
-              <img src="./images/logo/logo.svg" alt="Ramada">
-            </a>
-
-            <div class="header__img">
-              <img src="./images/logo/stars.svg" alt="">
-            </div>
-          </div>
-
-          <div class="header__right">
-            <div class="header__lang">
-              <div class="header__lang-btn btn btn--white-gray btn--icon">
-                <i class="pulse"></i>
-                RU
-                <ul>
-                  <li>
-                    <a href="/">
-                      EN
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/">
-                      Ch
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <button class="header__btn btn btn--accent" data-fancybox href="#feedback">
-              <i class="icon-book"></i>
-              <i class="pulse"></i>
-              <span class="scale"></span>
-              <span data-text="Забронировать номер" data-text-mob="Забронировать"></span>
-            </button>
-          </div>
-        </div>
+      <div class="header__left">
+        <a class="logo" href="/">
+          <img src="./images/logo/logo.svg" alt="">
+        </a>
+        @@include('./nav.html')
       </div>
 
-      @@include('./nav.html')
+      <div class="header__center">
+        <a href="tel:+71234567890">
+          +7 (123)456-78-90
+        </a>
+      </div>
+
+      <div class="header__right">
+        <button class="burger">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+      </div>
 
     </div>
   </div>

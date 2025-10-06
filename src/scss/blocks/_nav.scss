@@ -1,29 +1,10 @@
 @use './../mixins' as *;
 
 .nav {
-  border-bottom: 0.1rem solid var(--accent);
-
-  @include md {
-    border-bottom: none;
-  }
+  height: 100%;
 
   @include sm {
     display: none;
-  }
-
-  &__container {
-
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-      padding: 0;
-      margin: 0;
-    }
-
-    @include md {
-      overflow-x: auto;
-      padding: 0;
-    }
   }
 
   ul {
@@ -31,42 +12,35 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 6rem;
-
-    @include md {
-      justify-content: flex-start;
-      gap: 2rem;
-      width: fit-content;
-      padding: 0 var(--container-padding);
-    }
+    height: 100%;
   }
 
   li {
-
-    i {
-      --font-size: 1.4rem;
-    }
+    height: 100%;
   }
 
   a {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    padding: 1.8rem 1rem 1.9rem;
+    height: 100%;
+    padding: 0 6rem;
+    background-color: transparent;
 
-    font-weight: 900;
+    border-right: 0.1rem solid var(--white-50);
+    border-bottom: 0.1rem solid var(--white-50);
+
+    font-weight: 700;
     font-size: 1.4rem;
     line-height: 100%;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--white-50);
     white-space: nowrap;
 
-    @include md {
-      padding: 1.6rem 0;
-      height: fit-content;
-
-      font-size: 1.2rem;
+    &:hover {
+      color: var(--white);
+      border-color: var(--blue);
+      background-color: var(--blue);
     }
   }
 }

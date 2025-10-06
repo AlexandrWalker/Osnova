@@ -13,9 +13,7 @@
 
 /* Links */
 
-a,
-a:link,
-a:visited {
+a {
   text-decoration: none;
 }
 
@@ -57,7 +55,9 @@ img {
 img,
 svg {
   max-width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 

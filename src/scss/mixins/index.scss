@@ -1,5 +1,11 @@
 @use 'sass:math';
 
+@mixin doxxxl() {
+  @media (min-width: 1921px) {
+    @content;
+  }
+}
+
 @mixin xxl() {
   @media (max-width: 1440px) {
     @content;
