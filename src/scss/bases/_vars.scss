@@ -1,9 +1,9 @@
 @use './../mixins' as *;
 
 :root {
-  --font-family: "Montserrat", sans-serif;
-  --second-family: "Halvar Breitschrift", sans-serif;
-  --third-family: "Gotham", sans-serif;
+  --font-family: "Montserrat", Arial, sans-serif;
+  --second-family: "HalvarBreit", Arial, sans-serif;
+  --third-family: "Gotham", Arial, sans-serif;
 
   --container-padding: 10rem;
   --container-width: 172rem;
@@ -12,6 +12,7 @@
   --page-bg-10: rgba(247, 248, 250, 0.1);
   --white: #ffffff;
   --white-50: rgba(255, 255, 255, 0.5);
+  --white-full-50: #ffffff80;
   --blue: #032154;
   --blue-50: rgba(3, 33, 84, 0.5);
   --sizyy: #79A0C1;

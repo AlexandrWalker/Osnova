@@ -92,9 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
    * Управляет поведением меню-бургера.
    */
   function burgerNav() {
-
+    const burgerBtn = document.getElementById('burger-btn');
+    burgerBtn.addEventListener('click', function () {
+      burgerBtn.classList.toggle('burger--open');
+    })
   }
   burgerNav();
+
+  // const headerDropHead = document.querySelector('.header__drop-head');
+  // const headerDropBody = document.querySelector('.header__drop-body');
+  // headerDropHead.addEventListener('click', function () {
+  //   headerDropBody.classList.toggle('header__drop-body--open');
+  // })
 
   /**
    * Управляет поведением меню-бургера.

@@ -45,7 +45,7 @@ body {
 }
 
 section {
-  height: auto;
+  height: 100%;
   min-height: 100vh;
 }
 
@@ -80,22 +80,6 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
-  src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
   src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
@@ -104,8 +88,24 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
+  src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
   src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
   font-weight: 350;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
+  src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -224,16 +224,16 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -477,15 +477,16 @@ body {
 }
 
 :root {
-  --font-family: "Montserrat", sans-serif;
-  --second-family: "Halvar Breitschrift", sans-serif;
-  --third-family: "Gotham", sans-serif;
+  --font-family: "Montserrat", Arial, sans-serif;
+  --second-family: "HalvarBreit", Arial, sans-serif;
+  --third-family: "Gotham", Arial, sans-serif;
   --container-padding: 10rem;
   --container-width: 172rem;
   --page-bg: #F7F8FA;
   --page-bg-10: rgba(247, 248, 250, 0.1);
   --white: #ffffff;
   --white-50: rgba(255, 255, 255, 0.5);
+  --white-full-50: #ffffff80;
   --blue: #032154;
   --blue-50: rgba(3, 33, 84, 0.5);
   --sizyy: #79A0C1;
@@ -935,6 +936,64 @@ h6 span {
 
 /* Modules */
 
+.burger {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 11.4rem;
+  height: 11.4rem;
+  border: 0.9rem solid var(--white);
+  border-radius: 50%;
+  background-color: var(--blue);
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  position: absolute;
+  top: -2.3rem;
+  right: -2.3rem;
+  z-index: 1;
+}
+
+.burger--open {
+  gap: 0 !important;
+}
+
+.burger__line {
+  width: 2.8rem;
+  height: 0.2rem;
+  background-color: var(--white);
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.burger--open .burger__line-1 {
+  -webkit-transform: rotate(45deg) translateY(0.2rem);
+  -ms-transform: rotate(45deg) translateY(0.2rem);
+  transform: rotate(45deg) translateY(0.2rem);
+}
+
+.burger--open .burger__line-2 {
+  width: 0;
+}
+
+.burger--open .burger__line-3 {
+  -webkit-transform: rotate(-45deg) translateY(-0.2rem);
+  -ms-transform: rotate(-45deg) translateY(-0.2rem);
+  transform: rotate(-45deg) translateY(-0.2rem);
+}
+
 /* Blocks */
 
 .accordion {
@@ -1035,20 +1094,22 @@ h6 span {
   left: 0;
   right: 0;
   z-index: 100;
-}
-
-.header::after {
-  content: "";
-  width: 100%;
-  height: 0.1rem;
   background: rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
   box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
   backdrop-filter: blur(12.05px);
+}
+
+.header::before {
+  content: "";
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--white-50);
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 1;
 }
 
 .header.out {
@@ -1062,9 +1123,18 @@ h6 span {
   pointer-events: none;
 }
 
+.header__container {
+  position: relative;
+}
+
 .header__inner {
-  display: grid;
-  grid-template-columns: auto 1fr 1fr;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -1084,12 +1154,28 @@ h6 span {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .header__center {
-  padding: 3rem 4rem;
-  border-right: 0.1rem solid var(--white-50);
-  border-bottom: 0.1rem solid var(--white-50);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 22.5rem;
 }
 
 .header__right {
@@ -1106,6 +1192,104 @@ h6 span {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background-color: var(--blue);
+  padding-right: 9.1rem;
+  margin-bottom: 0.1rem;
+  position: relative;
+}
+
+.header__phone {
+  width: 100%;
+  padding: 3rem 4rem;
+  text-align: right;
+}
+
+.header__phone a {
+  font-family: var(--second-family);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 100%;
+  color: var(--white);
+}
+
+.header__drop {
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 120%;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: relative;
+}
+
+.header__drop-head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  padding: 0 5rem;
+}
+
+.header__drop-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  padding: 0 5rem;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: var(--blue);
+}
+
+.header__drop-body--open {
+  grid-template-rows: 1fr;
+}
+
+.header__drop-wrap {
+  overflow: hidden;
+}
+
+.header__drop ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 2.3rem;
+}
+
+.header__drop li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__drop a {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: var(--white);
 }
 
 .logo {
@@ -1123,9 +1307,6 @@ h6 span {
   background-color: var(--white);
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  margin-bottom: -7rem;
-  position: relative;
-  z-index: 2;
 }
 
 .logo img {
@@ -1843,7 +2024,9 @@ h6 span {
   padding: 0 6rem;
   background-color: transparent;
   border-right: 0.1rem solid var(--white-50);
-  border-bottom: 0.1rem solid var(--white-50);
+  border-bottom: 0.1rem solid transparent;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
   font-weight: 700;
   font-size: 1.4rem;
   line-height: 100%;
@@ -1854,8 +2037,7 @@ h6 span {
 
 .nav a:hover {
   color: var(--white);
-  border-color: var(--blue);
-  background-color: var(--blue);
+  border-bottom-color: var(--white);
 }
 
 .plate {
@@ -2708,6 +2890,13 @@ h6 span {
   z-index: -1;
 }
 
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
 @media (min-width: 601px) {
   .btn:hover .scale {
     -webkit-transform: scale(100%);
@@ -2873,6 +3062,18 @@ h6 span {
     font-size: 1.4rem;
   }
 
+  .burger {
+    width: 13.4rem;
+    height: 13.4rem;
+    border-width: 1rem;
+    top: -1.7rem;
+    right: -3.4rem;
+  }
+
+  .burger__line {
+    width: 3.3rem;
+  }
+
   .footer__foot {
     padding: 2rem 0;
   }
@@ -2901,6 +3102,39 @@ h6 span {
     font-size: 1.4rem;
     line-height: 100%;
     color: var(--sizyy-50);
+  }
+
+  .header__center {
+    margin-left: 14.4rem;
+  }
+
+  .header__right {
+    background-color: transparent;
+  }
+
+  .header__phone {
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .header__phone a {
+    font-size: 2.5rem;
+    line-height: 2rem;
+  }
+
+  .header__drop {
+    display: none;
+  }
+
+  .logo {
+    width: 14.4rem;
+    height: 9.6rem;
+    padding: 0 2rem;
+  }
+
+  .logo img {
+    width: 100%;
+    height: auto;
   }
 
   .menu {
@@ -3113,6 +3347,10 @@ h6 span {
 
   .menu__foot-btn--presentation {
     display: block;
+  }
+
+  .nav {
+    display: none;
   }
 
   .plate__body {
@@ -3560,6 +3798,20 @@ h6 span {
     font-size: 3rem;
   }
 
+  .burger {
+    width: 8rem;
+    height: 8rem;
+    gap: 0.7rem;
+    border-width: 0.6rem;
+    top: -1.6rem;
+    right: -2rem;
+  }
+
+  .burger__line {
+    width: 2rem;
+    height: 0.15rem;
+  }
+
   .footer__foot {
     padding: 1rem 0;
   }
@@ -3576,7 +3828,25 @@ h6 span {
   }
 
   .header__center {
-    display: none;
+    margin-left: 9rem;
+  }
+
+  .header__right {
+    padding-right: 6rem;
+  }
+
+  .header__phone {
+    padding: 2rem 0;
+  }
+
+  .header__phone a {
+    font-size: 1.6rem;
+  }
+
+  .logo {
+    width: 9rem;
+    height: 6rem;
+    padding: 0 1.2rem;
   }
 
   .menu {
@@ -3691,10 +3961,6 @@ h6 span {
 
   .menu__foot-link:hover {
     color: var(--accent);
-  }
-
-  .nav {
-    display: none;
   }
 
   .template__body-icons {

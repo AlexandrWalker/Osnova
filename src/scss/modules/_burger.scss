@@ -1,1 +1,81 @@
 @use './../mixins' as *;
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  width: 11.4rem;
+  height: 11.4rem;
+  border: 0.9rem solid var(--white);
+  border-radius: 50%;
+  background-color: var(--blue);
+  transition: all 0.3s linear;
+
+  position: absolute;
+  top: -2.3rem;
+  right: -2.3rem;
+  z-index: 1;
+
+  @include md {
+    width: 13.4rem;
+    height: 13.4rem;
+    border-width: 1rem;
+
+    top: -1.7rem;
+    right: -3.4rem;
+  }
+
+  @include sm {
+    width: 8rem;
+    height: 8rem;
+    gap: 0.7rem;
+    border-width: 0.6rem;
+
+    top: -1.6rem;
+    right: -2rem;
+  }
+
+  &--open {
+    gap: 0 !important;
+  }
+
+  &__line {
+    width: 2.8rem;
+    height: 0.2rem;
+    background-color: var(--white);
+    transition: all 0.3s linear;
+
+    @include md {
+      width: 3.3rem;
+    }
+
+    @include sm {
+      width: 2rem;
+      height: 0.15rem;
+    }
+
+    &-1 {
+
+      .burger--open & {
+        transform: rotate(45deg) translateY(0.2rem);
+      }
+    }
+
+    &-2 {
+
+      .burger--open & {
+        width: 0;
+      }
+    }
+
+    &-3 {
+
+      .burger--open & {
+        transform: rotate(-45deg) translateY(-0.2rem);
+      }
+    }
+  }
+}

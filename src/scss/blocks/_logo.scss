@@ -9,12 +9,25 @@
   background-color: var(--white);
   flex-shrink: 0;
 
-  margin-bottom: -7rem;
-  position: relative;
-  z-index: 2;
+  @include md {
+    width: 14.4rem;
+    height: 9.6rem;
+    padding: 0 2rem;
+  }
+
+  @include sm {
+    width: 9rem;
+    height: 6rem;
+    padding: 0 1.2rem;
+  }
 
   img {
     height: 6.8rem;
     object-fit: contain;
+
+    @include md {
+      width: 100%;
+      height: auto;
+    }
   }
 }

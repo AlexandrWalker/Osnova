@@ -1,24 +1,51 @@
 <header id="header" class="header">
-  <div class="container--fluid">
+  <div class="header__container container--fluid">
     <div class="header__inner">
 
       <div class="header__left">
         <a class="logo" href="/">
           <img src="./images/logo/logo.svg" alt="">
         </a>
-        @@include('./nav.html')
       </div>
 
       <div class="header__center">
-        <a href="tel:+71234567890">
-          +7 (123)456-78-90
-        </a>
+        @@include('./nav.html')
+
+        <div class="header__phone">
+          <a href="tel:+71234567890">
+            +7 (123)456-78-90
+          </a>
+        </div>
       </div>
 
       <div class="header__right">
-        <button class="burger">
-          <span class="burger__line"></span>
-          <span class="burger__line"></span>
+
+        <div class="header__drop">
+          <div class="header__drop-head">
+            оставить заявку
+          </div>
+          <div class="header__drop-body">
+            <div class="header__drop-wrap">
+              <ul>
+                <li>
+                  <a href="/">
+                    Написать в whats app
+                  </a>
+                </li>
+                <li>
+                  <a href="/">
+                    Написать в Telegram
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button id="burger-btn" class="burger">
+          <span class="burger__line burger__line-1"></span>
+          <span class="burger__line burger__line-2"></span>
+          <span class="burger__line burger__line-3"></span>
         </button>
       </div>
 

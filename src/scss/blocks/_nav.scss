@@ -3,7 +3,7 @@
 .nav {
   height: 100%;
 
-  @include sm {
+  @include md {
     display: none;
   }
 
@@ -26,9 +26,9 @@
     height: 100%;
     padding: 0 6rem;
     background-color: transparent;
-
     border-right: 0.1rem solid var(--white-50);
-    border-bottom: 0.1rem solid var(--white-50);
+    border-bottom: 0.1rem solid transparent;
+    transition: all 0.3s linear;
 
     font-weight: 700;
     font-size: 1.4rem;
@@ -39,8 +39,7 @@
 
     &:hover {
       color: var(--white);
-      border-color: var(--blue);
-      background-color: var(--blue);
+      border-bottom-color: var(--white);
     }
   }
 }
