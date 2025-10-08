@@ -95,9 +95,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const burgerBtn = document.getElementById('burger-btn');
     burgerBtn.addEventListener('click', function () {
       burgerBtn.classList.toggle('burger--open');
+
+      document.documentElement.classList.toggle('menu--open');
     })
   }
   burgerNav();
+
+  const footer = document.querySelector('footer');
+  footer.addEventListener('mousemove', function () {
+    footer.classList.add('footer--active');
+  })
+  footer.addEventListener('mouseleave', function () {
+    footer.classList.remove('footer--active');
+  })
 
   // const headerDropHead = document.querySelector('.header__drop-head');
   // const headerDropBody = document.querySelector('.header__drop-body');

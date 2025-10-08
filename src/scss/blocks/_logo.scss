@@ -21,9 +21,32 @@
     padding: 0 1.2rem;
   }
 
+  &:hover {
+    background-color: var(--blue);
+
+    svg path {
+      fill: var(--white);
+    }
+  }
+
   img {
     height: 6.8rem;
     object-fit: contain;
+
+    @include md {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  svg {
+    height: 6.8rem;
+    object-fit: contain;
+
+    path {
+      fill: var(--blue);
+      transition: fill 0.3s ease;
+    }
 
     @include md {
       width: 100%;
