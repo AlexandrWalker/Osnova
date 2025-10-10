@@ -282,33 +282,40 @@
       <!-- Главный блок -->
       <section id="hero" class="hero">
         <div class="container hero__container">
-          <div class="hero__inner">
-            <div class="hero__title">
-              <h1>
-                От проекта<br>
-                до его<br>
-                реализации
-              </h1>
+          <div class="hero__wrap">
+            <div class="hero__inner">
+              <div class="hero__title">
+                <h1>
+                  От проекта<br>
+                  до его<br>
+                  реализации
+                </h1>
+              </div>
+              <a class="hero__btn btn" href="/">
+                получить консультацию
+              </a>
+              <div class="hero__text">
+                <p>
+                  Примерный текст под заголовком<br>
+                  для примера, примерный текст под заголовком <br> для примера
+                </p>
+              </div>
+              <div class="hero__cover">
+                <img src="./images/temp/hero-cover.png" alt="">
+              </div>
             </div>
 
-            <div class="hero__text">
-              <p>
-                Примерный текст под заголовком<br>
-                для примера, примерный текст под заголовком <br> для примера
-              </p>
+            <div class="lines">
+              <div class="line line-1"></div>
+              <div class="line line-2"></div>
+              <div class="line line-3"></div>
+              <div class="line line-4"></div>
+              <div class="line line-5">
+                <img src="./images/lines/line-crivoy.svg" alt="">
+              </div>
             </div>
-
-            <!-- <div class="line line-1"></div>
-            <div class="line line-2"></div>
-            <div class="line line-3"></div>
-            <div class="line line-4"></div>
-            <div class="line line-5"></div> -->
+            
           </div>
-
-          <div class="hero__cover">
-            <img src="./images/temp/hero-cover.png" alt="">
-          </div>
-
         </div>
 
         <div class="hero__bg">
@@ -412,11 +419,61 @@
       </div>
 
       <div class="footer__content">
-        <form action="">
-          <input name="name" type="text">
-          <input name="name" type="text">
-          <input name="name" type="text">
-          <input name="name" type="text">
+
+        <div class="menu__foot">
+          <a class="menu__foot-phone" href="tel:+71235467890">
+            +7 123 546-78-90
+          </a>
+          <a class="menu__foot-mail" href="mailto:pochta@pochta.ru">
+            pochta@pochta.ru
+          </a>
+        </div>
+
+        <form class="form" action="">
+          <div class="form__inner">
+            <div class="form__head">
+              Получите бесплатную консультацию
+            </div>
+            <div class="form__content">
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <input class="form-input" id="foot_name" name="name" type="text">
+                  <label class="form-label" for="foot_name">
+                    Ваше имя <span>*</span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <input class="form-input" id="foot_name" name="name" type="text">
+                  <label class="form-label" for="foot_name">
+                    Телефон <span>*</span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <input class="form-input" id="foot_name" name="name" type="text">
+                  <label class="form-label" for="foot_name">
+                    Эл. почта <span>*</span>
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <div class="form-group">
+                  <textarea class="form-textarea" id="foot_comments" name="foot_comments" rows="1" cols="1"></textarea>
+                  <label class="form-label" for="foot_comment">
+                    Комментарий
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form__foot">
+            <button class="form-btn btn">
+              заказать консультацию
+            </button>
+          </div>
         </form>
       </div>
 
