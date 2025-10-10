@@ -3,6 +3,17 @@
 .footer {
   background-color: var(--blue);
 
+  &.footer--active {
+
+    .menu__foot::before {
+      width: 100%;
+    }
+
+    .menu__content::before {
+      width: 100%;
+    }
+  }
+
   .menu {
 
     &__list {
@@ -15,6 +26,20 @@
       flex-wrap: wrap;
       gap: 3rem 10rem;
       padding: 4rem;
+
+      position: relative;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0.1rem;
+        background-color: var(--white-10);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: width 1s linear;
+      }
     }
 
     &__item {
@@ -27,6 +52,18 @@
 
     &__foot {
       padding: 6rem 0 4rem;
+
+      position: relative;
+
+      &::before {
+        top: unset;
+        bottom: 0;
+        transition: width 1s linear;
+      }
+    }
+
+    &__foot-mail {
+      text-decoration: underline;
     }
   }
 
@@ -101,7 +138,7 @@
       content: "";
       display: block;
       width: 0.1rem;
-      height: 0;
+      height: 0%;
       background-color: var(--white-10);
       position: absolute;
       top: 0;
@@ -131,7 +168,8 @@
       background-color: var(--white-10);
       position: absolute;
       top: 0;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       transition: width 1s linear;
 
       .footer--active & {

@@ -48,8 +48,10 @@ section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: auto;
-  min-height: 100vh;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 93rem;
 }
 
 a {
@@ -94,14 +96,6 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
   src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
@@ -120,6 +114,14 @@ a {
   font-display: swap;
   src: url("../fonts/Gotham-Thin.woff2") format("woff2"), url("../fonts/Gotham-Thin.woff") format("woff");
   font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
@@ -188,14 +190,6 @@ a {
 }
 
 @font-face {
-  font-family: HalvarBreit;
-  font-display: swap;
-  src: url("../fonts/HalvarBreit-Regular.woff2") format("woff2"), url("../fonts/HalvarBreit-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
   font-family: Montserrat;
   font-display: swap;
   src: url("../fonts/Montserrat-Black.woff2") format("woff2"), url("../fonts/Montserrat-Black.woff") format("woff");
@@ -204,10 +198,10 @@ a {
 }
 
 @font-face {
-  font-family: Montserrat;
+  font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/Montserrat-Bold.woff2") format("woff2"), url("../fonts/Montserrat-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/HalvarBreit-Regular.woff2") format("woff2"), url("../fonts/HalvarBreit-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -222,24 +216,16 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
+  src: url("../fonts/Montserrat-Bold.woff2") format("woff2"), url("../fonts/Montserrat-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-display: swap;
   src: url("../fonts/Montserrat-ExtraLight.woff2") format("woff2"), url("../fonts/Montserrat-ExtraLight.woff") format("woff");
   font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
   font-style: normal;
 }
 
@@ -254,8 +240,24 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-display: swap;
   src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2"), url("../fonts/Montserrat-SemiBold.woff") format("woff");
   font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-display: swap;
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -268,6 +270,10 @@ a {
 }
 
 /* Главный общий блок */
+
+.general__head {
+  padding: 6rem 0 5rem;
+}
 
 /* Хлебные крошки */
 
@@ -498,6 +504,7 @@ body {
   --white-full-50: #ffffff80;
   --blue: #032154;
   --blue-50: rgba(3, 33, 84, 0.5);
+  --blue-full-50: #03215480;
   --sizyy: #79A0C1;
   --sizyy-10: rgba(121, 160, 193, 0.1);
   --sizyy-50: rgba(121, 160, 193, 0.5);
@@ -559,6 +566,7 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 3rem;
+  padding: 6.3rem 0 4rem 0;
   color: var(--white);
 }
 
@@ -594,17 +602,17 @@ body {
 
 .form-group {
   width: 100%;
+  height: 5rem;
   position: relative;
 }
 
 .form-input {
   width: 100%;
-  height: 5rem;
-  padding: 0 0 3rem 5rem;
+  height: 100%;
+  padding: 1rem 0 2rem 5rem;
   background: transparent;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  border-bottom: 0.1rem solid var(--white-10);
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 1.6rem;
@@ -612,7 +620,23 @@ body {
   color: var(--white);
 }
 
+.form-input:focus + .form-label::after,
+.form-input:active + .form-label::after,
+.form-input:hover + .form-label::after {
+  width: 100%;
+}
+
+.form-input:focus + .form-label > div,
+.form-input:active + .form-label > div,
+.form-input:hover + .form-label > div,
+.form-input.filled + .form-label > div {
+  top: -2rem;
+}
+
 .form-label {
+  width: 100%;
+  height: 100%;
+  margin: 0;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-family: var(--font-family);
@@ -622,7 +646,41 @@ body {
   color: var(--white-50);
   position: absolute;
   top: 0;
-  left: 5rem;
+  left: 0;
+}
+
+.form-label::before {
+  content: "";
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--white-10);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.form-label::after {
+  content: "";
+  width: 0;
+  height: 0.1rem;
+  background-color: var(--white);
+  -webkit-transition: width 0.5s linear;
+  transition: width 0.5s linear;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.form-label div {
+  padding: 0 0 3rem 5rem;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .form-label span {
@@ -631,8 +689,8 @@ body {
 
 .form-textarea {
   width: 100%;
-  height: 5rem;
-  padding: 0 0 3rem 5rem;
+  height: 100%;
+  padding: 1rem 0 2rem 5rem;
   background: transparent;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -643,6 +701,19 @@ body {
   line-height: 130%;
   color: var(--white);
   resize: none;
+}
+
+.form-textarea:focus + .form-label::after,
+.form-textarea:active + .form-label::after,
+.form-textarea:hover + .form-label::after {
+  width: 100%;
+}
+
+.form-textarea:focus + .form-label > div,
+.form-textarea:active + .form-label > div,
+.form-textarea:hover + .form-label > div,
+.form-textarea.filled + .form-label > div {
+  top: -2rem;
 }
 
 .form-btn {
@@ -1059,6 +1130,14 @@ p {
   background-color: var(--blue);
 }
 
+.footer.footer--active .menu__foot::before {
+  width: 100%;
+}
+
+.footer.footer--active .menu__content::before {
+  width: 100%;
+}
+
 .footer .menu__list {
   padding: 6rem 4rem 4rem 4rem;
 }
@@ -1075,6 +1154,20 @@ p {
   flex-wrap: wrap;
   gap: 3rem 10rem;
   padding: 4rem;
+  position: relative;
+}
+
+.footer .menu__content::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0.1rem;
+  background-color: var(--white-10);
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: width 1s linear;
+  transition: width 1s linear;
 }
 
 .footer .menu__item {
@@ -1089,6 +1182,18 @@ p {
 
 .footer .menu__foot {
   padding: 6rem 0 4rem;
+  position: relative;
+}
+
+.footer .menu__foot::before {
+  top: unset;
+  bottom: 0;
+  -webkit-transition: width 1s linear;
+  transition: width 1s linear;
+}
+
+.footer .menu__foot-mail {
+  text-decoration: underline;
 }
 
 .footer__inner {
@@ -1165,7 +1270,7 @@ p {
   content: "";
   display: block;
   width: 0.1rem;
-  height: 0;
+  height: 0%;
   background-color: var(--white-10);
   position: absolute;
   top: 0;
@@ -1194,7 +1299,10 @@ p {
   background-color: var(--white-10);
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
   -webkit-transition: width 1s linear;
   transition: width 1s linear;
 }
@@ -2596,8 +2704,131 @@ p {
 
 /* Sections */
 
+.design {
+  margin-top: 10rem;
+  position: relative;
+}
+
+.design::before {
+  content: "";
+  width: 0;
+  height: 0.1rem;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(121, 160, 193, 0.5);
+  -webkit-box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+}
+
+.design::before .design:hover {
+  width: 100%;
+}
+
+.design__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 1rem 15.6rem;
+}
+
+.design__item {
+  --inner-margin-right: 15.6rem;
+  min-height: 50.7rem;
+  padding: 6rem 10.6rem 6rem 14.4rem;
+  background-color: var(--white);
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  position: relative;
+}
+
+.design__item:hover {
+  background-color: var(--blue);
+}
+
+.design__item:first-child {
+  margin-right: var(--inner-margin-right);
+}
+
+.design__item::before {
+  content: "";
+  width: 0.1rem;
+  height: 100%;
+  background: rgba(121, 160, 193, 0.5);
+  -webkit-box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  position: absolute;
+  top: 0;
+  right: calc(var(--inner-margin-right) * -1);
+  bottom: 0;
+}
+
+.design__item-count {
+  width: 12.5rem;
+  height: 12.5rem;
+  padding: 2rem;
+  background-color: var(--sizyy-10);
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: var(--sizyy);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.design__item-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+}
+
+.design__item-title {
+  color: var(--blue);
+  margin-bottom: 4rem;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.design__item:hover .design__item-title {
+  color: var(--white);
+}
+
+.design__item-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 2rem;
+  color: var(--blue-50);
+}
+
+.design__item:hover .design__item-text {
+  color: var(--sizyy-50);
+}
+
+.design__item-btn {
+  margin-top: auto;
+}
+
 .hero {
   padding-top: var(--header-height);
+  position: relative;
 }
 
 .hero__wrap {
@@ -3304,6 +3535,38 @@ p {
     width: 100%;
     aspect-ratio: 674/537;
   }
+
+  .design__items {
+    gap: 1rem 2rem;
+  }
+
+  .design__item {
+    --inner-margin-right: 0;
+    padding: 6.5rem 3rem 3rem 2rem;
+  }
+
+  .design__item::before {
+    display: none;
+  }
+
+  .design__item-count {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    font-size: 2rem;
+  }
+
+  .hero {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -3616,6 +3879,17 @@ p {
 
   .template-box .border::after {
     border-width: 1rem;
+  }
+
+  .design__items {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .design__item {
+    min-height: 38.9rem;
   }
 }
 

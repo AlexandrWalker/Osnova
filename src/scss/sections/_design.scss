@@ -1,0 +1,144 @@
+@use './../mixins' as *;
+
+.design {
+  margin-top: 10rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 0;
+    height: 0.1rem;
+    transition: all 1s ease;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: rgba(121, 160, 193, 0.5);
+    box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+
+    .design:hover {
+      width: 100%;
+    }
+
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem 15.6rem;
+
+    @include md {
+      gap: 1rem 2rem;
+    }
+
+    @include sm {
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    --inner-margin-right: 15.6rem;
+
+    min-height: 50.7rem;
+    padding: 6rem 10.6rem 6rem 14.4rem;
+    background-color: var(--white);
+    transition: all 0.3s linear;
+
+    position: relative;
+
+    @include md {
+      --inner-margin-right: 0;
+
+      padding: 6.5rem 3rem 3rem 2rem;
+    }
+
+    @include sm {
+      min-height: 38.9rem;
+    }
+
+    &:hover {
+      background-color: var(--blue);
+    }
+
+    &:first-child {
+      margin-right: var(--inner-margin-right);
+    }
+
+    &::before {
+      content: "";
+      width: 0.1rem;
+      height: 100%;
+      background: rgba(121, 160, 193, 0.5);
+      box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+
+      position: absolute;
+      top: 0;
+      right: calc(var(--inner-margin-right) * -1);
+      bottom: 0;
+
+      @include md {
+        display: none;
+      }
+    }
+
+    &-count {
+      width: 12.5rem;
+      height: 12.5rem;
+      padding: 2rem;
+      background-color: var(--sizyy-10);
+
+      font-weight: 400;
+      font-size: 3rem;
+      line-height: 120%;
+      text-transform: uppercase;
+      color: var(--sizyy);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      @include md {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+        height: 5rem;
+
+        font-size: 2rem;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    &-title {
+      color: var(--blue);
+      margin-bottom: 4rem;
+
+      transition: all 0.3s linear;
+
+      .design__item:hover & {
+        color: var(--white);
+      }
+    }
+
+    &-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      color: var(--blue-50);
+
+      .design__item:hover & {
+        color: var(--sizyy-50);
+      }
+    }
+
+    &-btn {
+      margin-top: auto;
+    }
+  }
+}

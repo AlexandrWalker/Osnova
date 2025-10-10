@@ -93,11 +93,30 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   function burgerNav() {
     const burgerBtn = document.getElementById('burger-btn');
-    burgerBtn.addEventListener('click', function () {
-      burgerBtn.classList.toggle('burger--open');
+    const burgerMenuInner = document.querySelector('.burger-menu__inner');
 
+    const closeMenu = () => {
+      burgerBtn.classList.remove('burger--open');
+      document.documentElement.classList.remove('menu--open');
+    };
+
+    burgerBtn.addEventListener('click', function () {
+
+      burgerBtn.classList.toggle('burger--open');
       document.documentElement.classList.toggle('menu--open');
     })
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!burgerMenuInner.contains(event.target) && !burgerBtn.contains(event.target)) {
+        closeMenu();
+      }
+    });
   }
   burgerNav();
 

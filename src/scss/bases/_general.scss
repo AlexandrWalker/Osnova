@@ -1,7 +1,12 @@
 @use './../mixins' as *;
 
 /* Главный общий блок */
-.general {}
+.general {
+
+  &__head {
+    padding: 6rem 0 5rem;
+  }
+}
 
 /* Хлебные крошки */
 .breadcrumbs {

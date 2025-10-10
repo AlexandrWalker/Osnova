@@ -2,6 +2,11 @@
 
 .hero {
   padding-top: var(--header-height);
+  position: relative;
+
+  @include md {
+    display: none;
+  }
 
   &__wrap {
     height: 100%;
