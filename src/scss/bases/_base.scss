@@ -50,7 +50,8 @@ body {
 }
 
 section {
-  height: 100%;
+  display: flex;
+  height: auto;
   min-height: 100vh;
 }
 

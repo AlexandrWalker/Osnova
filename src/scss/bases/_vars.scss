@@ -7,6 +7,7 @@
 
   --container-padding: 10rem;
   --container-width: 172rem;
+  --header-height: 8rem;
 
   --page-bg: #F7F8FA;
   --page-bg-10: rgba(247, 248, 250, 0.1);
@@ -28,5 +29,6 @@
 
   @include sm {
     --container-padding: 2rem;
+    --header-height: 6rem;
   }
 }
