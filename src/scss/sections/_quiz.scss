@@ -1,0 +1,29 @@
+@use './../mixins' as *;
+
+.quiz {
+  padding: 10rem 0;
+
+  color: var(--white);
+
+  position: relative;
+
+  .general__head {
+
+    &-title {
+      margin-bottom: 5rem;
+    }
+
+    &-text {
+      margin-bottom: 6rem;
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+}

@@ -149,6 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         header.classList.remove('out');
       }
+
+      if (scrollPosition() > firstSection.offsetHeight) {
+        header.classList.add('show');
+      } else {
+        header.classList.remove('show');
+      }
+
       lastScrollTop = scrollPosition();
     })
   }

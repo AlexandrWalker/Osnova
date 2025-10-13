@@ -19,7 +19,7 @@
   padding: 0 var(--btn-padding-x);
   border-right: 0.1rem solid var(--btn-border-color);
   border-left: 0.1rem solid var(--btn-border-color);
-  transition: all 0.3s ease;
+  transition: all 0.8s ease;
 
   font-family: var(--font-family);
   font-weight: 700;
@@ -36,6 +36,32 @@
     --btn-height: 5rem;
   }
 
+  &::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0.1rem;
+    background-color: var(--white);
+    transition: width 0.8s ease;
+
+    position: absolute;
+    top: 0;
+    left: -0.1rem;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0.1rem;
+    background-color: var(--white);
+    transition: width 0.8s ease;
+
+    position: absolute;
+    bottom: 0;
+    right: -0.1rem;
+  }
+
   &:disabled {
     opacity: 0.5;
     pointer-events: none;
@@ -43,6 +69,13 @@
 
   &:hover {
 
-    @include dosm {}
+    @include dosm {
+      --btn-padding-x: 4rem;
+
+      &::before,
+      &::after {
+        width: calc(100% + 0.2rem);
+      }
+    }
   }
 }

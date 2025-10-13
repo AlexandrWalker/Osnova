@@ -4,7 +4,16 @@
 .general {
 
   &__head {
-    padding: 6rem 0 5rem;
+    // padding: 6rem 0 5rem;
+    margin-bottom: 5rem;
+
+    @include md {
+      margin-bottom: 3rem;
+    }
+
+    @include sm {
+      margin-bottom: 2rem;
+    }
   }
 }
 

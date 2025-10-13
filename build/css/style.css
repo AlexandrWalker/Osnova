@@ -52,6 +52,7 @@ section {
   height: -moz-fit-content;
   height: fit-content;
   min-height: 93rem;
+  margin-bottom: 6rem;
 }
 
 a {
@@ -88,16 +89,16 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
+  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -168,16 +169,16 @@ a {
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/HalvarBreit-Light.woff2") format("woff2"), url("../fonts/HalvarBreit-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-Light.woff2") format("woff2"), url("../fonts/HalvarBreit-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -216,6 +217,14 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
+  src: url("../fonts/Montserrat-ExtraLight.woff2") format("woff2"), url("../fonts/Montserrat-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-display: swap;
   src: url("../fonts/Montserrat-ExtraBold.woff2") format("woff2"), url("../fonts/Montserrat-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
@@ -224,8 +233,8 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-ExtraLight.woff2") format("woff2"), url("../fonts/Montserrat-ExtraLight.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -240,8 +249,8 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2"), url("../fonts/Montserrat-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -261,18 +270,10 @@ a {
   font-style: normal;
 }
 
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Regular.woff2") format("woff2"), url("../fonts/Montserrat-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-}
-
 /* Главный общий блок */
 
 .general__head {
-  padding: 6rem 0 5rem;
+  margin-bottom: 5rem;
 }
 
 /* Хлебные крошки */
@@ -503,6 +504,7 @@ body {
   --white-50: rgba(255, 255, 255, 0.5);
   --white-full-50: #ffffff80;
   --blue: #032154;
+  --blue-10: rgba(3, 33, 84, 0.1);
   --blue-50: rgba(3, 33, 84, 0.5);
   --blue-full-50: #03215480;
   --sizyy: #79A0C1;
@@ -539,8 +541,8 @@ body {
   padding: 0 var(--btn-padding-x);
   border-right: 0.1rem solid var(--btn-border-color);
   border-left: 0.1rem solid var(--btn-border-color);
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.8s ease;
+  transition: all 0.8s ease;
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 1.4rem;
@@ -550,6 +552,32 @@ body {
   text-transform: uppercase;
   position: relative;
   z-index: 1;
+}
+
+.btn::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0.1rem;
+  background-color: var(--white);
+  -webkit-transition: width 0.8s ease;
+  transition: width 0.8s ease;
+  position: absolute;
+  top: 0;
+  left: -0.1rem;
+}
+
+.btn::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0.1rem;
+  background-color: var(--white);
+  -webkit-transition: width 0.8s ease;
+  transition: width 0.8s ease;
+  position: absolute;
+  bottom: 0;
+  right: -0.1rem;
 }
 
 .btn:disabled {
@@ -700,6 +728,7 @@ body {
   font-size: 1.6rem;
   line-height: 130%;
   color: var(--white);
+  overflow-y: hidden;
   resize: none;
 }
 
@@ -800,6 +829,7 @@ body {
   bottom: 0;
   left: 0;
   z-index: 1;
+  display: none;
 }
 
 .line {
@@ -863,6 +893,12 @@ h2 {
   font-weight: 700;
   font-size: 8rem;
   line-height: 100%;
+}
+
+h6 {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 120%;
 }
 
 /* Текст внутри блока */
@@ -1377,6 +1413,7 @@ p {
   transition: transform 0.8s ease, background-color 0.3s ease;
   transition: transform 0.8s ease, background-color 0.3s ease, -webkit-transform 0.8s ease;
   will-change: transform;
+  height: var(--header-height);
   color: var(--white);
   position: fixed;
   top: 0;
@@ -1394,6 +1431,8 @@ p {
   width: 100%;
   height: 0.1rem;
   background-color: var(--white-50);
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -1408,8 +1447,12 @@ p {
 }
 
 .header.show {
-  background-color: var(--white-gray);
-  pointer-events: none;
+  background-color: var(--white);
+  backdrop-filter: unset;
+}
+
+.header.show::before {
+  opacity: 0;
 }
 
 .header__container {
@@ -1598,11 +1641,11 @@ p {
   flex-shrink: 0;
 }
 
-.logo:hover {
+.header.show .logo {
   background-color: var(--blue);
 }
 
-.logo:hover svg path {
+.header.show .logo svg path {
   fill: var(--white);
 }
 
@@ -1848,14 +1891,24 @@ p {
   background-color: transparent;
   border-right: 0.1rem solid var(--white-50);
   border-bottom: 0.1rem solid transparent;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   font-weight: 700;
   font-size: 1.4rem;
   line-height: 100%;
   text-transform: uppercase;
   color: var(--white-50);
   white-space: nowrap;
+}
+
+.header.show .nav a {
+  color: var(--blue-full-50);
+  border: unset;
+}
+
+.header.show .nav a:hover {
+  background-color: var(--blue);
+  color: var(--white);
 }
 
 .nav a:hover {
@@ -2740,8 +2793,10 @@ p {
 
 .design__item {
   --inner-margin-right: 15.6rem;
+  width: calc(50% - var(--inner-margin-right) / 2);
   min-height: 50.7rem;
-  padding: 6rem 10.6rem 6rem 14.4rem;
+  margin-right: var(--inner-margin-right);
+  padding: 6rem 12.4rem 6rem 14.4rem;
   background-color: var(--white);
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
@@ -2752,8 +2807,13 @@ p {
   background-color: var(--blue);
 }
 
-.design__item:first-child {
-  margin-right: var(--inner-margin-right);
+.design__item:last-child {
+  margin-right: 0;
+  width: calc(50% - var(--inner-margin-right) / 2);
+}
+
+.design__item:last-child::before {
+  display: none;
 }
 
 .design__item::before {
@@ -2823,7 +2883,16 @@ p {
 }
 
 .design__item-btn {
+  --btn-color: var(--blue);
+  --btn-border-color: var(--blue);
+  width: 100%;
   margin-top: auto;
+}
+
+.design__item:hover .design__item-btn,
+.design__item-btn:hover {
+  --btn-color: var(--white);
+  --btn-border-color: var(--white);
 }
 
 .hero {
@@ -2915,7 +2984,138 @@ p {
   object-fit: cover;
 }
 
+.quiz {
+  padding: 10rem 0;
+  color: var(--white);
+  position: relative;
+}
+
+.quiz .general__head-title {
+  margin-bottom: 5rem;
+}
+
+.quiz .general__head-text {
+  margin-bottom: 6rem;
+}
+
+.quiz__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.work__items {
+  max-width: 128.5rem;
+  width: 100%;
+  margin-left: auto;
+}
+
+.work__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 9.5rem;
+  padding: 0 0 0 14.5rem;
+  color: var(--blue);
+  position: relative;
+}
+
+.work__item:hover {
+  color: var(--white);
+}
+
+.work__item:hover::after {
+  width: 100%;
+}
+
+.work__item:hover p {
+  color: var(--white);
+  -webkit-transform: translateX(-3rem);
+  -ms-transform: translateX(-3rem);
+  transform: translateX(-3rem);
+}
+
+.work__item::before {
+  content: "";
+  width: 100%;
+  height: 0.1rem;
+  background: var(--blue-10);
+  -webkit-box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.work__item::after {
+  content: "";
+  width: 0;
+  height: 100%;
+  background: var(--blue);
+  -webkit-box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  -webkit-transition: width 1s ease;
+  transition: width 1s ease;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.work__item-count {
+  color: var(--sizyy);
+  -webkit-transition: -webkit-transform 1s ease;
+  transition: -webkit-transform 1s ease;
+  transition: transform 1s ease;
+  transition: transform 1s ease, -webkit-transform 1s ease;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.work__item:hover .work__item-count {
+  -webkit-transform: translateY(-50%) translateX(3rem);
+  -ms-transform: translateY(-50%) translateX(3rem);
+  transform: translateY(-50%) translateX(3rem);
+}
+
+.work__item-title {
+  -webkit-text-decoration: dotted;
+  text-decoration: dotted;
+}
+
+.work__item p {
+  color: var(--blue);
+  -webkit-transition: color 0.8s ease 0.3s, -webkit-transform 1s ease;
+  transition: color 0.8s ease 0.3s, -webkit-transform 1s ease;
+  transition: transform 1s ease, color 0.8s ease 0.3s;
+  transition: transform 1s ease, color 0.8s ease 0.3s, -webkit-transform 1s ease;
+}
+
 @media (min-width: 601px) {
+  .btn:hover {
+    --btn-padding-x: 4rem;
+  }
+
+  .btn:hover::before,
+  .btn:hover::after {
+    width: calc(100% + 0.2rem);
+  }
+
   .template-product__body-btns .btn:hover .icon-play {
     color: var(--white);
   }
@@ -2962,6 +3162,10 @@ p {
 @media (max-width: 834px) {
   html {
     font-size: 62.5%;
+  }
+
+  .general__head {
+    margin-bottom: 3rem;
   }
 
   .breadcrumbs__inner {
@@ -3651,6 +3855,14 @@ p {
   .hero__cover::before {
     display: block;
   }
+
+  .work__item {
+    padding: 0 0 0 7.8rem;
+  }
+
+  .work__item-count {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -3660,6 +3872,10 @@ p {
 
   section {
     min-height: unset;
+  }
+
+  .general__head {
+    margin-bottom: 2rem;
   }
 
   .breadcrumbs__inner {
@@ -3991,6 +4207,14 @@ p {
   }
 
   .hero__cover {
+    display: none;
+  }
+
+  .work__item {
+    padding: 0;
+  }
+
+  .work__item p {
     display: none;
   }
 }

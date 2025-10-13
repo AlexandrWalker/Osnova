@@ -55,6 +55,7 @@ section {
   min-height: 93rem;
   // height: auto;
   // min-height: clamp(93rem, 100vh, 100vh);
+  margin-bottom: 6rem;
 
   @include sm {
     min-height: unset;

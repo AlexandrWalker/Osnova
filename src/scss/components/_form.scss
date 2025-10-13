@@ -145,6 +145,8 @@
     line-height: 130%;
     color: var(--white);
 
+    overflow-y: hidden;
+
     resize: none;
 
     &:focus,
