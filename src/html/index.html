@@ -15,7 +15,7 @@
             <div class="hero__inner">
               <div class="hero__title">
                 <h1>
-                  От проекта<br>
+                  От <br> проекта<br>
                   до его<br>
                   реализации
                 </h1>
@@ -47,7 +47,12 @@
           </div>
 
           <div class="hero__bg">
-            <img src="./../images/temp/hero-bg.png" alt="">
+            <picture>
+              <source media="(min-width: 835px)" srcset="./../images/temp/hero-bg.png">
+              <source media="(max-width: 834px) and (min-width: 601px)" srcset="./../images/temp/hero-bg-plansh.png">
+              <source media="(max-width: 600px)" srcset="./../images/temp/hero-bg-mob.png">
+              <img src="./../images/temp/hero-bg.png" alt="">
+            </picture>
           </div>
         </div>
       </section>

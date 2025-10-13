@@ -5,7 +5,8 @@
   position: relative;
 
   @include md {
-    display: none;
+    // display: none;
+    overflow-x: hidden;
   }
 
   &__wrap {
@@ -25,6 +26,12 @@
 
     position: relative;
     z-index: 2;
+
+    @include md {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
   }
 
   &__title {
@@ -32,12 +39,41 @@
     text-transform: uppercase;
 
     grid-column: 4/8;
+
+    @include md {
+      margin-top: 12.5rem;
+      margin-bottom: 5rem;
+    }
+
+    @include sm {
+      margin-top: 9rem;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+
+      br {
+
+        &:first-child {
+          display: none;
+
+          @include md {
+            display: block;
+          }
+        }
+      }
+    }
   }
 
   &__btn {
     width: 100%;
 
     grid-column: 5/7;
+
+    @include md {
+      width: fit-content;
+      min-width: 36.7rem;
+    }
   }
 
   &__text {
@@ -50,11 +86,24 @@
 
     grid-column: 5/9;
 
+    @include md {
+      padding: 6rem calc(9.6rem + var(--container-padding)) 33.2rem 9.6rem;
+      margin: 9rem calc(var(--container-padding) * -1) 0 0;
+      width: calc(100% + var(--container-padding));
+    }
+
+    @include sm {
+      margin: 4rem 0 0 0;
+      padding: 5.4rem 2rem 7.5rem 2rem;
+    }
+
     p {
       font-family: var(--second-family);
       font-weight: 700;
       font-size: 2rem;
       line-height: 150%;
+
+      @include md {}
     }
   }
 
@@ -66,6 +115,40 @@
     position: absolute;
     left: 7.4rem;
     bottom: 0;
+
+    @include md {
+      left: unset;
+      right: -33.8rem;
+      z-index: -1;
+    }
+
+    @include sm {
+      display: none;
+    }
+
+    img {
+
+      @include md {
+        position: relative;
+        z-index: -2;
+      }
+    }
+
+    &::before {
+      content: "";
+      display: none;
+      position: absolute;
+      top: 0;
+      right: calc(33.8rem - var(--container-padding));
+      bottom: 0;
+      left: calc((33.8rem + var(--container-padding)) * -1);
+      z-index: -1;
+      background: rgba(0, 0, 0, 0.6);
+
+      @include md {
+        display: block;
+      }
+    }
   }
 
   &__bg {

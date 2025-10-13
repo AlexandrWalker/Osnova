@@ -55,6 +55,10 @@ section {
   min-height: 93rem;
   // height: auto;
   // min-height: clamp(93rem, 100vh, 100vh);
+
+  @include sm {
+    min-height: unset;
+  }
 }
 
 a {

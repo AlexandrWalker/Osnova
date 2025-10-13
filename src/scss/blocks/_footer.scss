@@ -3,6 +3,10 @@
 .footer {
   background-color: var(--blue);
 
+  @include md {
+    display: none;
+  }
+
   &.footer--active {
 
     .menu__foot::before {

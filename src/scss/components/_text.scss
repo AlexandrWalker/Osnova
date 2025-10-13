@@ -9,7 +9,8 @@ h1 {
   text-transform: uppercase;
 
   @include md {
-    font-size: 8rem;
+    // font-size: 8rem;
+    font-size: calc(100vw/(834/80));
     line-height: 120%;
   }
 
