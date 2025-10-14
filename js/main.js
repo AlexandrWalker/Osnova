@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Подключение ScrollTrigger
    */
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
   /**
    * Инициализация Lenis
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const swiper = document.querySelector('.swiper');
   if (swiper) {
-    const eventsOtherSlider = new Swiper(".events__other--slider", {
+    const regulationsSlider = new Swiper(".regulations__slider", {
       slidesPerGroup: 1,
       slidesPerView: 1,
       spaceBetween: 10,
@@ -36,15 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         forceToAxis: true,
       },
       navigation: {
-        prevEl: ".events-button-prev",
-        nextEl: ".events-button-next",
+        prevEl: ".regulations-button-prev",
+        nextEl: ".regulations-button-next",
       },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        dynamicBullets: true,
-        dynamicMainBullets: 1,
-      },
+      // pagination: {
+      //   el: ".swiper-pagination",
+      //   clickable: true,
+      //   dynamicBullets: true,
+      //   dynamicMainBullets: 1,
+      // },
       breakpoints: {
         601: {
           slidesPerView: 2,
@@ -55,11 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
           spaceBetween: 20,
         },
       },
-      effect: 'fade',
-      fadeEffect: {
-        crossFade: true
-      },
-      // grabCursor: true,
+      // effect: 'fade',
+      // fadeEffect: {
+      //   crossFade: true
+      // },
+      grabCursor: true,
       // effect: "creative",
       // creativeEffect: {
       //   prev: {
@@ -70,6 +70,22 @@ document.addEventListener('DOMContentLoaded', () => {
       //     translate: ["100%", 0, 0],
       //   },
       // },
+    });
+
+    const buildingSlider = new Swiper(".building__slider", {
+      slidesPerGroup: 1,
+      slidesPerView: 1,
+      spaceBetween: 20,
+      loop: true,
+      speed: 600,
+      mousewheel: {
+        forceToAxis: true,
+      },
+      navigation: {
+        prevEl: ".building-button-prev",
+        nextEl: ".building-button-next",
+      },
+      grabCursor: true,
     });
   }
 
@@ -98,9 +114,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeMenu = () => {
       burgerBtn.classList.remove('burger--open');
       document.documentElement.classList.remove('menu--open');
+      lenis.start();
     };
 
     burgerBtn.addEventListener('click', function () {
+
+      if (document.documentElement.classList.contains('menu--open')) {
+        lenis.start();
+      } else {
+        lenis.stop();
+      }
 
       burgerBtn.classList.toggle('burger--open');
       document.documentElement.classList.toggle('menu--open');
@@ -120,22 +143,51 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   burgerNav();
 
-  const footer = document.querySelector('footer');
-  footer.addEventListener('mousemove', function () {
-    footer.classList.add('footer--active');
-  })
-  footer.addEventListener('mouseleave', function () {
-    footer.classList.remove('footer--active');
-  })
-
-  // const headerDropHead = document.querySelector('.header__drop-head');
-  // const headerDropBody = document.querySelector('.header__drop-body');
-  // headerDropHead.addEventListener('click', function () {
-  //   headerDropBody.classList.toggle('header__drop-body--open');
+  // const footer = document.querySelector('footer');
+  // footer.addEventListener('mousemove', function () {
+  //   footer.classList.add('footer--active');
+  // })
+  // footer.addEventListener('mouseleave', function () {
+  //   footer.classList.remove('footer--active');
   // })
 
+  // const hero = document.querySelector('.hero');
+  // hero.addEventListener('mousemove', function () {
+  //   hero.classList.add('animatedClass');
+  // })
+  // hero.addEventListener('mouseleave', function () {
+  //   hero.classList.remove('animatedClass');
+  // })
+
+  const sections = gsap.utils.toArray("section")
+  sections.forEach(function (section, index) {
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top bottom",
+      end: "bottom top",
+      onEnter: () => section.classList.add("showed"),
+    })
+  })
+
+  const workItems = document.querySelectorAll(".work__item")
+  workItems.forEach(workItem => {
+    ScrollTrigger.create({
+      trigger: workItem,
+      start: "top bottom",
+      end: "bottom top",
+      onEnter: () => workItem.classList.add("showed"),
+    })
+  });
+
+  const footer = document.querySelector("footer")
+  ScrollTrigger.create({
+    trigger: footer,
+    start: "top bottom",
+    end: "bottom top",
+    onEnter: () => footer.classList.add("showed"),
+  })
   /**
-   * Управляет поведением меню-бургера.
+   * Управляет поведением хэдера.
    */
   function headerFunc() {
     const header = document.getElementById('header');
@@ -220,32 +272,39 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
-   * Разбиение текста по буквам
+   * Анимация текста
    */
-  const titleChars = document.querySelectorAll('[data-splitting="chars"]');
-  titleChars.forEach(titleChar => {
-    const char = new SplitType(titleChar, { types: 'words, chars' });
-  });
+  console.clear();
 
-  /**
-   * Разбиение текста по словам
-   */
-  const titleWords = document.querySelectorAll('[data-splitting="words"]');
-  titleWords.forEach(titleWord => {
-    const word1 = new SplitType(titleWord.querySelector('h1'), { types: 'words, words' });
-    const word2 = new SplitType(titleWord.querySelector('h2'), { types: 'words, words' });
-    const word3 = new SplitType(titleWord.querySelector('h3'), { types: 'words, words' });
-    const word4 = new SplitType(titleWord.querySelector('h4'), { types: 'words, words' });
-    const word5 = new SplitType(titleWord.querySelector('h5'), { types: 'words, words' });
-    const word6 = new SplitType(titleWord.querySelector('h6'), { types: 'words, words' });
-  });
+  gsap.set('[data-title="split"]', { opacity: 1 });
 
-  /**
-   * Разбиение текста по строкам
-   */
-  const titleLines = document.querySelectorAll('[data-splitting="lines"]');
-  titleLines.forEach(titleLine => {
-    const line = new SplitType(titleLine, { types: 'words, lines' });
+  document.fonts.ready.then(() => {
+    let containers = gsap.utils.toArray(".container");
+
+    containers.forEach((container) => {
+      let text = container.querySelector('[data-title="split"]');
+      let animation;
+
+      SplitText.create(text, {
+        type: "words,lines",
+        mask: "lines",
+        linesClass: "line",
+        autoSplit: true,
+        onSplit: (instance) => {
+          console.log("split")
+          return gsap.from(instance.lines, {
+            yPercent: 120,
+            stagger: 0.1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: container,
+              start: "top 90%",
+              end: "bottom top"
+            }
+          });
+        }
+      });
+    });
   });
 
   $(window).on('resize', function () { ScrollTrigger.refresh() });
