@@ -57,8 +57,13 @@ section {
   // min-height: clamp(93rem, 100vh, 100vh);
   margin-bottom: 6rem;
 
-  @include sm {
+  @include md {
     min-height: unset;
+    margin-bottom: 4rem;
+  }
+
+  @include md {
+    margin-bottom: 3rem;
   }
 }
 

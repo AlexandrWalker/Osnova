@@ -1,8 +1,14 @@
 @use './../mixins' as *;
 
 .design {
-  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6rem;
   position: relative;
+
+  @include md {
+    margin-top: 0;
+  }
 
   &::before {
     content: "";
@@ -21,6 +27,70 @@
       width: 100%;
     }
 
+  }
+
+  &__head {
+    padding: 10rem 0 7rem 14.5rem;
+
+    position: relative;
+
+    @include md {
+      padding: 15.7rem 0 3rem;
+    }
+
+    @include sm {
+      padding: 6rem 0 2rem;
+    }
+
+    &::before {
+      content: "";
+      width: 0;
+      height: 0.1rem;
+      background-color: var(--sizyy-50);
+      transition: width 2s ease;
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      .showed & {
+        width: 100%;
+
+        @include md {
+          width: calc(100% - (var(--container-padding) * 2));
+          margin: 0 auto;
+          left: var(--container-padding);
+        }
+      }
+    }
+
+    &-text {
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 12rem;
+      line-height: 100%;
+      color: var(--blue-10);
+
+      @include md {
+        font-size: 8rem;
+      }
+
+      @include sm {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  &__inner {
+    padding-top: 6rem;
+
+    @include md {
+      padding-top: 3rem;
+    }
+
+    @include sm {
+      padding-top: 2rem;
+    }
   }
 
   &__items {
@@ -54,6 +124,7 @@
       --inner-margin-right: 0;
 
       padding: 6.5rem 3rem 3rem 2rem;
+      background-color: var(--blue);
     }
 
     @include sm {
@@ -61,7 +132,10 @@
     }
 
     &:hover {
-      background-color: var(--blue);
+
+      @include domd {
+        background-color: var(--blue);
+      }
     }
 
     &:last-child {
@@ -125,12 +199,28 @@
 
     &-title {
       color: var(--blue);
+      text-decoration-style: dotted;
+      text-decoration-color: #fff;
+      text-decoration-line: underline;
+
       margin-bottom: 4rem;
 
       transition: all 0.3s linear;
 
-      .design__item:hover & {
+      @include md {
         color: var(--white);
+        margin-bottom: 3rem;
+      }
+
+      @include sm {
+        margin-bottom: 2rem;
+      }
+
+      .design__item:hover & {
+
+        @include domd {
+          color: var(--white);
+        }
       }
     }
 
@@ -140,8 +230,15 @@
       gap: 2rem;
       color: var(--blue-50);
 
-      .design__item:hover & {
+      @include md {
         color: var(--sizyy-50);
+      }
+
+      .design__item:hover & {
+
+        @include domd {
+          color: var(--sizyy-50);
+        }
       }
     }
 
@@ -152,10 +249,22 @@
       width: 100%;
       margin-top: auto;
 
-      .design__item:hover &,
-      &:hover {
+      @include md {
         --btn-color: var(--white);
         --btn-border-color: var(--white);
+      }
+
+      @include sm {
+        margin-top: auto;
+      }
+
+      .design__item:hover &,
+      &:hover {
+
+        @include domd {
+          --btn-color: var(--white);
+          --btn-border-color: var(--white);
+        }
       }
     }
   }

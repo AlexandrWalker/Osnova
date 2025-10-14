@@ -1,1 +1,43 @@
 @use './../mixins' as *;
+
+.swiper {
+
+  &__btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    position: absolute;
+    bottom: 10rem;
+    left: 10rem;
+  }
+}
+
+[class^="swiper-button-"],
+[class*=" swiper-button-"] {
+  --swiper-btn-size: 6rem;
+
+  width: var(--swiper-btn-size);
+  height: var(--swiper-btn-size);
+  border-radius: 50%;
+  background-color: var(--sizyy-10);
+
+  position: static;
+
+  i {
+    font-size: var(--swiper-btn-size);
+    color: var(--blue);
+  }
+
+  &::after {
+    display: none;
+  }
+}
+
+.swiper-button-prev {
+  transform: rotate(90deg);
+}
+
+.swiper-button-next {
+  transform: rotate(-90deg);
+}

@@ -1,0 +1,76 @@
+@use './../mixins' as *;
+
+
+.regulations {
+  padding: 10rem 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 59.5rem;
+    height: 293.5rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTk3IiBoZWlnaHQ9IjkzNCIgdmlld0JveD0iMCAwIDU5NyA5MzQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTAuNDYzNjg0IDI2MS41MjVWMTU2LjQ4NUwyMzEuNjcyIDgwLjIyMzFWLTEwNTQuOTNIMzY1LjIyN1YtMTM5LjkyOUg1OTYuNDM1TDU5NC45OTkgLTM2LjMyNzdMMzY1LjIyNyA0MS4zNzI5VjIwOC4yODVINTk2LjQzNUw1OTQuOTk5IDMxMS44ODZMMzY1LjIyNyAzODguMTQ4VjU1NS4wNkg1OTYuNDM1TDU5NC45OTkgNjU4LjY2MUwzNjUuMjI3IDczNC45MjNWOTAxLjgzNUg1OTYuNDM1TDU5NC45OTkgMTAwNS40NEwzNjUuMjI3IDEwODMuMTRWMTg4MEgyMzEuNjcyVjk1NS4wNzVIMC40NjM2ODRWODUxLjQ3NEwyMzEuNjcyIDc3NS4yMTJWNjA4LjNIMC40NjM2ODRWNTA0LjY5OUwyMzEuNjcyIDQyNi45OThWMjYxLjUyNUgwLjQ2MzY4NFoiIGZpbGw9IndoaXRlIi8+DQo8L3N2Zz4NCg==);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    position: absolute;
+    top: 50%;
+    right: 18.6rem;
+    z-index: -1;
+    transform: translateY(-50%);
+  }
+
+  &__inner {}
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    transition: color 0.5s ease;
+    color: var(--blue-50);
+
+    &-count {
+      font-weight: 400;
+      font-size: 2.5rem;
+      line-height: 120%;
+      color: var(--sizyy);
+
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      padding: 0 0 3rem;
+
+      span {
+        color: var(--blue);
+      }
+    }
+
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      margin-top: 4rem;
+      border-top: 0.1rem solid var(--blue-10);
+      transition: border-color 0.5s ease;
+    }
+  }
+
+  .general__head {
+    margin-bottom: 6rem;
+  }
+
+  .swiper-slide-active {
+
+    .regulations__item {
+      color: var(--blue);
+    }
+
+    .regulations__item-wrap {
+      border-color: var(--blue);
+    }
+
+    .regulations__item-count {
+      opacity: 1;
+    }
+  }
+}

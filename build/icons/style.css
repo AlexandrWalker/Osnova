@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'OsnovaIconFonts';
+  src: url('fonts/OsnovaIconFonts.eot?g9pxfd');
+  src: url('fonts/OsnovaIconFonts.eot?g9pxfd#iefix') format('embedded-opentype'),
+    url('fonts/OsnovaIconFonts.ttf?g9pxfd') format('truetype'),
+    url('fonts/OsnovaIconFonts.woff?g9pxfd') format('woff'),
+    url('fonts/OsnovaIconFonts.svg?g9pxfd#OsnovaIconFonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'OsnovaIconFonts' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-calendar:before {
+  content: "\e900";
+}
+
+.icon-chevron:before {
+  content: "\e901";
+}
+
+.icon-chevron-min:before {
+  content: "\e902";
+}
+
+.icon-deconstruct:before {
+  content: "\e903";
+}
+
+.icon-download:before {
+  content: "\e904";
+}
+
+.icon-exit:before {
+  content: "\e905";
+}
+
+.icon-location:before {
+  content: "\e907";
+}
+
+.icon-marker .path1:before {
+  content: "\e908";
+  color: rgb(3, 33, 84);
+}
+
+.icon-marker .path2:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.icon-play:before {
+  content: "\e90a";
+}

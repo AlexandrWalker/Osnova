@@ -3,10 +3,31 @@
 .hero {
   padding-top: var(--header-height);
   position: relative;
+  margin-bottom: 0;
 
-  @include md {
+  @include sm {
     // display: none;
-    overflow-x: hidden;
+    // overflow-x: hidden;
+  }
+
+  &.showed {
+
+    .lines-line-4 {
+      height: calc(100% - 15.8rem) !important;
+    }
+
+    .lines-line-5 {
+
+      path {
+        stroke-dasharray: 4000;
+        stroke-dashoffset: 4000;
+        animation: one 6s linear forwards;
+      }
+    }
+  }
+
+  .container {
+    overflow: hidden;
   }
 
   &__wrap {
@@ -165,5 +186,144 @@
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  .lines {
+
+    &-line {
+
+      &-4 {
+        transition: height 2s linear;
+        grid-column: 7/8;
+
+        @include md {
+          display: none;
+        }
+      }
+
+      &-5 {
+        display: flex;
+        justify-content: flex-end;
+        width: auto;
+        height: 100%;
+        background-color: transparent;
+
+        grid-column: 8/10;
+
+        @include md {
+          display: none;
+        }
+
+        svg {
+          width: 5.768rem;
+          height: 100%;
+          pointer-events: none;
+          margin-right: -0.3rem;
+        }
+
+        path {
+          stroke: var(--white-30);
+        }
+      }
+    }
+  }
+}
+
+.down {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 27.6rem;
+  height: 27.6rem;
+  border-radius: 50%;
+  background-color: var(--white);
+  overflow: hidden;
+  transition: color 0.8s ease;
+
+  color: var(--blue);
+
+  position: absolute;
+  bottom: -12.3rem;
+  left: -3.8rem;
+  z-index: 5;
+
+  @include md {
+    bottom: -13.8rem;
+  }
+
+  @include sm {
+    width: 10rem;
+    height: 10rem;
+    bottom: -5rem;
+    left: -3rem;
+  }
+
+  i {
+    font-size: 15rem;
+
+    background-color: var(--sizyy-10);
+    border-radius: 50%;
+
+    position: relative;
+    z-index: 2;
+
+    @include sm {
+      font-size: 5rem;
+    }
+  }
+
+  &:hover {
+    color: var(--white);
+
+    &::before {
+      clip-path: circle(50% at 50% 50%);
+    }
+
+    i {
+      animation: btnBounce 1s cubic-bezier(0.61, 0.48, 1, 0.6) forwards;
+    }
+  }
+
+  &::before {
+    content: "";
+    width: 105%;
+    height: 105%;
+    background-color: var(--blue);
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 0.8s ease;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes btnBounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-1rem);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(0.5rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes one {
+  100% {
+    stroke-dashoffset: 0;
   }
 }

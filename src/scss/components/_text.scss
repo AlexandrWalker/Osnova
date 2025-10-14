@@ -18,6 +18,11 @@ h1 {
     font-size: 4rem;
     line-height: 100%;
   }
+
+  div.line & {
+    display: inline-flex;
+    gap: 0.2em;
+  }
 }
 
 /* Заголовки блоков */
@@ -37,12 +42,27 @@ h2 {
     font-size: 3rem;
     line-height: 120%;
   }
+
+  div.line & {
+    display: inline-flex;
+    gap: 0.2em;
+  }
+}
+
+h5 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 120%;
 }
 
 h6 {
   font-weight: 500;
   font-size: 2rem;
   line-height: 120%;
+
+  @include md {
+    font-size: 1.6rem;
+  }
 }
 
 /* Текст внутри блока */

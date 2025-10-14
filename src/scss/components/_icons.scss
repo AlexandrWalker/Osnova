@@ -2,4 +2,6 @@
 
 /* Стили для иконок */
 [class^="icon-"],
-[class*=" icon-"] {}
+[class*=" icon-"] {
+  font-size: 1rem;
+}

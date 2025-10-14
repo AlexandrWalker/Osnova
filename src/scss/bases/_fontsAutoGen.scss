@@ -8,8 +8,8 @@
 @font-face {
 	font-family: Gotham;
 	font-display: swap;
-	src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-	font-weight: 350;
+	src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
+	font-weight: 300;
 	font-style: normal;
 }
 @font-face {
@@ -22,8 +22,8 @@
 @font-face {
 	font-family: Gotham;
 	font-display: swap;
-	src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
-	font-weight: 300;
+	src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+	font-weight: 350;
 	font-style: normal;
 }
 @font-face {
@@ -31,20 +31,6 @@
 	font-display: swap;
 	src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
 	font-weight: 500;
-	font-style: normal;
-}
-@font-face {
-	font-family: Gotham;
-	font-display: swap;
-	src: url("../fonts/Gotham-Thin.woff2") format("woff2"), url("../fonts/Gotham-Thin.woff") format("woff");
-	font-weight: 100;
-	font-style: normal;
-}
-@font-face {
-	font-family: Gotham;
-	font-display: swap;
-	src: url("../fonts/Gotham-Ultra.woff2") format("woff2"), url("../fonts/Gotham-Ultra.woff") format("woff");
-	font-weight: 1000;
 	font-style: normal;
 }
 @font-face {
@@ -57,15 +43,22 @@
 @font-face {
 	font-family: HalvarBreit;
 	font-display: swap;
-	src: url("../fonts/HalvarBreit-Bold.woff2") format("woff2"), url("../fonts/HalvarBreit-Bold.woff") format("woff");
-	font-weight: 700;
+	src: url("../fonts/HalvarBreit-ExtraBold.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraBold.woff") format("woff");
+	font-weight: 800;
 	font-style: normal;
 }
 @font-face {
 	font-family: HalvarBreit;
 	font-display: swap;
-	src: url("../fonts/HalvarBreit-ExtraBold.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraBold.woff") format("woff");
-	font-weight: 800;
+	src: url("../fonts/HalvarBreit-Bold.woff2") format("woff2"), url("../fonts/HalvarBreit-Bold.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: Gotham;
+	font-display: swap;
+	src: url("../fonts/Gotham-Ultra.woff2") format("woff2"), url("../fonts/Gotham-Ultra.woff") format("woff");
+	font-weight: 1000;
 	font-style: normal;
 }
 @font-face {
@@ -78,15 +71,22 @@
 @font-face {
 	font-family: HalvarBreit;
 	font-display: swap;
-	src: url("../fonts/HalvarBreit-Light.woff2") format("woff2"), url("../fonts/HalvarBreit-Light.woff") format("woff");
-	font-weight: 300;
+	src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: Gotham;
+	font-display: swap;
+	src: url("../fonts/Gotham-Thin.woff2") format("woff2"), url("../fonts/Gotham-Thin.woff") format("woff");
+	font-weight: 100;
 	font-style: normal;
 }
 @font-face {
 	font-family: HalvarBreit;
 	font-display: swap;
-	src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
-	font-weight: 100;
+	src: url("../fonts/HalvarBreit-Light.woff2") format("woff2"), url("../fonts/HalvarBreit-Light.woff") format("woff");
+	font-weight: 300;
 	font-style: normal;
 }
 @font-face {
@@ -113,6 +113,13 @@
 @font-face {
 	font-family: Montserrat;
 	font-display: swap;
+	src: url("../fonts/Montserrat-ExtraBold.woff2") format("woff2"), url("../fonts/Montserrat-ExtraBold.woff") format("woff");
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: Montserrat;
+	font-display: swap;
 	src: url("../fonts/Montserrat-Bold.woff2") format("woff2"), url("../fonts/Montserrat-Bold.woff") format("woff");
 	font-weight: 700;
 	font-style: normal;
@@ -127,22 +134,8 @@
 @font-face {
 	font-family: Montserrat;
 	font-display: swap;
-	src: url("../fonts/Montserrat-ExtraBold.woff2") format("woff2"), url("../fonts/Montserrat-ExtraBold.woff") format("woff");
-	font-weight: 800;
-	font-style: normal;
-}
-@font-face {
-	font-family: Montserrat;
-	font-display: swap;
 	src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
 	font-weight: 500;
-	font-style: normal;
-}
-@font-face {
-	font-family: Montserrat;
-	font-display: swap;
-	src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-	font-weight: 300;
 	font-style: normal;
 }
 @font-face {
@@ -164,5 +157,12 @@
 	font-display: swap;
 	src: url("../fonts/Montserrat-Thin.woff2") format("woff2"), url("../fonts/Montserrat-Thin.woff") format("woff");
 	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: Montserrat;
+	font-display: swap;
+	src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
+	font-weight: 300;
 	font-style: normal;
 }

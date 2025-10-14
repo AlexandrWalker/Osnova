@@ -6,6 +6,7 @@
   grid-template-rows: auto auto 1fr;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 
   position: absolute;
   top: 0;
@@ -14,60 +15,52 @@
   left: 0;
   z-index: 1;
 
-  display: none;
-}
+  &-line {
+    background-color: var(--white-30);
+    width: 0.1rem;
+    height: 0;
+    grid-row: 1/4;
+    transition: height 2s linear;
 
-.line {
-  background-color: var(--white-30);
-  width: 0.1rem;
-  height: 100%;
-  grid-row: 1/4;
-
-  &-1 {
-    grid-column: 1/2;
-  }
-
-  &-2 {
-    grid-column: 3/4;
-
-     @include md {
-      display: none;
-     }
-  }
-
-  &-3 {
-    grid-column: 5/6;
-
-     @include md {
-      display: none;
-     }
-  }
-
-  &-4 {
-    height: calc(100% - 15.8rem);
-    grid-column: 7/8;
-
-     @include md {
-      display: none;
-     }
-  }
-
-  &-5 {
-    display: flex;
-    justify-content: flex-end;
-    width: auto;
-    background-color: transparent;
-
-    grid-column: 8/10;
-
-     @include md {
-      display: none;
-     }
-
-    img {
-      width: auto;
+    .showed & {
       height: 100%;
-      object-fit: contain;
+    }
+
+    &-1 {
+      grid-column: 1/2;
+    }
+
+    &-2 {
+      grid-column: 3/4;
+
+      @include md {
+        display: none;
+      }
+    }
+
+    &-3 {
+      grid-column: 5/6;
+
+      @include md {
+        display: none;
+      }
+    }
+
+    &-4 {
+      transition: height 2s linear;
+      grid-column: 7/8;
+
+      @include md {
+        display: none;
+      }
+    }
+
+    &-5 {
+      grid-column: 9 / 10;
+
+      @include md {
+        display: none;
+      }
     }
   }
 }

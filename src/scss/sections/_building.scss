@@ -1,0 +1,135 @@
+@use './../mixins' as *;
+
+
+.building {
+  padding: 5rem 0 0 0;
+  margin: 0;
+
+  position: relative;
+
+  &::before {
+    content: "";
+    width: auto;
+    height: 100%;
+    aspect-ratio: 317/934;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjkzNCIgdmlld0JveD0iMCAwIDE4MCA5MzQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMTE0XzM1NDkpIj4NCjxwYXRoIGQ9Ik0tMzI3Ljg5OSA3MzUuNTc0VjU1LjM4ODNMLTMyMy4xNjUgNTYuODExN0wtMjEuMTM5OSAxNTMuMTI3VjExOC40OTFMLTMxMi43NSAyNS4wMjI5Qy0zMTUuMTE3IDI0LjA3NCAtMzE5LjM3NyAyMi42NTA2IC0zMjMuMTY1IDIxLjcwMTdDLTMzNy4zNjYgMTYuOTU3MSAtMzQzLjk5NCAxNC41ODQ4IC0zNTMuNDYyIDIxLjcwMTdDLTM2MS45ODMgMjguMzQ0MSAtMzYxLjUwOSAzNS40NjEgLTM2MS4wMzYgNDkuMjIwM0MtMzYxLjAzNiA1Mi4wNjcxIC0zNjAuNTYzIDU1LjM4ODMgLTM2MC41NjMgNjIuNTA1MlY3MzUuNTc0Qy0zNjAuNTYzIDc2Mi4xNDQgLTM1Ni4zMDIgNzc2LjM3OCAtMzQzLjA0NyA3ODUuODY3Qy0zMzEuMjEyIDc5My45MzIgLTMxNS41OSA3OTQuODgxIC0yOTAuMDI3IDc5NC44ODFILTIxLjEzOTlWNzYxLjY2OUgtMjkwLjVDLTMwOS40MzYgNzYxLjY2OSAtMzIwLjc5OCA3NjEuMTk1IC0zMjQuNTg1IDc1OC44MjNDLTMyNi45NTIgNzU2LjkyNSAtMzI3Ljg5OSA3NTAuMjgyIC0zMjcuODk5IDczNS41NzRaTTYwLjc1NzEgMTc5LjIyMkwxMzMuNjYgMjAyLjQ3MUMxNDYuNDQxIDIwNi43NDEgMTQ2LjQ0MSAyMDguNjM5IDE0Ni40NDEgMjE5LjU1MVYyMjkuNTE1VjczOC40MjFDMTQ2LjQ0MSA3NDEuNzQyIDE0Ni40NDEgNzQ1LjA2MyAxNDUuOTY4IDc0OC4zODRDMTQ1Ljk2OCA3NTguMzQ4IDE0NS40OTQgNzYxLjY2OSAxMzIuNzEzIDc2MS42NjlINjAuMjgzN1Y3OTQuODgxSDEzMy4xODZDMTc4LjYzMiA3OTQuODgxIDE3OC42MzIgNzgyLjU0NSAxNzkuMTA1IDc0OC44NTlDMTc5LjEwNSA3NDYuMDEyIDE3OS4xMDUgNzQzLjY0IDE3OS41NzkgNzM5Ljg0NFYyMjkuNTE1VjIyMC4wMjZDMTgwLjA1MiAxODkuMTg2IDE4MC4wNTIgMTgyLjU0NCAxNDMuNjAxIDE3MC42ODJMNjAuNzU3MSAxNDQuMTEyVjE3OS4yMjJaTS0zMzIuMTU5IDQ3Ljc5NjlMLTMzMS42ODYgNDYuMzczNkMtMzMwLjczOSA0NS44OTkxIC0zMzEuMjEyIDQ2Ljg0OCAtMzMyLjE1OSA0Ny43OTY5WiIgZmlsbD0iIzA1Mjc2MiIvPg0KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0tNzkgMzk5LjA5VjM2NC4zNzRMLTIuNTczNDkgMzM5LjE2OVYtMzZINDEuNTczNVYyNjYuNDA5SDExOEwxMTcuNTI1IDMwMC42NDlMNDEuNTczNSAzMjYuMzI5VjM4MS40OTRIMTE4TDExNy41MjUgNDE1LjczNUw0MS41NzM1IDQ0MC45MzlWNDk2LjEwNEgxMThMMTE3LjUyNSA1MzAuMzQ1TDQxLjU3MzUgNTU1LjU0OVY2MTAuNzE0SDExOEwxMTcuNTI1IDY0NC45NTVMNDEuNTczNSA2NzAuNjM1VjkzNEgtMi41NzM0OVY2MjguMzFILTc5VjU5NC4wN0wtMi41NzM0OSA1NjguODY1VjUxMy43SC03OVY0NzkuNDZMLTIuNTczNDkgNDUzLjc3OVYzOTkuMDlILTc5WiIgZmlsbD0iIzAzMjE1NCIvPg0KPC9nPg0KPGRlZnM+DQo8Y2xpcFBhdGggaWQ9ImNsaXAwXzExNF8zNTQ5Ij4NCjxyZWN0IHdpZHRoPSIzMTciIGhlaWdodD0iOTM0IiBmaWxsPSJ3aGl0ZSIgdHJhbnNmb3JtPSJtYXRyaXgoLTEgMCAwIDEgMTgwIDApIi8+DQo8L2NsaXBQYXRoPg0KPC9kZWZzPg0KPC9zdmc+DQo=);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+    left: -7.4rem;
+
+    @include md {
+      display: none;
+    }
+  }
+
+  .container {
+
+    @include domd {
+      padding: 0;
+    }
+  }
+
+  .swiper__btns {
+    bottom: 11rem;
+    left: 82.5rem;
+
+    @include md {
+      left: 29rem;
+      bottom: 6.3rem;
+    }
+  }
+
+  &__mask {
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 8rem;
+    line-height: 100%;
+    color: var(--blue-10);
+
+    position: absolute;
+    top: 10rem;
+    left: 82.5rem;
+
+    @include md {
+      position: static;
+    }
+  }
+
+  &__inner {
+    position: relative;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    gap: 8.2rem;
+
+    padding: 0 24.5rem 0 22rem;
+
+    @include md {
+      padding: 0 4rem 0 4rem;
+      margin-right: -4rem;
+      margin-left: -4rem;
+      width: calc(100% + 8rem);
+      min-height: 52.9rem;
+    }
+
+    &-wrap {
+      width: auto;
+      height: 89.8rem;
+      aspect-ratio: 523/898;
+
+      @include md {
+        height: 46.3rem;
+        aspect-ratio: 270/463;
+
+        position: absolute;
+        bottom: 0;
+      }
+
+      img {
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4rem;
+      max-width: 85rem;
+
+      color: var(--blue);
+
+      @include md {
+        justify-content: flex-start;
+      }
+    }
+
+    &-title {
+      font-family: var(--second-family);
+      font-weight: 700;
+      font-size: 18rem;
+      line-height: 100%;
+
+      margin-left: -1.4rem;
+
+      @include md {
+        font-size: 12rem;
+
+        margin-left: 0;
+      }
+    }
+
+    &-text {
+      margin-left: 29.3rem;
+    }
+  }
+}
