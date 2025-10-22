@@ -307,6 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  
+
   $(window).on('resize', function () { ScrollTrigger.refresh() });
 
 });
