@@ -85,12 +85,35 @@
   }
 
   &__item {
+    --exp-item-margin-top: 6rem;
+
     width: 50%;
     padding: 0 7rem 0 5rem;
-    margin: 6rem 0;
-    border-top: 0.1rem solid var(--white-10);
+    margin: var(--exp-item-margin-top) 0;
+    // border-top: 0.1rem solid var(--white-10);
     border-left: 0.1rem solid var(--white);
     color: var(--sizyy);
+
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0.1rem;
+      background-color: var(--white-10);
+      transition: width 2s linear;
+      pointer-events: none;
+
+      position: absolute;
+      top: calc(var(--exp-item-margin-top) * -1);
+      right: 0;
+      left: 0;
+
+      .showed & {
+        width: 100%;
+      }
+    }
 
     @include sm {
       width: 100%;

@@ -9,7 +9,7 @@
 
     position: absolute;
     bottom: 10rem;
-    left: 10rem;
+    left: 0;
   }
 }
 
@@ -19,6 +19,7 @@
 
   width: var(--swiper-btn-size);
   height: var(--swiper-btn-size);
+  margin: 0;
   border-radius: 50%;
   background-color: var(--sizyy-10);
 

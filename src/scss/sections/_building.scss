@@ -7,6 +7,10 @@
 
   position: relative;
 
+  @include md {
+    display: none;
+  }
+
   &::before {
     content: "";
     width: auto;

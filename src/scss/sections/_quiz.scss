@@ -1,7 +1,7 @@
 @use './../mixins' as *;
 
 .quiz {
-  padding: 10rem 0;
+  padding: 0;
   margin-bottom: 0;
   // min-height: 100vh;
 
@@ -70,6 +70,12 @@
     }
   }
 
+  &__inner {
+    padding: 10rem 0;
+    height: 100%;
+    position: relative;
+  }
+
   &__btn {
     width: 25%;
 
@@ -100,8 +106,8 @@
 
   .lines {
     width: auto;
-    right: var(--container-padding);
-    left: var(--container-padding);
+    // right: var(--container-padding);
+    // left: var(--container-padding);
 
     @include md {
       display: none;
