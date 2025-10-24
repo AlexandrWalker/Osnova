@@ -309,7 +309,7 @@
                   для примера, примерный текст под заголовком <br> для примера
                 </p>
               </div>
-              <div class="hero__cover">
+              <div class="hero__cover" data-transform="heroFade">
                 <img src="./images/temp/hero-cover.png" alt="">
               </div>
             </div>
@@ -349,7 +349,7 @@
 
         <div class="design__head">
           <div class="container">
-            <div class="design__head-text">
+            <div class="design__head-text" data-title="splitChars">
               Работаем <br>
               в двух направлениях
             </div>
@@ -368,7 +368,7 @@
             </div>
 
             <div class="design__body">
-              <div class="design__items">
+              <div class="design__items" data-transform="fade">
                 <div class="design__item">
                   <div class="design__item-count">
                     <span>
@@ -444,7 +444,7 @@
               </div>
             </div>
 
-            <div class="work__items">
+            <div class="work__items" data-transform="fade">
               <a class="work__item" href="/">
                 <div class="work__item-count">
                   01
@@ -640,7 +640,7 @@
         <div class="container">
           <div class="building__inner">
 
-            <div class="building__mask">
+            <div class="building__mask" data-title="splitChars">
               Строим
               будущее вместе!
             </div>
@@ -751,14 +751,14 @@
                   <i class="icon-chevron-min"></i>
                 </a>
               </div>
-              <div class="exp__head-wrap">
+              <div class="exp__head-wrap" data-animation="parallax-img">
                 <img src="./images/temp/exp-cover.png" alt="">
               </div>
             </div>
 
             <div class="exp__body">
               <div class="exp__counts">
-                <div class="exp__count">
+                <div class="exp__count" data-transform="fade">
                   <p>
                     Работаем около 20 лет, с момента основания в 2006 году
                   </p>
@@ -766,7 +766,7 @@
                     2006
                   </span>
                 </div>
-                <div class="exp__count">
+                <div class="exp__count" data-transform="fade">
                   <p>
                     Более 100 разработанных проектов
                   </p>
@@ -775,7 +775,7 @@
                   </span>
                 </div>
               </div>
-              <div class="exp__items">
+              <div class="exp__items" data-transform="fade">
                 <div class="exp__item">
                   <div class="exp__item-suptitle">
                     <span>5</span> дней
@@ -857,7 +857,7 @@
 
             <div class="completed__head">
               <div class="general__head">
-                <div class="general__head-title">
+                <div class="general__head-title" data-title="split">
                   <h2>
                     Мы реализовали более 100 проектов
                     в Новосибирске
@@ -877,7 +877,7 @@
               </div>
             </div>
 
-            <div class="completed__body">
+            <div class="completed__body" data-transform="fade">
               <img src="./images/temp/projects-map.svg" alt="">
             </div>
 
@@ -892,7 +892,7 @@
             <div class="regulations__mask"></div>
 
             <div class="general__head">
-              <div class="general__head-title">
+              <div class="general__head-title" data-title="split">
                 <h2>
                   Мы работаем
                   по строгому регламенту
@@ -900,7 +900,7 @@
               </div>
             </div>
 
-            <div class="regulations__body">
+            <div class="regulations__body" data-transform="fade">
               <div class="swiper regulations__slider">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
@@ -1046,7 +1046,7 @@
         <div class="container">
           <div class="partners__inner">
 
-            <div class="partners__body">
+            <div class="partners__body" data-transform="fade">
               <div class="partners__items">
                 <div class="partners__item active" data-index="1">
                   <div class="over"></div>
@@ -1123,7 +1123,7 @@
 
             <div class="partners__head">
               <div class="general__head">
-                <div class="general__head-title">
+                <div class="general__head-title" data-title="split">
                   <h2>
                     Надежные партнеры
                     и заказчики
@@ -1136,7 +1136,7 @@
                   </p>
                 </div>
               </div>
-              <div class="partners__head-cover">
+              <div class="partners__head-cover" data-animation="parallax-img">
                 <img src="./images/temp/partners-cover.png" alt="">
               </div>
             </div>
@@ -1151,7 +1151,7 @@
 
             <div class="technique__head">
               <div class="general__head">
-                <div class="general__head-title">
+                <div class="general__head-title" data-title="split">
                   <h2>
                     Надежная техника – фундамент для успешного результата
                   </h2>
@@ -1173,13 +1173,31 @@
               </div>
             </div>
 
-            <div class="technique__body">
+            <div class="technique__body" data-transform="fade">
               <div class="swiper technique__slider">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
+                  <div class="swiper-slide technique__slide">
                     <div class="technique__item">
                       <div class="technique__item-cover">
-                        <img src="./images/temp/technique-cover.png" alt="">
+                        <div class="swiper technique__item-slider">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/technique-cover.png" alt="">
+                            </div>
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/exp-cover.png" alt="">
+                            </div>
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/partners-cover.png" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-button-alt-prev technique-item-button-prev">
+                            <i class="icon-chevron"></i>
+                          </div>
+                          <div class="swiper-button-alt-next technique-item-button-next">
+                            <i class="icon-chevron"></i>
+                          </div>
+                        </div>
                       </div>
                       <div class="technique__item-content">
                         <div class="technique__item-title">
@@ -1215,10 +1233,28 @@
                       </div>
                     </div>
                   </div>
-                  <div class="swiper-slide">
+                  <div class="swiper-slide technique__slide">
                     <div class="technique__item">
                       <div class="technique__item-cover">
-                        <img src="./images/temp/technique-cover.png" alt="">
+                        <div class="swiper technique__item-slider">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/technique-cover.png" alt="">
+                            </div>
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/exp-cover.png" alt="">
+                            </div>
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/partners-cover.png" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-button-alt-prev technique-item-button-prev">
+                            <i class="icon-chevron"></i>
+                          </div>
+                          <div class="swiper-button-alt-next technique-item-button-next">
+                            <i class="icon-chevron"></i>
+                          </div>
+                        </div>
                       </div>
                       <div class="technique__item-content">
                         <div class="technique__item-title">
@@ -1254,10 +1290,28 @@
                       </div>
                     </div>
                   </div>
-                  <div class="swiper-slide">
+                  <div class="swiper-slide technique__slide">
                     <div class="technique__item">
                       <div class="technique__item-cover">
-                        <img src="./images/temp/technique-cover.png" alt="">
+                        <div class="swiper technique__item-slider">
+                          <div class="swiper-wrapper">
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/technique-cover.png" alt="">
+                            </div>
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/exp-cover.png" alt="">
+                            </div>
+                            <div class="swiper-slide technique__item-slide">
+                              <img src="./images/temp/partners-cover.png" alt="">
+                            </div>
+                          </div>
+                          <div class="swiper-button-alt-prev technique-item-button-prev">
+                            <i class="icon-chevron"></i>
+                          </div>
+                          <div class="swiper-button-alt-next technique-item-button-next">
+                            <i class="icon-chevron"></i>
+                          </div>
+                        </div>
                       </div>
                       <div class="technique__item-content">
                         <div class="technique__item-title">
@@ -1306,14 +1360,14 @@
           <div class="team__inner">
 
             <div class="general__head">
-              <div class="general__head-title">
+              <div class="general__head-title" data-title="split">
                 <h2>
                   Команда
                 </h2>
               </div>
             </div>
 
-            <div class="team__body">
+            <div class="team__body" data-transform="fade">
               <div class="swiper team__slider">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide team__slide">
@@ -1619,7 +1673,7 @@
 
       <div class="footer__content">
 
-        <div class="menu__foot">
+        <div class="menu__foot" data-title="split">
           <a class="menu__foot-phone" href="tel:+71235467890">
             +7 123 546-78-90
           </a>

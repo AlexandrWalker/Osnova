@@ -10,6 +10,10 @@
     margin: 0;
   }
 
+  .general__head-text {
+    max-width: 56rem;
+  }
+
   .swiper__btns {
     position: static;
   }
@@ -18,7 +22,7 @@
     display: grid;
     grid-template-columns: 84.5rem 85rem;
     gap: 2.5rem;
-    
+
     padding: 10rem 0 6.8rem;
 
     @include md {
@@ -41,6 +45,14 @@
 
   &__body {}
 
+  &__slide {
+    opacity: 0 !important;
+
+    &.swiper-slide-active {
+      opacity: 1 !important;
+    }
+  }
+
   &__item {
     display: flex;
     flex-direction: column;
@@ -54,6 +66,10 @@
     &-cover {
       width: 100%;
       aspect-ratio: 705/496;
+    }
+
+    &-slider {
+      height: 100%;
     }
 
     &-content {

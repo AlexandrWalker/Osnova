@@ -97,11 +97,36 @@ document.addEventListener('DOMContentLoaded', () => {
       mousewheel: {
         forceToAxis: true,
       },
+      grabCursor: true,
+      effect: "creative",
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: ["-20%", 0, -1],
+        },
+        next: {
+          translate: ["100%", 0, 0],
+        },
+      },
       navigation: {
         prevEl: ".technique-button-prev",
         nextEl: ".technique-button-next",
       },
-      grabCursor: true,
+    });
+
+    const techniqueItemSlider = new Swiper(".technique__item-slider", {
+      slidesPerGroup: 1,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      speed: 600,
+      mousewheel: {
+        forceToAxis: true,
+      },
+      navigation: {
+        prevEl: ".technique-item-button-prev",
+        nextEl: ".technique-item-button-next",
+      },
     });
 
     const teamSlider = new Swiper(".team__slider", {
@@ -222,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   });
 
-  const footer = document.querySelector("footer")
+  const footer = document.getElementById("footer")
   ScrollTrigger.create({
     trigger: footer,
     start: "top bottom",
@@ -347,9 +372,117 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  containers.forEach((container) => {
+    let text = container.querySelector('[data-title="splitChars"]');
+    let animation;
+
+    SplitText.create(text, {
+      type: "words,chars",
+      mask: "chars",
+      linesClass: "char",
+      autoSplit: true,
+      onSplit: (instance) => {
+        return gsap.from(instance.chars, {
+          opacity: 0,
+          stagger: 0.1,
+          duration: 0.3,
+          ease: "sine.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 90%",
+            end: "bottom top"
+          }
+        });
+      }
+    });
+  });
   // });
 
-  $(window).on('resize', function () { ScrollTrigger.refresh() });
+  const parallaxImgContainers = document.querySelectorAll('[data-animation="parallax-img"]');
+  if (parallaxImgContainers.length > 0) {
+    parallaxImgContainers.forEach(parallaxImgContainer => {
+      const image = parallaxImgContainer.querySelector('img');
+      gsap.fromTo(image,
+        {
+          y: '-10%',
+          scale: 0.9,
+        },
+        {
+          y: '10%',
+          scale: 1,
+          scrollTrigger: {
+            trigger: parallaxImgContainer,
+            start: 'top 90%',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+    });
+  }
+
+  const fadeItems = document.querySelectorAll('[data-transform="fade"]');
+  fadeItems.forEach(fadeItem => {
+    const tl = gsap.timeline({
+      paused: true
+    });
+    tl.from(fadeItem, {
+      opacity: 0,
+      y: "20",
+      duration: .8,
+      delay: .3,
+      ease: "ease",
+      stagger: {
+        amount: .8
+      }
+    });
+    scrollTriggerPlayer(fadeItem, tl)
+  });
+
+  const heroFadeItems = document.querySelectorAll('[data-transform="heroFade"]');
+  heroFadeItems.forEach(heroFadeItem => {
+    const tl = gsap.timeline({
+      paused: true
+    });
+    tl.from(heroFadeItem, {
+      opacity: 0,
+      duration: 1,
+      delay: .3,
+      ease: "ease",
+      stagger: {
+        amount: .8
+      }
+    });
+    scrollTriggerPlayer(heroFadeItem, tl)
+  });
+
+  // gsap.from("#counter", {
+  //   innerText: 0,
+  //   duration: 5,
+  //   snap: {
+  //     innerText: 1
+  //   }
+  // });
+
+  function scrollTriggerPlayer(triggerElement, timeline, onEnterStart = "top 95%") {
+    ScrollTrigger.create({
+      trigger: triggerElement,
+      start: "top bottom",
+      onLeaveBack: () => {
+        timeline.progress(1);
+        timeline.pause()
+      }
+    });
+    ScrollTrigger.create({
+      trigger: triggerElement,
+      start: onEnterStart,
+      scrub: true,
+      onEnter: () => timeline.play()
+    })
+  }
+
+  $(window).on('resize load', function () { ScrollTrigger.refresh() });
 
 });
 

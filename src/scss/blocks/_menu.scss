@@ -145,12 +145,15 @@
 
     &-map {
       color: var(--sizyy-50);
-              text-decoration-style: dotted;
-        text-decoration-color: #fff;
-        text-decoration-line: underline;
+      text-decoration-style: dotted;
+      text-decoration-color: var(--sizyy-50);
+      text-decoration-line: underline;
 
       &:hover {
         color: var(--white);
+        text-decoration-style: dotted;
+        text-decoration-color: var(--white);
+        text-decoration-line: underline;
       }
     }
 

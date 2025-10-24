@@ -92,3 +92,22 @@
     }
   }
 }
+
+/* Стиль для параллакс картинок */
+[data-animation="parallax-img"] {
+  overflow: hidden;
+
+  img {
+    width: 120%;
+    min-width: 120%;
+    height: 120% !important;
+    margin-top: -10%;
+    margin-left: -10%;
+    object-fit: cover;
+
+    @include sm {
+      height: 120% !important;
+      margin-top: -10%;
+    }
+  }
+}

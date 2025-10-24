@@ -27,10 +27,19 @@
     margin-top: -2.2rem;
     margin-bottom: -2.1rem;
 
+    @include md {
+      height: auto;
+    }
+
     img {
       width: auto;
       height: 100%;
       object-fit: contain;
+
+      @include md {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 

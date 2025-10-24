@@ -13,8 +13,8 @@
   }
 }
 
-[class^="swiper-button-"],
-[class*=" swiper-button-"] {
+[class^="swiper-button-"]:not([class^="swiper-button-alt-"]),
+[class*=" swiper-button-"]:not([class*=" swiper-button-alt-"]) {
   --swiper-btn-size: 6rem;
 
   width: var(--swiper-btn-size);
@@ -32,6 +32,51 @@
 
   &::after {
     display: none;
+  }
+}
+
+[class^="swiper-button-alt-"],
+[class*=" swiper-button-alt-"] {
+  --swiper-btn-size: 6rem;
+
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+
+  i {
+    font-size: var(--swiper-btn-size);
+    color: var(--white);
+
+    &::before {
+      transition: all 0.5s ease;
+    }
+  }
+
+  &::after {
+    display: none;
+  }
+}
+
+.swiper-button-alt-prev {
+  left: 0;
+
+  i {
+    transform: rotate(90deg);
+  }
+}
+
+.swiper-button-alt-next {
+  right: 0;
+
+  i {
+    transform: rotate(-90deg);
   }
 }
 
