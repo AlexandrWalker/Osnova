@@ -11,6 +11,10 @@
     bottom: 10rem;
     left: 0;
   }
+
+  &-slide {
+    height: auto;
+  }
 }
 
 [class^="swiper-button-"]:not([class^="swiper-button-alt-"]),
@@ -22,12 +26,35 @@
   margin: 0;
   border-radius: 50%;
   background-color: var(--sizyy-10);
-
+  transition: all 0.3s ease;
   position: static;
+
+  &:hover {
+
+    @include domd {
+      background-color: var(--blue);
+
+      i {
+        color: #F2F5F9;
+      }
+    }
+  }
+
+  // &:active {
+
+  //   @include md {
+  //     background-color: var(--blue);
+
+  //     i {
+  //       color: #F2F5F9;
+  //     }
+  //   }
+  // }
 
   i {
     font-size: var(--swiper-btn-size);
     color: var(--blue);
+    transition: all 0.3s ease;
   }
 
   &::after {

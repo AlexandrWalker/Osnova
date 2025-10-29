@@ -41,7 +41,7 @@
     display: block;
     width: 0;
     height: 0.1rem;
-    background-color: var(--white);
+    background-color: var(--btn-border-color);
     transition: width 0.8s ease;
 
     position: absolute;
@@ -54,7 +54,7 @@
     display: block;
     width: 0;
     height: 0.1rem;
-    background-color: var(--white);
+    background-color: var(--btn-border-color);
     transition: width 0.8s ease;
 
     position: absolute;

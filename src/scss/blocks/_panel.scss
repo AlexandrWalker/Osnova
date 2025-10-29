@@ -1,0 +1,153 @@
+@use './../mixins' as *;
+
+.panel {
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200;
+
+  .menu--open & {
+    pointer-events: all;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 0rem;
+    justify-content: flex-end;
+    width: calc(100% - 24.5rem);
+    height: 100%;
+    background-color: var(--blue);
+
+    clip-path: circle(0.0% at 100% 0);
+    transition: clip-path 0.5s linear 0.3s, grid-template-columns 1s ease-in-out;
+    will-change: clip-path;
+    overflow: hidden;
+    overflow-y: auto;
+
+    position: relative;
+    z-index: 2;
+
+    @include md {
+      display: block;
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    .menu--open & {
+      grid-template-columns: 1fr;
+      clip-path: circle(150% at 100% 0);
+      transition: clip-path 0.5s linear, grid-template-columns 1s ease-in-out;
+    }
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 10rem 6.6rem 3rem 14.5rem;
+    background-color: var(--page-bg);
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16rem;
+  }
+
+  &__cover {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &-head {
+
+      h6 {
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__feats {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+  }
+
+  &__feat {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &-days {
+
+      h5 {
+        font-weight: 400;
+
+        span {
+          font-size: 5rem;
+        }
+      }
+    }
+
+    &-title {
+
+      p {
+        font-weight: 700;
+      }
+    }
+  }
+  
+  &__form {
+    padding: 5rem 40rem 5rem 14.5rem;
+  }
+
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.59);
+    backdrop-filter: blur(7.65px);
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    .menu--open & {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

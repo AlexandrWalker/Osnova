@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slidesPerView: 1,
       spaceBetween: 20,
       loop: true,
-      speed: 600,
+      speed: 1000,
       mousewheel: {
         forceToAxis: true,
       },
@@ -133,8 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
       slidesPerGroup: 1,
       slidesPerView: 'auto',
       spaceBetween: 10,
-      // centeredSlides: true,
-      // centeredSlidesBounds: true,
       loop: true,
       speed: 500,
       mousewheel: {
@@ -150,10 +148,61 @@ document.addEventListener('DOMContentLoaded', () => {
           spaceBetween: 20,
         },
         835: {
-          slidesPerView: 3,
+          slidesPerView: 'auto',
           spaceBetween: 0,
         },
       },
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+      fixSwiperPosition();
+    });
+
+    document.querySelectorAll('.team__slide').forEach(slide => {
+      resizeObserver.observe(slide);
+    });
+
+    teamSlider.on('slideChangeTransitionEnd', fixSwiperPosition);
+    teamSlider.on('resize', fixSwiperPosition);
+
+    function fixSwiperPosition() {
+      teamSlider.update();
+
+      // Удерживаем активный слайд в пределах контейнера
+      const activeIndex = teamSlider.activeIndex;
+      teamSlider.slideTo(activeIndex, 0, false);
+
+      // Если это первый слайд — сбрасываем возможный отрицательный translate
+      const currentTranslate = teamSlider.getTranslate();
+      if (currentTranslate > 0) {
+        teamSlider.setTranslate(0);
+      }
+    }
+
+    // helper: убрать класс у всех и добавить большому
+    function applyBigClass(index) {
+      document.querySelectorAll('.team__slide').forEach((s, i) => {
+        if (i === index) s.classList.add('swiper-slide--big');
+        else s.classList.remove('swiper-slide--big');
+      });
+    }
+
+    // при инициализации выставим класс на активный
+    applyBigClass(teamSlider.activeIndex);
+
+    teamSlider.on('slideChangeTransitionStart', () => {
+      // ничего не делаем — даём Swiper начать движение
+    });
+
+    teamSlider.on('slideChangeTransitionEnd', () => {
+      // После завершения движения — сменим класс и пересчитаем позиции
+      requestAnimationFrame(() => {
+        applyBigClass(teamSlider.activeIndex);
+        // форсируем reflow перед update чтобы transition стартовал корректно
+        document.body.offsetWidth;
+        teamSlider.update();                     // пересчёт размеров
+        teamSlider.slideTo(teamSlider.activeIndex, 0, false); // фиксируем translate
+      });
     });
   }
 
@@ -483,6 +532,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   $(window).on('resize load', function () { ScrollTrigger.refresh() });
+
+
+  /**
+   * Инициализация Fabcybox
+   */
+  Fancybox.bind('[data-fancybox]', {
+    Html: {
+      autoSize: false,
+    },
+    on: {
+      'Carousel.ready': () => {
+        lenis.stop();
+      },
+      destroy: () => {
+        lenis.start();
+      }
+    },
+  });
 
 });
 

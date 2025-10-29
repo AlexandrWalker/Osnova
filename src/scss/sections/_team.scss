@@ -4,6 +4,10 @@
   margin: 0;
   background-color: var(--white);
 
+  @include md {
+    display: none;
+  }
+
   .general__head {
     margin-bottom: 0;
   }
@@ -16,31 +20,25 @@
     padding: 10rem 0;
   }
 
-  &__slide {
-    // max-width: 50.58%;
-    // width: 50.58%;
-    // min-width: 50.58%;
+  &__slider {}
 
-    // max-width: 87rem;
-    // width: 87rem;
-    // min-width: 87rem;
-    transition: all 0.5s linear;
+  &__slide {
+    width: 43rem;
+    padding: 0 1rem;
     flex-shrink: 0;
+    transition: all 0.7s linear;
+    transform-origin: center center;
+    will-change: width, transform, padding;
+
+    &.swiper-slide-active {
+      width: 86rem;
+      padding: 0 15.5rem 0 1rem;
+    }
 
     &:not(.team__slide.swiper-slide-active) {
-      // max-width: 24.71%;
-      // width: 24.71%;
-      // min-width: 24.71%;
-
-      // max-width: 43.5rem;
-      // width: 43.5rem;
-      // min-width: 43.5rem;
 
       .team__item {
-
-        @include domd {
-          padding-right: 2rem;
-        }
+        // padding: 0;
       }
 
       .team__item-cover {
@@ -65,15 +63,14 @@
     display: flex;
     flex-direction: column;
     gap: 4rem;
-    transition: all 0.5s linear;
-
-    @include domd {
-      padding-right: 16.5rem;
-    }
+    width: 100%;
+    height: 100%;
+    // padding: 0 14.5rem 0 0;
+    transition: all 0.7s linear, padding 0s;
 
     &-cover {
       aspect-ratio: 705/497;
-      transition: all 0.5s linear;
+      transition: all 0.7s linear;
       position: relative;
 
       img {
@@ -89,7 +86,7 @@
         height: 21.7rem;
         background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
         opacity: 1;
-        transition: all 0.5s linear;
+        transition: all 0.7s linear;
 
         position: absolute;
         bottom: 0;
@@ -104,7 +101,7 @@
       gap: 1rem;
       padding: 4rem 12rem 4rem 4rem;
       width: 100%;
-      transition: all 0.5s linear;
+      transition: all 0.7s linear;
       color: var(--white);
       opacity: 1;
       position: absolute;
@@ -144,6 +141,7 @@
       align-items: center;
       gap: 1.6rem;
       color: var(--blue);
+      transition: all 0.7s linear;
 
       span {
         font-weight: 700;
