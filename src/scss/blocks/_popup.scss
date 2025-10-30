@@ -62,6 +62,13 @@
       @include md {
         max-width: 100%;
       }
+
+      &:hover {
+        --btn-color: var(--white);
+
+        max-width: 100%;
+        background-color: var(--blue);
+      }
     }
 
     &-checkbox {}
@@ -83,4 +90,9 @@
   right: 4rem;
   color: var(--blue);
   background: transparent;
+
+  @include md {
+    top: 2.4rem;
+    right: 2.2rem;
+  }
 }

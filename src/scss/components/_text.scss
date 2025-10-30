@@ -53,6 +53,10 @@ h3 {
   font-weight: 700;
   font-size: 5rem;
   line-height: 100%;
+
+  @include sm {
+    font-size: 3.5rem;
+  }
 }
 
 h4 {

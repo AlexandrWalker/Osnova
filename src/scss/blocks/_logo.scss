@@ -23,9 +23,23 @@
 
   .header.show & {
     background-color: var(--blue);
+    width: 12rem;
+    height: 6.5rem;
+    padding: 0 1.5rem;
 
-    svg path {
-      fill: var(--white);
+    @include sm {
+      width: 9rem;
+      height: 6rem;
+      padding: 0 1.2rem;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+
+      path {
+        fill: var(--white);
+      }
     }
   }
 

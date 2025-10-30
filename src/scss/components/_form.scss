@@ -47,6 +47,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 3.5rem;
+
+    @include md {
+      gap: 2.5rem;
+    }
   }
 
   &__foot {
@@ -107,6 +111,23 @@
       &+.form-label>div {
         top: -2rem;
         // left: -3rem;
+      }
+    }
+
+    &.invalid {
+      color: var(--red) !important;
+
+      &+.form-label {
+        color: var(--red);
+
+        &::before,
+        &::after {
+          background-color: var(--red);
+        }
+
+        &+span {
+          opacity: 1;
+        }
       }
     }
   }
@@ -172,6 +193,16 @@
     }
 
     span {
+      color: var(--red);
+    }
+
+    &+span {
+      margin-top: 0.7rem;
+      opacity: 0;
+
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 130%;
       color: var(--red);
     }
   }

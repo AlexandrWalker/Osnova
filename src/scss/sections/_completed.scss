@@ -7,12 +7,43 @@
   color: var(--blue);
   position: relative;
 
+  @include md {
+    padding: 4rem 0;
+  }
+
+  @include sm {
+    padding: 3rem 0;
+  }
+
+  &__mask {
+    display: flex;
+    flex-direction: column;
+
+    font-family: var(--second-family);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20rem;
+    line-height: 0.66;
+    color: var(--page-bg);
+
+    position: absolute;
+    bottom: 7.6rem;
+    left: 8.8rem;
+
+    @include md {
+      display: none;
+    }
+  }
+
   &__inner {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    padding-right: 15rem;
 
     @include md {
       flex-direction: column;
+      padding-right: 0;
     }
   }
 
@@ -27,14 +58,24 @@
     margin-top: -2.2rem;
     margin-bottom: -2.1rem;
 
+    position: relative;
+
     @include md {
-      height: auto;
+      display: none;
     }
 
     img {
-      width: auto;
-      height: 100%;
+      max-width: unset;
+      width: 84.233rem;
+      // height: 84.6rem;
+      height: 80.6rem;
       object-fit: contain;
+      pointer-events: none;
+
+      position: absolute;
+      top: 2.9rem;
+      left: -15rem;
+      z-index: 2;
 
       @include md {
         width: 100%;
@@ -43,17 +84,177 @@
     }
   }
 
+  &__items {
+    display: none;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include md {
+      display: flex;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s ease;
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid var(--blue-10);
+
+    &.accordion-active {
+      padding: 3.5rem 3rem 5rem 3rem;
+      background-color: var(--blue);
+      color: var(--white);
+
+      @include sm {
+        padding: 2rem 2rem 3rem 2rem;
+      }
+    }
+
+    &-head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      transition: all 0.5s ease;
+
+      .accordion-active & {
+        padding-bottom: 3.4rem;
+
+        @include md {
+          padding-bottom: 2rem;
+        }
+      }
+
+      i {
+        font-size: 1.9rem;
+
+        @include md {
+          font-size: 1.5rem;
+        }
+
+        .accordion-active & {
+          transition: all 0.5s ease;
+          transform: scale(-1, -1);
+        }
+      }
+    }
+
+    &-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+      overflow: hidden;
+
+      @include md {
+        gap: 4rem;
+      }
+
+      .btn {
+        max-width: 27rem;
+        width: 100%;
+      }
+    }
+  }
+
+  &__feats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 3rem 6rem;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      padding-right: 11rem;
+      min-width: 27rem;
+      position: relative;
+
+      @include sm {
+        padding-right: 0;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        width: 0.1rem;
+        height: 100%;
+        background-color: var(--white);
+
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        @include sm {
+          display: none;
+        }
+      }
+
+      &:last-child {
+        padding-right: 0;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &-suptitle {
+      color: var(--sizyy);
+      margin-bottom: 1.5rem;
+    }
+  }
+
   .general__head {
     display: flex;
     flex-direction: column;
     gap: 5rem;
+
+    &-text {
+
+      @include md {
+        display: none;
+      }
+    }
+
+    .btn {
+      --btn-border-color: var(--blue);
+      --btn-color: var(--blue);
+
+      max-width: 43.5rem;
+      width: 100%;
+
+      @include md {
+        display: none;
+      }
+    }
   }
 
-  .btn {
-    --btn-border-color: var(--blue);
-    --btn-color: var(--blue);
+  svg {
+    max-width: unset;
+    width: 58.666rem;
+    // height: 103.5rem;
+    height: 99.5rem;
+    object-fit: contain;
+    cursor: pointer;
 
-    max-width: 43.5rem;
-    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  path {
+    transition: all 0.3s ease;
+  }
+
+  filter {
+    transition: all 0.3s ease;
   }
 }

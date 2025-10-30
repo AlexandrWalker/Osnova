@@ -8,6 +8,14 @@
     flex-direction: column;
     gap: 5.5rem;
     margin: 0;
+
+    @include md {
+      gap: 3rem;
+    }
+
+    @include sm {
+      gap: 2rem;
+    }
   }
 
   .general__head-text {
@@ -16,11 +24,14 @@
 
   .swiper__btns {
     position: static;
+    grid-column: 1/2;
+    grid-row: 2/3;
   }
 
   &__inner {
     display: grid;
     grid-template-columns: 84.5rem 85rem;
+    grid-template-rows: 1fr auto;
     gap: 2.5rem;
 
     padding: 10rem 0 6.8rem;
@@ -28,7 +39,8 @@
     @include md {
       display: flex;
       flex-direction: column;
-      gap: 3rem;
+      gap: 0;
+      padding: 4rem 0;
     }
   }
 
@@ -36,14 +48,32 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    grid-column: 1/2;
+    grid-row: 1/2;
 
     @include md {
       justify-content: unset;
       gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    @include sm {
+      margin-bottom: 2rem;
     }
   }
 
-  &__body {}
+  &__body {
+    grid-column: 2/3;
+    grid-row: 1/3;
+
+    @include md {
+      margin-bottom: 2rem;
+    }
+
+    @include sm {
+      margin-bottom: 3rem;
+    }
+  }
 
   &__slide {
     opacity: 0 !important;
@@ -60,7 +90,12 @@
     padding-right: 14.5rem;
 
     @include md {
+      gap: 3rem;
       padding-right: 0;
+    }
+
+    @include sm {
+      gap: 2rem;
     }
 
     &-cover {
@@ -76,6 +111,10 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
+
+      @include sm {
+        gap: 1.5rem;
+      }
     }
 
     &-wrap {

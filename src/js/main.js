@@ -228,37 +228,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const burgerBtn = document.getElementById('burger-btn');
     const burgerMenuInner = document.querySelector('.burger-menu__inner');
 
+    const openMenu = () => {
+      burgerBtn.classList.add('burger--open');
+      document.documentElement.classList.add('menu--open');
+      lenis.stop();
+    };
+
     const closeMenu = () => {
       burgerBtn.classList.remove('burger--open');
       document.documentElement.classList.remove('menu--open');
       lenis.start();
     };
 
-    burgerBtn.addEventListener('click', function () {
+    const toggleMenu = (e) => {
+      e.preventDefault();
+      const isOpen = document.documentElement.classList.contains('menu--open');
+      isOpen ? closeMenu() : openMenu();
+    };
 
-      if (document.documentElement.classList.contains('menu--open')) {
-        lenis.start();
-      } else {
-        lenis.stop();
-      }
-
-      burgerBtn.classList.toggle('burger--open');
-      document.documentElement.classList.toggle('menu--open');
-    })
+    burgerBtn.addEventListener('click', toggleMenu);
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && document.documentElement.classList.contains('menu--open')) {
         closeMenu();
       }
     });
 
     document.addEventListener('click', (event) => {
-      if (!burgerMenuInner.contains(event.target) && !burgerBtn.contains(event.target)) {
+      const isMenuOpen = document.documentElement.classList.contains('menu--open');
+      const clickInsideMenu = burgerMenuInner.contains(event.target);
+      const clickOnButton = burgerBtn.contains(event.target);
+
+      if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
         closeMenu();
       }
     });
   }
   burgerNav();
+
+  /**
+   * Открывание панелей.
+   */
+  const panelBtns = document.querySelectorAll('.panel-btn');
+
+  panelBtns.forEach(button => {
+    button.addEventListener('click', e => {
+      e.preventDefault();
+
+      const targetId = button.dataset.target;
+      const panel = document.querySelector(`[data-id="${targetId}"]`);
+      if (!panel) return;
+
+      const html = document.documentElement;
+      const closePanel = () => {
+        panel.classList.remove('is__open');
+        html.classList.remove('panel-open');
+        lenis.start();
+      };
+
+      html.classList.add('panel-open');
+      panel.classList.add('is__open');
+      lenis.stop();
+
+      const backdrop = panel.querySelector('.panel__overlay');
+      const closeBtn = panel.querySelector('.panel__close');
+
+      [backdrop, closeBtn].forEach(el => {
+        el?.addEventListener('click', closePanel, { once: true });
+      });
+    });
+  });
 
   // const footer = document.querySelector('footer');
   // footer.addEventListener('mousemove', function () {
@@ -340,6 +379,61 @@ document.addEventListener('DOMContentLoaded', () => {
       cookiesNotify.style.transform = 'translateX(0)';
     }
   }
+
+  /**
+   * Аккордеон
+   */
+  function accordionFunc() {
+    var accordionParents = document.querySelectorAll('.accordion-parent');
+    if (!accordionParents.length) return;
+
+    // Закрытие при клике вне активного блока
+    document.addEventListener('click', function (e) {
+      var active = document.querySelector('.accordion.accordion-active');
+      if (!active) return;
+
+      var body = active.querySelector('.accordion-body');
+      if (!body) return;
+
+      if (!body.contains(e.target) && !active.querySelector('.accordion-head').contains(e.target)) {
+        active.classList.remove('accordion-active');
+      }
+    });
+
+    // Закрытие по Esc
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' || e.keyCode === 27) {
+        var active = document.querySelector('.accordion.accordion-active');
+        if (active) active.classList.remove('accordion-active');
+      }
+    });
+
+    // Перебор всех аккордеонов
+    for (var i = 0; i < accordionParents.length; i++) {
+      (function (accordionContainer) {
+        var accordions = accordionContainer.querySelectorAll('.accordion');
+
+        for (var j = 0; j < accordions.length; j++) {
+          (function (accordion) {
+            var head = accordion.querySelector('.accordion-head');
+            if (!head) return;
+
+            head.addEventListener('click', function (e) {
+              e.stopPropagation();
+
+              var active = accordionContainer.querySelector('.accordion.accordion-active');
+              if (active && active !== accordion) {
+                active.classList.remove('accordion-active');
+              }
+
+              accordion.classList.toggle('accordion-active');
+            });
+          })(accordions[j]);
+        }
+      })(accordionParents[i]);
+    }
+  }
+  accordionFunc();
 
   /**
    * Инициализация формы набора символов
@@ -530,6 +624,46 @@ document.addEventListener('DOMContentLoaded', () => {
       onEnter: () => timeline.play()
     })
   }
+
+  // const paths = document.querySelectorAll('.hoverable');
+
+  // paths.forEach(path => {
+  //   // сохраняем исходный цвет
+  //   path.setAttribute('data-original', path.getAttribute('fill'));
+
+  //   path.addEventListener('mouseenter', () => {
+  //     gsap.to(path, {
+  //       fill: '#032154',
+  //       transformOrigin: "center center",
+  //       filter: 'url(#shadow)',
+  //       duration: 0.3,
+  //       ease: "ease"
+  //     });
+  //   });
+
+  //   path.addEventListener('mouseleave', () => {
+  //     gsap.to(path, {
+  //       fill: path.getAttribute('data-original'),
+  //       filter: 'none',
+  //       duration: 0.3,
+  //       ease: "ease"
+  //     });
+  //   });
+  // });
+
+  const paths = document.querySelectorAll('.hoverable');
+
+  paths.forEach(path => {
+    path.addEventListener('mouseenter', () => {
+      gsap.to(path, { fill: '#032154', duration: 0.3 });
+    });
+    path.addEventListener('mouseleave', () => {
+      gsap.to(path, { fill: path.getAttribute('data-original') || path.getAttribute('fill'), duration: 0.3 });
+    });
+
+    // Сохраняем исходный цвет
+    path.setAttribute('data-original', path.getAttribute('fill'));
+  });
 
   $(window).on('resize load', function () { ScrollTrigger.refresh() });
 

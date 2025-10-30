@@ -36,8 +36,14 @@
   }
 
   &.show {
+    --header-height: 5rem;
+
     background-color: var(--white);
     backdrop-filter: unset;
+
+    @include sm {
+      --header-height: 6rem;
+    }
 
     &::before {
       opacity: 0;
@@ -73,6 +79,7 @@
     align-items: center;
     width: 100%;
     margin-left: 22.5rem;
+    transition: all 0.3s ease;
 
     @include md {
       margin-left: 14.4rem;
@@ -80,6 +87,15 @@
 
     @include sm {
       margin-left: 9rem;
+    }
+
+    .show & {
+      height: var(--header-height);
+      margin-left: 12rem;
+
+      @include md {
+        margin-left: 9rem;
+      }
     }
   }
 
@@ -91,7 +107,7 @@
     background-color: var(--blue);
     padding-right: calc(11.4rem - 2.3rem);
     margin-bottom: 0.1rem;
-
+    transition: all 0.3s ease;
     position: relative;
 
     @include md {
@@ -101,13 +117,18 @@
     @include sm {
       padding-right: 6rem;
     }
+
+    .show & {
+      height: 6.5rem;
+    }
   }
 
   &__phone {
     width: 100%;
     padding: 3rem 4rem;
-
+    transition: all 0.3s ease;
     text-align: right;
+    color: var(--white);
 
     @include md {
       padding: 3rem 0;
@@ -118,13 +139,21 @@
       padding: 2rem 0;
     }
 
+    .show & {
+      padding: 1.5rem 4rem;
+      color: var(--blue);
+
+      @include sm {
+        padding: 2rem 1.6rem;
+      }
+    }
+
     a {
       font-family: var(--second-family);
       font-style: normal;
       font-weight: 700;
       font-size: 2rem;
       line-height: 100%;
-      color: var(--white);
 
       @include md {
         font-size: 2.5rem;

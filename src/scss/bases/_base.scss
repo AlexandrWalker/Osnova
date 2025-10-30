@@ -30,6 +30,8 @@ body {
   line-height: 120%;
   color: var(--blue);
 
+  cursor: default;
+
   @include sm {
     font-size: 1.4rem;
   }
@@ -56,6 +58,7 @@ section {
   // height: auto;
   // min-height: clamp(93rem, 100vh, 100vh);
   margin-bottom: 6rem;
+  overflow-y: hidden;
 
   @include md {
     min-height: unset;

@@ -4,6 +4,7 @@
   padding-top: var(--header-height);
   position: relative;
   margin-bottom: 0;
+  overflow: visible;
 
   @include sm {
     // display: none;
@@ -94,6 +95,10 @@
     @include md {
       width: fit-content;
       min-width: 36.7rem;
+    }
+
+    @include sm {
+      min-width: 100%;
     }
   }
 
