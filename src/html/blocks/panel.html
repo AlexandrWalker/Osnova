@@ -128,12 +128,18 @@
             </div>
             <div class="col-xs-12">
               <div class="form-group">
-                <textarea class="form-textarea" id="panel_comments" name="panel_comments" rows="1" cols="1"></textarea>
-                <label class="form-label" for="panel_comments">
-                  <div>
-                    Комментарий
+                <div class="dropdown">
+                  <div class="dropdown-btn">
+                    <span>Выберите пункт</span>
+                    <i class="icon-chevron-min"></i>
                   </div>
-                </label>
+                  <input type="hidden" name="option1">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item" data-value="service-1">Услуга 1</div>
+                    <div class="dropdown-item" data-value="service-2">Услуга 2</div>
+                    <div class="dropdown-item" data-value="service-3">Услуга 3</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -290,12 +296,15 @@
             </div>
             <div class="col-xs-12">
               <div class="form-group">
-                <textarea class="form-textarea" id="panel_comments" name="panel_comments" rows="1" cols="1"></textarea>
-                <label class="form-label" for="panel_comments">
-                  <div>
-                    Комментарий
+                <div class="dropdown">
+                  <div class="dropdown-btn">Выберите услугу</div>
+                  <input type="hidden" name="option1">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item" data-value="service-1">Услуга 1</div>
+                    <div class="dropdown-item" data-value="service-2">Услуга 2</div>
+                    <div class="dropdown-item" data-value="service-3">Услуга 3</div>
                   </div>
-                </label>
+                </div>
               </div>
             </div>
           </div>

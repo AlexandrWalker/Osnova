@@ -1,0 +1,118 @@
+@use './../mixins' as *;
+
+.video-thumb {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  z-index: 10;
+
+  width: 18.1rem;
+  height: 26.8rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease, opacity 0.5s ease;
+  background-color: var(--blue);
+  border: 0.1rem solid var(--white);
+  cursor: pointer;
+  opacity: 1;
+
+  @include sm {
+    right: 1rem;
+    bottom: 7rem;
+
+    width: 12rem;
+    height: calc(12rem * 1.48);
+  }
+
+  &.active {
+    width: 24rem;
+    height: calc(24rem * 1.48);
+
+    .icon-play {
+      opacity: 0;
+    }
+  }
+
+  &.hide {
+    opacity: 0;
+  }
+
+  .icon-play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background-color: var(--red);
+    opacity: 1;
+    transition: all 0.3s ease;
+
+    font-size: 7rem;
+    color: var(--white);
+    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+
+    @include sm {
+      width: 5rem;
+      height: 5rem;
+      font-size: 5rem;
+    }
+  }
+
+  .icon-exit {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    cursor: pointer;
+    z-index: 2;
+    pointer-events: auto;
+
+    font-size: 1.6rem;
+    color: var(--white);
+
+    @include sm {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.iframe-wrapper {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: all 0.3s ease;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    .active & {
+      opacity: 0;
+    }
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: inherit;
+    display: block;
+  }
+}

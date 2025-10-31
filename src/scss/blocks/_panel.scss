@@ -260,6 +260,30 @@
     @include sm {
       transition: transform 0.5s linear;
     }
+
+    &__content {
+      width: 100%;
+    }
+
+    &-btn {
+      max-width: 70.5rem;
+    }
+  }
+
+  .dropdown {
+
+    &.show {
+
+      .dropdown-btn {
+        color: var(--blue);
+        border-color: transparent;
+      }
+    }
+
+    &-btn {
+      color: var(--white-50);
+      border-color: var(--white-10);
+    }
   }
 
   .burger {

@@ -4,7 +4,7 @@
   padding: 0;
   margin-bottom: 0;
   // min-height: 100vh;
-
+  overflow: hidden;
   color: var(--white);
 
   position: relative;
@@ -90,6 +90,9 @@
   }
 
   &__bg {
+    transform: translateX(50vw) scale(0.5);
+    transition: all 0.5s linear;
+
     position: absolute;
     top: 0;
     right: 0;

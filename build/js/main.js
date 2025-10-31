@@ -129,11 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
 
-    const teamSlider = new Swiper(".team__slider", {
+    const teamSliderBig = new Swiper(".team__slider--big", {
       slidesPerGroup: 1,
-      slidesPerView: 'auto',
-      spaceBetween: 10,
-      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 20,
+      centeredSlides: true,
+      // loop: true,
       speed: 500,
       mousewheel: {
         forceToAxis: true,
@@ -142,68 +143,23 @@ document.addEventListener('DOMContentLoaded', () => {
         prevEl: ".team-button-prev",
         nextEl: ".team-button-next",
       },
-      breakpoints: {
-        601: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        835: {
-          slidesPerView: 'auto',
-          spaceBetween: 0,
-        },
+    });
+
+    const teamSliderMin = new Swiper(".team__slider--min", {
+      slidesPerGroup: 1,
+      slidesPerView: 2,
+      spaceBetween: 20,
+      // loop: true,
+      speed: 500,
+      mousewheel: {
+        forceToAxis: true,
       },
     });
 
-    const resizeObserver = new ResizeObserver(() => {
-      fixSwiperPosition();
-    });
 
-    document.querySelectorAll('.team__slide').forEach(slide => {
-      resizeObserver.observe(slide);
-    });
+    teamSliderBig.controller.control = teamSliderMin;
+    teamSliderMin.controller.control = teamSliderBig;
 
-    teamSlider.on('slideChangeTransitionEnd', fixSwiperPosition);
-    teamSlider.on('resize', fixSwiperPosition);
-
-    function fixSwiperPosition() {
-      teamSlider.update();
-
-      // Удерживаем активный слайд в пределах контейнера
-      const activeIndex = teamSlider.activeIndex;
-      teamSlider.slideTo(activeIndex, 0, false);
-
-      // Если это первый слайд — сбрасываем возможный отрицательный translate
-      const currentTranslate = teamSlider.getTranslate();
-      if (currentTranslate > 0) {
-        teamSlider.setTranslate(0);
-      }
-    }
-
-    // helper: убрать класс у всех и добавить большому
-    function applyBigClass(index) {
-      document.querySelectorAll('.team__slide').forEach((s, i) => {
-        if (i === index) s.classList.add('swiper-slide--big');
-        else s.classList.remove('swiper-slide--big');
-      });
-    }
-
-    // при инициализации выставим класс на активный
-    applyBigClass(teamSlider.activeIndex);
-
-    teamSlider.on('slideChangeTransitionStart', () => {
-      // ничего не делаем — даём Swiper начать движение
-    });
-
-    teamSlider.on('slideChangeTransitionEnd', () => {
-      // После завершения движения — сменим класс и пересчитаем позиции
-      requestAnimationFrame(() => {
-        applyBigClass(teamSlider.activeIndex);
-        // форсируем reflow перед update чтобы transition стартовал корректно
-        document.body.offsetWidth;
-        teamSlider.update();                     // пересчёт размеров
-        teamSlider.slideTo(teamSlider.activeIndex, 0, false); // фиксируем translate
-      });
-    });
   }
 
   /**
@@ -379,6 +335,102 @@ document.addEventListener('DOMContentLoaded', () => {
       cookiesNotify.style.transform = 'translateX(0)';
     }
   }
+
+  // Полифилл для IE10-
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+
+  // Открытие/закрытие dropdown
+  document.addEventListener('click', function (e) {
+    var isBtn = e.target.closest('.dropdown-btn');
+    var dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(function (drop) {
+      if (drop.contains(e.target) && isBtn && drop.querySelector('.dropdown-btn') === isBtn) {
+        drop.classList.toggle('show');
+      } else {
+        drop.classList.remove('show');
+      }
+    });
+  });
+
+  // Обработка кликов по пунктам
+  document.querySelectorAll('.dropdown').forEach(dropdown => {
+    const btn = dropdown.querySelector('.dropdown-btn');
+    const span = btn.querySelector('span');
+    const input = dropdown.querySelector('input[type="hidden"]');
+    const items = dropdown.querySelectorAll('.dropdown-item');
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const value = item.dataset.value;
+        const text = item.textContent || item.innerText;;
+
+        input.value = value;
+        span.textContent = text;
+        btn.classList.add('filled');
+        dropdown.classList.remove('show');
+      });
+    });
+  });
+
+  /**
+   * Код видео
+   */
+  (function () {
+    const videoThumb = document.getElementById('videoThumb');
+    const iframeWrapper = document.getElementById('iframeWrapper');
+    const thumbIframe = document.getElementById('thumbIframe');
+    const exitBtn = document.getElementById('exitBtn');
+
+    const thumbSrc = videoThumb.getAttribute('data-thumb');
+    const mainSrc = videoThumb.getAttribute('data-main');
+
+    thumbIframe.src = thumbSrc;
+    let isPaused = false;
+
+    // Клик по миниатюре для увеличения и запуска основного видео
+    videoThumb.addEventListener('click', () => {
+      if (!videoThumb.classList.contains('active')) {
+        videoThumb.classList.add('active');
+        iframeWrapper.innerHTML = `<iframe
+        id="mainVideo"
+        src="${mainSrc}"
+        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>`;
+        const mainIframe = document.getElementById('mainVideo');
+        mainIframe.style.pointerEvents = "auto";
+
+        // Клик по контейнеру для паузы/воспроизведения
+        videoThumb.addEventListener('click', () => {
+          const command = isPaused ? 'play' : 'pause';
+          mainIframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: command }), '*');
+          isPaused = !isPaused;
+        });
+      }
+    });
+
+    // Клик по крестику
+    exitBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (videoThumb.classList.contains('active')) {
+        // Если видео увеличено → возвращаем миниатюру
+        videoThumb.classList.remove('active');
+        iframeWrapper.innerHTML = `<iframe id="thumbIframe" src="${thumbSrc}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>`;
+        isPaused = false;
+      } else {
+        // Если миниатюра без видео → плавно скрываем
+        videoThumb.classList.add('hide');
+        setTimeout(() => {
+          videoThumb.style.display = 'none';
+        }, 500); // соответствует времени transition opacity
+      }
+    });
+
+  })();
 
   /**
    * Аккордеон
@@ -599,6 +651,87 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     scrollTriggerPlayer(heroFadeItem, tl)
   });
+
+  const quiz = document.querySelector('.quiz');
+  if (quiz) {
+    // const quiz__bg = document.querySelector('.quiz__bg');
+    // const tl = gsap.timeline({
+    //   paused: true
+    // });
+    // tl.from(quiz__bg, {
+    //   x: '100%',
+    //   duration: 1,
+    //   delay: .3,
+    //   ease: "ease",
+    //   scrub: true,
+    //   stagger: {
+    //     amount: .8
+    //   }
+    // });
+    // scrollTriggerPlayer(quiz__bg, tl)
+
+    // создаём Timeline, привязанный к скроллу
+    const tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".quiz__bg",
+        start: "top 100%",
+        end: "top 30%",
+        scrub: true,
+        // markers: true
+      }
+    });
+
+    tl2.to(".quiz__bg", {
+      x: 0,                  // конечная позиция
+      scale: 1,
+      duration: 0.5,
+      // scrollTrigger: {
+      //   trigger: ".quiz__bg",   // когда блок в зоне видимости
+      //   start: "top 100%",    // запуск анимации
+      //   end: "top 30%",      // конец анимации
+      //   scrub: true          // плавная привязка к скроллу
+      // },
+      duration: 1,
+      ease: "power1.out",
+    });
+
+    // tl2.to(animate, {
+    //   y: 0,                  // конечная позиция
+    //   duration: 0.5,
+    //   delay: 0.5,
+    //   opacity: 1,
+    //   // scrollTrigger: {
+    //   //   trigger: animate,   // когда блок в зоне видимости
+    //   //   start: "top 100%",    // запуск анимации
+    //   //   end: "top 30%",      // конец анимации
+    //   //   scrub: true          // плавная привязка к скроллу
+    //   // },
+    //   duration: 1,
+    //   ease: "power1.out"
+    // }, "+=0.3");
+
+    let splitQuiz = quiz.querySelector('[data-title="splitQuiz"]');
+
+    SplitText.create(splitQuiz, {
+      type: "words,lines",
+      mask: "lines",
+      linesClass: "line",
+      autoSplit: true,
+      onSplit: (instance) => {
+        return gsap.from(instance.lines, {
+          yPercent: 120,
+          stagger: 0.1,
+          duration: 1,
+          delay: 0.5,
+          scrollTrigger: {
+            trigger: splitQuiz,
+            start: "top 90%",
+            end: "bottom top"
+          }
+        });
+      }
+    });
+  }
 
   // gsap.from("#counter", {
   //   innerText: 0,

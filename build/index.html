@@ -342,6 +342,19 @@
           <a class="down" href="#design">
             <i class="icon-chevron"></i>
           </a>
+
+          <div class="video-thumb" id="videoThumb"
+            data-thumb="https://kinescope.io/embed/bkVAttSLQMzttd3z89BKNm?muted=1&autoplay=1"
+            data-main="https://kinescope.io/uR1cQDyZ72KGGHjPGzc3YA?autoplay=1&enablejsapi=1">
+            <i class="icon-play"></i>
+            <i class="icon-exit" id="exitBtn"></i>
+            <div class="iframe-wrapper" id="iframeWrapper">
+              <iframe id="thumbIframe" src=""
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
+                frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+
         </div>
       </section>
       <!-- Проектирование -->
@@ -600,7 +613,7 @@
         <div class="container">
           <div class="quiz__inner">
             <div class="general__head">
-              <div class="general__head-title" data-title="split">
+              <div class="general__head-title" data-title="splitQuiz">
                 <h2>
                   Пройдите<br> опрос<br>
                   и получите<br> смету
@@ -1847,7 +1860,8 @@
             </div>
 
             <div class="team__body" data-transform="fade">
-              <div class="swiper team__slider">
+
+              <div class="swiper team__slider--big">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide team__slide">
                     <div class="team__item">
@@ -2004,39 +2018,214 @@
                       </div>
                     </div>
                   </div>
-                  <div class="swiper-slide team__slide">
-                    <div class="team__item">
-                      <div class="team__item-cover">
-                        <img src="./images/temp/command-cover-3.png" alt="">
-                        <div class="team__item-quote">
-                          <h5>
-                            Вместе мы строим будущее для наших детей! Очень большое будущее как этот блок с текстом в
-                            несколько строк
-                          </h5>
+                </div>
+                <div class="swiper__btns">
+                  <div class="swiper-button-prev team-button-prev">
+                    <i class="icon-chevron"></i>
+                  </div>
+                  <div class="swiper-button-next team-button-next">
+                    <i class="icon-chevron"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="team__block">
+                <div class="swiper team__slider--min">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide team__slide">
+                      <div class="team__item">
+                        <div class="team__item-cover">
+                          <img src="./images/temp/command-cover-2.png" alt="">
+                          <div class="team__item-quote">
+                            <h5>
+                              Вместе мы строим будущее для наших детей! Очень большое будущее как этот блок с текстом в
+                              несколько строк
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="team__item-content">
+                          <div class="team__item-post">
+                            <p>
+                              Водитель
+                            </p>
+                          </div>
+                          <div class="team__item-name">
+                            <h5>
+                              Василий Иванович Медведев
+                            </h5>
+                          </div>
+                          <div class="team__item-exp">
+                            <span>20</span>
+                            <p>
+                              лет <br> стаж работы
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      <div class="team__item-content">
-                        <div class="team__item-post">
-                          <p>
-                            Бурильщик
-                          </p>
+                    </div>
+                    <div class="swiper-slide team__slide">
+                      <div class="team__item">
+                        <div class="team__item-cover">
+                          <img src="./images/temp/command-cover-3.png" alt="">
+                          <div class="team__item-quote">
+                            <h5>
+                              Вместе мы строим будущее для наших детей! Очень большое будущее как этот блок с текстом в
+                              несколько строк
+                            </h5>
+                          </div>
                         </div>
-                        <div class="team__item-name">
-                          <h5>
-                            Петр Александрович Медведева
-                          </h5>
+                        <div class="team__item-content">
+                          <div class="team__item-post">
+                            <p>
+                              Бурильщик
+                            </p>
+                          </div>
+                          <div class="team__item-name">
+                            <h5>
+                              Петр Александрович Медведева
+                            </h5>
+                          </div>
+                          <div class="team__item-exp">
+                            <span>20</span>
+                            <p>
+                              лет <br> стаж работы
+                            </p>
+                          </div>
                         </div>
-                        <div class="team__item-exp">
-                          <span>20</span>
-                          <p>
-                            лет <br> стаж работы
-                          </p>
+                      </div>
+                    </div>
+                    <div class="swiper-slide team__slide">
+                      <div class="team__item">
+                        <div class="team__item-cover">
+                          <img src="./images/temp/command-cover-1.png" alt="">
+                          <div class="team__item-quote">
+                            <h5>
+                              Вместе мы строим будущее для наших детей! Очень большое будущее как этот блок с текстом в
+                              несколько строк
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="team__item-content">
+                          <div class="team__item-post">
+                            <p>
+                              Прораб
+                            </p>
+                          </div>
+                          <div class="team__item-name">
+                            <h5>
+                              Василий Иванович Медведев
+                            </h5>
+                          </div>
+                          <div class="team__item-exp">
+                            <span>20</span>
+                            <p>
+                              лет <br> стаж работы
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide team__slide">
+                      <div class="team__item">
+                        <div class="team__item-cover">
+                          <img src="./images/temp/command-cover-2.png" alt="">
+                          <div class="team__item-quote">
+                            <h5>
+                              Вместе мы строим будущее для наших детей! Очень большое будущее как этот блок с текстом в
+                              несколько строк
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="team__item-content">
+                          <div class="team__item-post">
+                            <p>
+                              Водитель
+                            </p>
+                          </div>
+                          <div class="team__item-name">
+                            <h5>
+                              Василий Иванович Медведев
+                            </h5>
+                          </div>
+                          <div class="team__item-exp">
+                            <span>20</span>
+                            <p>
+                              лет <br> стаж работы
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide team__slide">
+                      <div class="team__item">
+                        <div class="team__item-cover">
+                          <img src="./images/temp/command-cover-3.png" alt="">
+                          <div class="team__item-quote">
+                            <h5>
+                              Вместе мы строим будущее для наших детей! Очень большое будущее как этот блок с текстом в
+                              несколько строк
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="team__item-content">
+                          <div class="team__item-post">
+                            <p>
+                              Бурильщик
+                            </p>
+                          </div>
+                          <div class="team__item-name">
+                            <h5>
+                              Петр Александрович Медведева
+                            </h5>
+                          </div>
+                          <div class="team__item-exp">
+                            <span>20</span>
+                            <p>
+                              лет <br> стаж работы
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="swiper-slide team__slide">
+                      <div class="team__item">
+                        <div class="team__item-cover">
+                          <img src="./images/temp/command-cover-1.png" alt="">
+                          <div class="team__item-quote">
+                            <h5>
+                              Вместе мы строим будущее для наших детей! Очень большое будущее как этот блок с текстом в
+                              несколько строк
+                            </h5>
+                          </div>
+                        </div>
+                        <div class="team__item-content">
+                          <div class="team__item-post">
+                            <p>
+                              Прораб
+                            </p>
+                          </div>
+                          <div class="team__item-name">
+                            <h5>
+                              Василий Иванович Медведев
+                            </h5>
+                          </div>
+                          <div class="team__item-exp">
+                            <span>20</span>
+                            <p>
+                              лет <br> стаж работы
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <a class="btn" href="/">
+                  стать частью команды
+                  <i class="icon-chevron-min"></i>
+                </a>
               </div>
+
             </div>
 
           </div>
@@ -2482,12 +2671,18 @@
             </div>
             <div class="col-xs-12">
               <div class="form-group">
-                <textarea class="form-textarea" id="panel_comments" name="panel_comments" rows="1" cols="1"></textarea>
-                <label class="form-label" for="panel_comments">
-                  <div>
-                    Комментарий
+                <div class="dropdown">
+                  <div class="dropdown-btn">
+                    <span>Выберите пункт</span>
+                    <i class="icon-chevron-min"></i>
                   </div>
-                </label>
+                  <input type="hidden" name="option1">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item" data-value="service-1">Услуга 1</div>
+                    <div class="dropdown-item" data-value="service-2">Услуга 2</div>
+                    <div class="dropdown-item" data-value="service-3">Услуга 3</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -2644,12 +2839,15 @@
             </div>
             <div class="col-xs-12">
               <div class="form-group">
-                <textarea class="form-textarea" id="panel_comments" name="panel_comments" rows="1" cols="1"></textarea>
-                <label class="form-label" for="panel_comments">
-                  <div>
-                    Комментарий
+                <div class="dropdown">
+                  <div class="dropdown-btn">Выберите услугу</div>
+                  <input type="hidden" name="option1">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item" data-value="service-1">Услуга 1</div>
+                    <div class="dropdown-item" data-value="service-2">Услуга 2</div>
+                    <div class="dropdown-item" data-value="service-3">Услуга 3</div>
                   </div>
-                </label>
+                </div>
               </div>
             </div>
           </div>

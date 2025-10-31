@@ -125,10 +125,11 @@
 
       padding: 6.5rem 3rem 3rem 2rem;
       background-color: var(--blue);
+      min-height: auto;
     }
 
     @include sm {
-      min-height: 38.9rem;
+      // min-height: 38.9rem;
     }
 
     &:hover {
@@ -232,6 +233,11 @@
 
       @include md {
         color: var(--sizyy-50);
+        margin-bottom: 3rem;
+      }
+
+      @include sm {
+        margin-bottom: 2rem;
       }
 
       .design__item:hover & {
