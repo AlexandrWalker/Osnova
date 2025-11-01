@@ -91,24 +91,8 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
   src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
   font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
   font-style: normal;
 }
 
@@ -123,8 +107,24 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
   src: url("../fonts/Gotham-Thin.woff2") format("woff2"), url("../fonts/Gotham-Thin.woff") format("woff");
   font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
+  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -171,14 +171,6 @@ a {
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-Light.woff2") format("woff2"), url("../fonts/HalvarBreit-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: HalvarBreit;
-  font-display: swap;
   src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
   font-weight: 100;
   font-style: normal;
@@ -209,6 +201,14 @@ a {
 }
 
 @font-face {
+  font-family: HalvarBreit;
+  font-display: swap;
+  src: url("../fonts/HalvarBreit-Light.woff2") format("woff2"), url("../fonts/HalvarBreit-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
   font-family: Montserrat;
   font-display: swap;
   src: url("../fonts/Montserrat-Bold.woff2") format("woff2"), url("../fonts/Montserrat-Bold.woff") format("woff");
@@ -235,22 +235,6 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
-  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
   src: url("../fonts/Montserrat-Regular.woff2") format("woff2"), url("../fonts/Montserrat-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
@@ -267,8 +251,24 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-display: swap;
   src: url("../fonts/Montserrat-Thin.woff2") format("woff2"), url("../fonts/Montserrat-Thin.woff") format("woff");
   font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-display: swap;
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -360,6 +360,41 @@ a {
   margin-left: -10%;
   -o-object-fit: cover;
   object-fit: cover;
+}
+
+.numbers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: -1.7rem;
+}
+
+.digit-container {
+  display: inline-block;
+  overflow: hidden;
+  width: 0.78em;
+  height: 1em;
+  vertical-align: bottom;
+}
+
+.digit {
+  display: block;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  text-align: right;
+}
+
+.digit span {
+  display: block;
+  line-height: 1em;
 }
 
 .swiper__btns {
@@ -671,6 +706,7 @@ body {
   border-left: 0.1rem solid var(--btn-border-color);
   -webkit-transition: all 0.8s ease;
   transition: all 0.8s ease;
+  overflow: hidden;
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 1.4rem;
@@ -681,6 +717,13 @@ body {
   cursor: pointer;
   position: relative;
   z-index: 1;
+}
+
+.btn .magnetic-btn {
+  -webkit-transition: all 0.8s ease, -webkit-transform 0.3s ease;
+  transition: all 0.8s ease, -webkit-transform 0.3s ease;
+  transition: all 0.8s ease, transform 0.3s ease;
+  transition: all 0.8s ease, transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 
 .btn::before {
@@ -705,7 +748,7 @@ body {
   -webkit-transition: width 0.8s ease;
   transition: width 0.8s ease;
   position: absolute;
-  bottom: 0;
+  bottom: 0.1rem;
   right: -0.1rem;
 }
 
@@ -1836,10 +1879,10 @@ p {
 }
 
 .header {
-  -webkit-transition: background-color 0.3s ease, -webkit-transform 0.8s ease;
-  transition: background-color 0.3s ease, -webkit-transform 0.8s ease;
-  transition: transform 0.8s ease, background-color 0.3s ease;
-  transition: transform 0.8s ease, background-color 0.3s ease, -webkit-transform 0.8s ease;
+  -webkit-transition: all 0.5s ease, background-color 0.3s ease, -webkit-transform 0.8s ease;
+  transition: all 0.5s ease, background-color 0.3s ease, -webkit-transform 0.8s ease;
+  transition: all 0.5s ease, transform 0.8s ease, background-color 0.3s ease;
+  transition: all 0.5s ease, transform 0.8s ease, background-color 0.3s ease, -webkit-transform 0.8s ease;
   will-change: transform;
   height: var(--header-height);
   color: var(--white);
@@ -1915,6 +1958,8 @@ p {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   position: absolute;
   top: 0;
   left: 0;
@@ -1937,8 +1982,8 @@ p {
   align-items: center;
   width: 100%;
   margin-left: 22.5rem;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .show .header__center {
@@ -1963,8 +2008,8 @@ p {
   background-color: var(--blue);
   padding-right: 9.1rem;
   margin-bottom: 0.1rem;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   position: relative;
 }
 
@@ -1975,8 +2020,8 @@ p {
 .header__phone {
   width: 100%;
   padding: 3rem 4rem;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   text-align: right;
   color: var(--white);
 }
@@ -2029,11 +2074,18 @@ p {
   overflow: hidden;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  width: calc(100% + 9.1rem);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 1;
   background-color: var(--blue);
 }
 
-.header__drop-body--open {
+.header__drop:hover .header__drop-body {
   grid-template-rows: 1fr;
+  padding: 0 5rem 4rem 5rem;
 }
 
 .header__drop-wrap {
@@ -2088,6 +2140,8 @@ p {
   background-color: var(--white);
   -ms-flex-negative: 0;
   flex-shrink: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .header.show .logo {
@@ -2110,18 +2164,22 @@ p {
   height: 6.8rem;
   -o-object-fit: contain;
   object-fit: contain;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .logo svg {
   height: 6.8rem;
   -o-object-fit: contain;
   object-fit: contain;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .logo svg path {
   fill: var(--blue);
-  -webkit-transition: fill 0.3s ease;
-  transition: fill 0.3s ease;
+  -webkit-transition: fill 0.5s ease;
+  transition: fill 0.5s ease;
 }
 
 .menu {
@@ -2350,6 +2408,7 @@ p {
 
 .nav {
   height: 100%;
+  position: relative;
 }
 
 .nav ul {
@@ -2410,7 +2469,29 @@ p {
 
 .nav a:hover {
   color: var(--white);
-  border-bottom-color: var(--white);
+}
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  height: 0.1rem;
+  background: var(--white);
+  left: 50%;
+  -webkit-transform: translateX(-50%) scaleX(0);
+  -ms-transform: translateX(-50%) scaleX(0);
+  transform: translateX(-50%) scaleX(0);
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transition: -webkit-transform 0.25s ease;
+  transition: -webkit-transform 0.25s ease;
+  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
+  width: 0;
+  will-change: left, transform;
+  pointer-events: none;
+  -webkit-box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
 }
 
 .panel {
@@ -4171,12 +4252,21 @@ p {
   color: var(--sizyy);
 }
 
-.exp__count span {
+.exp__count .number-roll {
   font-family: var(--second-family);
   font-weight: 700;
   font-size: 18rem;
   line-height: 100%;
-  margin-left: -1rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.exp__count .number-roll + span {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 18rem;
+  line-height: 100%;
 }
 
 .exp__items {
@@ -4409,8 +4499,8 @@ p {
 }
 
 .down:hover i {
-  -webkit-animation: btnBounce 1s cubic-bezier(0.61, 0.48, 1, 0.6) forwards;
-  animation: btnBounce 1s cubic-bezier(0.61, 0.48, 1, 0.6) forwards;
+  -webkit-animation: btnBounce 1s linear forwards;
+  animation: btnBounce 1s linear forwards;
 }
 
 .down::before {
@@ -4436,17 +4526,12 @@ p {
     transform: translateY(0);
   }
 
-  25% {
+  33% {
     -webkit-transform: translateY(-1rem);
     transform: translateY(-1rem);
   }
 
-  50% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-
-  75% {
+  66% {
     -webkit-transform: translateY(0.5rem);
     transform: translateY(0.5rem);
   }
@@ -4463,17 +4548,12 @@ p {
     transform: translateY(0);
   }
 
-  25% {
+  33% {
     -webkit-transform: translateY(-1rem);
     transform: translateY(-1rem);
   }
 
-  50% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-
-  75% {
+  66% {
     -webkit-transform: translateY(0.5rem);
     transform: translateY(0.5rem);
   }
@@ -4778,6 +4858,7 @@ p {
 .quiz {
   padding: 0;
   margin-bottom: 0;
+  min-height: 100vh;
   overflow: hidden;
   color: var(--white);
   position: relative;
@@ -4811,11 +4892,6 @@ p {
 }
 
 .quiz__bg {
-  -webkit-transform: translateX(50vw) scale(0.5);
-  -ms-transform: translateX(50vw) scale(0.5);
-  transform: translateX(50vw) scale(0.5);
-  -webkit-transition: all 0.5s linear;
-  transition: all 0.5s linear;
   position: absolute;
   top: 0;
   right: 0;
@@ -6504,7 +6580,11 @@ p {
     gap: 2rem;
   }
 
-  .exp__count span {
+  .exp__count .number-roll {
+    font-size: 12rem;
+  }
+
+  .exp__count .number-roll + span {
     font-size: 12rem;
   }
 
@@ -6621,6 +6701,7 @@ p {
 
   .quiz {
     padding: 18rem 0 49.9rem 0;
+    min-height: auto;
   }
 
   .quiz .general__head-title {
@@ -7290,7 +7371,11 @@ p {
     margin-top: auto;
   }
 
-  .exp__count span {
+  .exp__count .number-roll {
+    font-size: 10rem;
+  }
+
+  .exp__count .number-roll + span {
     font-size: 10rem;
   }
 
