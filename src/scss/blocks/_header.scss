@@ -1,7 +1,7 @@
 @use './../mixins' as *;
 
 .header {
-  transition: transform 0.8s ease, background-color 0.3s ease;
+  transition: all 0.5s ease, transform 0.8s ease, background-color 0.3s ease;
   will-change: transform;
   height: var(--header-height);
 
@@ -65,6 +65,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    transition: all 0.5s ease;
 
     position: absolute;
     top: 0;
@@ -79,7 +80,7 @@
     align-items: center;
     width: 100%;
     margin-left: 22.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 
     @include md {
       margin-left: 14.4rem;
@@ -107,7 +108,7 @@
     background-color: var(--blue);
     padding-right: calc(11.4rem - 2.3rem);
     margin-bottom: 0.1rem;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     position: relative;
 
     @include md {
@@ -126,7 +127,7 @@
   &__phone {
     width: 100%;
     padding: 3rem 4rem;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     text-align: right;
     color: var(--white);
 
@@ -198,16 +199,25 @@
       padding: 0 5rem;
       overflow: hidden;
       transition: all 0.3s ease;
+      width: calc(100% + 9.1rem);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
+      z-index: 1;
 
       background-color: var(--blue);
 
-      &--open {
+      .header__drop:hover & {
         grid-template-rows: 1fr;
+        padding: 0 5rem 4rem 5rem;
       }
     }
 
     &-wrap {
       overflow: hidden;
+
+      .header__drop:hover & {}
     }
 
     ul {

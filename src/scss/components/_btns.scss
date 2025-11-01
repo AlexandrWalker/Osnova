@@ -20,6 +20,7 @@
   border-right: 0.1rem solid var(--btn-border-color);
   border-left: 0.1rem solid var(--btn-border-color);
   transition: all 0.8s ease;
+  overflow: hidden;
 
   font-family: var(--font-family);
   font-weight: 700;
@@ -35,6 +36,10 @@
 
   @include sm {
     --btn-height: 5rem;
+  }
+
+  .magnetic-btn {
+  transition: all 0.8s ease, transform 0.3s ease;
   }
 
   &::before {
@@ -59,7 +64,7 @@
     transition: width 0.8s ease;
 
     position: absolute;
-    bottom: 0;
+    bottom: 0.1rem;
     right: -0.1rem;
   }
 

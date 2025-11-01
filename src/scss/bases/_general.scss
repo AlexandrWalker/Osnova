@@ -111,3 +111,31 @@
     }
   }
 }
+
+.numbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-left: -1.7rem;
+}
+
+.digit-container {
+  display: inline-block;
+  overflow: hidden;
+  width: 0.78em;
+  height: 1em;
+  vertical-align: bottom;
+}
+
+.digit {
+  display: block;
+  transform: translateY(0);
+
+  text-align: right;
+}
+
+.digit span {
+  display: block;
+  line-height: 1em;
+}

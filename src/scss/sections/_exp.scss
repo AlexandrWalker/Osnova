@@ -61,13 +61,27 @@
 
     color: var(--sizyy);
 
-    span {
+    &:nth-child(1) {
+
+      .numbers {
+        // margin-left: -2.5rem;
+      }
+    }
+
+    &:nth-child(2) {
+
+      .numbers {
+        // margin-left: -5.5rem;
+      }
+    }
+
+    .number-roll {
       font-family: var(--second-family);
       font-weight: 700;
       font-size: 18rem;
       line-height: 100%;
 
-      margin-left: -1rem;
+      width: fit-content;
 
       @include md {
         font-size: 12rem;
@@ -75,6 +89,21 @@
 
       @include sm {
         font-size: 10rem;
+      }
+
+      &+span {
+        font-family: var(--second-family);
+        font-weight: 700;
+        font-size: 18rem;
+        line-height: 100%;
+
+        @include md {
+          font-size: 12rem;
+        }
+
+        @include sm {
+          font-size: 10rem;
+        }
       }
     }
   }

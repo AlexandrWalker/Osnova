@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lenis.raf(time * 1000);
   });
 
-
   /**
    * Инициализация слайдеров
    */
@@ -156,10 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
 
-
     teamSliderBig.controller.control = teamSliderMin;
     teamSliderMin.controller.control = teamSliderBig;
-
   }
 
   /**
@@ -255,49 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // const footer = document.querySelector('footer');
-  // footer.addEventListener('mousemove', function () {
-  //   footer.classList.add('footer--active');
-  // })
-  // footer.addEventListener('mouseleave', function () {
-  //   footer.classList.remove('footer--active');
-  // })
-
-  // const hero = document.querySelector('.hero');
-  // hero.addEventListener('mousemove', function () {
-  //   hero.classList.add('animatedClass');
-  // })
-  // hero.addEventListener('mouseleave', function () {
-  //   hero.classList.remove('animatedClass');
-  // })
-
-  const sections = gsap.utils.toArray("section")
-  sections.forEach(function (section, index) {
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top bottom",
-      end: "bottom top",
-      onEnter: () => section.classList.add("showed"),
-    })
-  })
-
-  const workItems = document.querySelectorAll(".work__item")
-  workItems.forEach(workItem => {
-    ScrollTrigger.create({
-      trigger: workItem,
-      start: "top bottom",
-      end: "bottom top",
-      onEnter: () => workItem.classList.add("showed"),
-    })
-  });
-
-  const footer = document.getElementById("footer")
-  ScrollTrigger.create({
-    trigger: footer,
-    start: "top bottom",
-    end: "bottom top",
-    onEnter: () => footer.classList.add("showed"),
-  })
   /**
    * Управляет поведением хэдера.
    */
@@ -535,271 +489,103 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
-   * Анимация текста
+   * Код для поведения полоски под пунктами в шапке
    */
-  console.clear();
+  function initMenuIndicator(navSelector) {
+    const nav = document.querySelector(navSelector);
+    if (!nav) return;
 
-  gsap.set('[data-title="split"]', { opacity: 1 });
+    const indicator = nav.querySelector('.indicator');
+    const links = nav.querySelectorAll('a');
 
-  // document.fonts.ready.then(() => {
-  let containers = gsap.utils.toArray(".container");
+    let currentX = 0;
+    let targetX = 0;
+    let velocityX = 0;
+    let currentWidth = 0;
+    let targetWidth = 0;
+    let velocityW = 0;
 
-  containers.forEach((container) => {
-    let text = container.querySelector('[data-title="split"]');
-    let animation;
+    const stiffness = 0.15;
+    const damping = 0.2;
 
-    SplitText.create(text, {
-      type: "words,lines",
-      mask: "lines",
-      linesClass: "line",
-      autoSplit: true,
-      onSplit: (instance) => {
-        return gsap.from(instance.lines, {
-          yPercent: 120,
-          stagger: 0.1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: container,
-            start: "top 90%",
-            end: "bottom top"
-          }
-        });
-      }
+    function animate() {
+      const dx = targetX - currentX;
+      velocityX = velocityX * damping + dx * stiffness;
+      currentX += velocityX;
+
+      const dw = targetWidth - currentWidth;
+      velocityW = velocityW * damping + dw * stiffness;
+      currentWidth += velocityW;
+
+      indicator.style.left = `${currentX}px`;
+      indicator.style.width = `${currentWidth}px`;
+
+      requestAnimationFrame(animate);
+    }
+
+    function moveIndicator(link) {
+      const rect = link.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+      targetX = rect.left - navRect.left + rect.width / 2;
+      targetWidth = rect.width;
+      indicator.style.transform = "translateX(-50%) scaleX(1)";
+      indicator.style.opacity = "1";
+    }
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => moveIndicator(link));
     });
-  });
 
-  containers.forEach((container) => {
-    let text = container.querySelector('[data-title="splitChars"]');
-    let animation;
-
-    SplitText.create(text, {
-      type: "words,chars",
-      mask: "chars",
-      linesClass: "char",
-      autoSplit: true,
-      onSplit: (instance) => {
-        return gsap.from(instance.chars, {
-          opacity: 0,
-          stagger: 0.1,
-          duration: 0.3,
-          ease: "sine.out",
-          scrollTrigger: {
-            trigger: container,
-            start: "top 90%",
-            end: "bottom top"
-          }
-        });
-      }
+    nav.addEventListener('mouseleave', () => {
+      indicator.style.transform = "translateX(-50%) scaleX(0)";
+      indicator.style.opacity = "0.8";
     });
-  });
-  // });
 
-  const parallaxImgContainers = document.querySelectorAll('[data-animation="parallax-img"]');
-  if (parallaxImgContainers.length > 0) {
-    parallaxImgContainers.forEach(parallaxImgContainer => {
-      const image = parallaxImgContainer.querySelector('img');
-      gsap.fromTo(image,
-        {
-          y: '-10%',
-          scale: 0.9,
-        },
-        {
-          y: '10%',
-          scale: 1,
-          scrollTrigger: {
-            trigger: parallaxImgContainer,
-            start: 'top 90%',
-            end: 'bottom top',
-            scrub: true,
-          },
-        }
-      );
-    });
+    animate();
   }
+  // Инициализация меню
+  initMenuIndicator('#nav');
 
-  const fadeItems = document.querySelectorAll('[data-transform="fade"]');
-  fadeItems.forEach(fadeItem => {
-    const tl = gsap.timeline({
-      paused: true
+  /**
+   * Эффект рельсов для кнопки
+   */
+  (function () {
+    const btn = document.querySelector('.magnetic-btn');
+    const area = document.querySelector('.hero');
+
+    if (!btn || !area) return; // проверяем, что элементы существуют
+
+    let mouseY = 0; // позиция курсора относительно кнопки
+    let btnY = 0;    // текущая позиция кнопки по Y
+
+    area.addEventListener('mousemove', e => {
+      if (window.innerWidth <= 834) return; // отключаем на маленьких экранах
+      const btnRect = btn.getBoundingClientRect();
+      mouseY = e.clientY - (btnRect.top + btnRect.height / 2);
     });
-    tl.from(fadeItem, {
-      opacity: 0,
-      y: "20",
-      duration: .8,
-      delay: .3,
-      ease: "ease",
-      stagger: {
-        amount: .8
+
+    area.addEventListener('mouseleave', () => {
+      if (window.innerWidth <= 834) return;
+      mouseY = 0;
+    });
+
+    function animate() {
+      if (window.innerWidth > 834) {
+        btnY += (mouseY - btnY) * 0.1; // плавное движение
+        const maxOffset = 25;
+        if (btnY > maxOffset) btnY = maxOffset;
+        if (btnY < -maxOffset) btnY = -maxOffset;
+        btn.style.transform = `translateY(${btnY}px)`;
+      } else {
+        // сброс позиции на маленьких экранах
+        btnY = 0;
+        btn.style.transform = `translateY(0)`;
       }
-    });
-    scrollTriggerPlayer(fadeItem, tl)
-  });
+      requestAnimationFrame(animate);
+    }
 
-  const heroFadeItems = document.querySelectorAll('[data-transform="heroFade"]');
-  heroFadeItems.forEach(heroFadeItem => {
-    const tl = gsap.timeline({
-      paused: true
-    });
-    tl.from(heroFadeItem, {
-      opacity: 0,
-      duration: 1,
-      delay: .3,
-      ease: "ease",
-      stagger: {
-        amount: .8
-      }
-    });
-    scrollTriggerPlayer(heroFadeItem, tl)
-  });
-
-  const quiz = document.querySelector('.quiz');
-  if (quiz) {
-    // const quiz__bg = document.querySelector('.quiz__bg');
-    // const tl = gsap.timeline({
-    //   paused: true
-    // });
-    // tl.from(quiz__bg, {
-    //   x: '100%',
-    //   duration: 1,
-    //   delay: .3,
-    //   ease: "ease",
-    //   scrub: true,
-    //   stagger: {
-    //     amount: .8
-    //   }
-    // });
-    // scrollTriggerPlayer(quiz__bg, tl)
-
-    // создаём Timeline, привязанный к скроллу
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".quiz__bg",
-        start: "top 100%",
-        end: "top 30%",
-        scrub: true,
-        // markers: true
-      }
-    });
-
-    tl2.to(".quiz__bg", {
-      x: 0,                  // конечная позиция
-      scale: 1,
-      duration: 0.5,
-      // scrollTrigger: {
-      //   trigger: ".quiz__bg",   // когда блок в зоне видимости
-      //   start: "top 100%",    // запуск анимации
-      //   end: "top 30%",      // конец анимации
-      //   scrub: true          // плавная привязка к скроллу
-      // },
-      duration: 1,
-      ease: "power1.out",
-    });
-
-    // tl2.to(animate, {
-    //   y: 0,                  // конечная позиция
-    //   duration: 0.5,
-    //   delay: 0.5,
-    //   opacity: 1,
-    //   // scrollTrigger: {
-    //   //   trigger: animate,   // когда блок в зоне видимости
-    //   //   start: "top 100%",    // запуск анимации
-    //   //   end: "top 30%",      // конец анимации
-    //   //   scrub: true          // плавная привязка к скроллу
-    //   // },
-    //   duration: 1,
-    //   ease: "power1.out"
-    // }, "+=0.3");
-
-    let splitQuiz = quiz.querySelector('[data-title="splitQuiz"]');
-
-    SplitText.create(splitQuiz, {
-      type: "words,lines",
-      mask: "lines",
-      linesClass: "line",
-      autoSplit: true,
-      onSplit: (instance) => {
-        return gsap.from(instance.lines, {
-          yPercent: 120,
-          stagger: 0.1,
-          duration: 1,
-          delay: 0.5,
-          scrollTrigger: {
-            trigger: splitQuiz,
-            start: "top 90%",
-            end: "bottom top"
-          }
-        });
-      }
-    });
-  }
-
-  // gsap.from("#counter", {
-  //   innerText: 0,
-  //   duration: 5,
-  //   snap: {
-  //     innerText: 1
-  //   }
-  // });
-
-  function scrollTriggerPlayer(triggerElement, timeline, onEnterStart = "top 95%") {
-    ScrollTrigger.create({
-      trigger: triggerElement,
-      start: "top bottom",
-      onLeaveBack: () => {
-        timeline.progress(1);
-        timeline.pause()
-      }
-    });
-    ScrollTrigger.create({
-      trigger: triggerElement,
-      start: onEnterStart,
-      scrub: true,
-      onEnter: () => timeline.play()
-    })
-  }
-
-  // const paths = document.querySelectorAll('.hoverable');
-
-  // paths.forEach(path => {
-  //   // сохраняем исходный цвет
-  //   path.setAttribute('data-original', path.getAttribute('fill'));
-
-  //   path.addEventListener('mouseenter', () => {
-  //     gsap.to(path, {
-  //       fill: '#032154',
-  //       transformOrigin: "center center",
-  //       filter: 'url(#shadow)',
-  //       duration: 0.3,
-  //       ease: "ease"
-  //     });
-  //   });
-
-  //   path.addEventListener('mouseleave', () => {
-  //     gsap.to(path, {
-  //       fill: path.getAttribute('data-original'),
-  //       filter: 'none',
-  //       duration: 0.3,
-  //       ease: "ease"
-  //     });
-  //   });
-  // });
-
-  const paths = document.querySelectorAll('.hoverable');
-
-  paths.forEach(path => {
-    path.addEventListener('mouseenter', () => {
-      gsap.to(path, { fill: '#032154', duration: 0.3 });
-    });
-    path.addEventListener('mouseleave', () => {
-      gsap.to(path, { fill: path.getAttribute('data-original') || path.getAttribute('fill'), duration: 0.3 });
-    });
-
-    // Сохраняем исходный цвет
-    path.setAttribute('data-original', path.getAttribute('fill'));
-  });
-
-  $(window).on('resize load', function () { ScrollTrigger.refresh() });
-
+    animate();
+  })();
 
   /**
    * Инициализация Fabcybox
@@ -817,6 +603,189 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
   });
+
+  /**
+   * Анимации
+   */
+  // =========================
+  // 1. Утилиты и константы
+  // =========================
+  gsap.set('[data-title="split"]', { opacity: 1 });
+
+  function scrollTriggerPlayer(triggerElement, timeline, onEnterStart = "top 95%") {
+    ScrollTrigger.create({ trigger: triggerElement, start: "top bottom", onLeaveBack: () => { timeline.progress(1); timeline.pause(); } });
+    ScrollTrigger.create({ trigger: triggerElement, start: onEnterStart, scrub: true, onEnter: () => timeline.play() });
+  }
+
+  // =========================
+  // 2. SplitText-анимации
+  // =========================
+  gsap.utils.toArray(".container").forEach(container => {
+    const textSplit = container.querySelector('[data-title="split"]');
+    if (textSplit) SplitText.create(textSplit, {
+      type: "words,lines", mask: "lines", linesClass: "line", autoSplit: true,
+      onSplit: inst => gsap.from(inst.lines, { yPercent: 120, stagger: 0.1, duration: 1, scrollTrigger: { trigger: container, start: "top 90%", end: "bottom top" } })
+    });
+
+    const textChars = container.querySelector('[data-title="splitChars"]');
+    if (textChars) SplitText.create(textChars, {
+      type: "words,chars", mask: "chars", linesClass: "char", autoSplit: true,
+      onSplit: inst => gsap.from(inst.chars, { opacity: 0, stagger: 0.1, duration: 0.3, ease: "sine.out", scrollTrigger: { trigger: container, start: "top 90%", end: "bottom top" } })
+    });
+  });
+
+  // =========================
+  // 3. Параллакс-эффекты
+  // =========================
+  document.querySelectorAll('[data-animation="parallax-img"]').forEach(container => {
+    const img = container.querySelector('img');
+    if (img) gsap.fromTo(img, { y: '-10%', scale: 0.9 }, { y: '10%', scale: 1, scrollTrigger: { trigger: container, start: 'top 90%', end: 'bottom top', scrub: true } });
+  });
+
+  // =========================
+  // 4. Fade и HeroFade
+  // =========================
+  [["fade", 0.8, 20], ["heroFade", 1, 0]].forEach(([attr, dur, y]) => {
+    document.querySelectorAll(`[data-transform="${attr}"]`).forEach(el => {
+      const tl = gsap.timeline({ paused: true });
+      tl.from(el, { opacity: 0, y, duration: dur, delay: 0.3, ease: "ease", stagger: { amount: 0.8 } });
+      scrollTriggerPlayer(el, tl);
+    });
+  });
+
+  // =========================
+  // 5. Анимация чисел
+  // =========================
+  function initNumberRolls(selector = ".number-roll") {
+    document.querySelectorAll(selector).forEach(el => {
+      const digits = el.dataset.number.split("");
+      el.innerHTML = digits.map(ch => {
+        if (ch === ".") return `<span class="digit-container"><span class="digit"><span>.</span></span></span>`;
+        let numSpan = "";
+        for (let j = 0; j < 2; j++) for (let i = 0; i <= 9; i++) numSpan += `<span>${i}</span>`;
+        return `<span class="digit-container"><span class="digit">${numSpan}</span></span>`;
+      }).join("");
+
+      ScrollTrigger.create({
+        trigger: el, start: "top 100%", once: true,
+        onEnter: () => el.querySelectorAll(".digit-container").forEach((container, i) => {
+          const target = digits[i]; if (target === ".") return;
+          const digitEl = container.querySelector(".digit");
+          const t = gsap.to(digitEl, { y: "-10em", duration: 0.6 + Math.random() * 0.4, ease: "linear", repeat: -1 });
+          gsap.delayedCall(1.5 + i * 0.3, () => {
+            t.kill();
+            const loops = Math.floor(digitEl.querySelectorAll("span").length / 10) - 1;
+            gsap.to(digitEl, { y: -(loops * 10 + parseInt(target)) + "em", duration: 1 + i * 0.2, ease: "power3.out" });
+          });
+        })
+      });
+    });
+  }
+  initNumberRolls();
+
+  // =========================
+  // 6. Скролл-классы для секций и элементов
+  // =========================
+  [...gsap.utils.toArray("section"), ...document.querySelectorAll(".work__item"), document.getElementById("footer")].forEach(el => {
+    if (!el) return;
+    ScrollTrigger.create({ trigger: el, start: "top bottom", end: "bottom top", onEnter: () => el.classList.add("showed") });
+  });
+
+  // =========================
+  // 7. Hover-анимации
+  // =========================
+  document.querySelectorAll('.hoverable').forEach(path => {
+    path.dataset.original = path.getAttribute('fill');
+    path.addEventListener('mouseenter', () => gsap.to(path, { fill: '#032154', duration: 0.3 }));
+    path.addEventListener('mouseleave', () => gsap.to(path, { fill: path.dataset.original, duration: 0.3 }));
+  });
+
+  // =========================
+  // 8. Анимация quiz блока
+  // =========================
+  const quiz = document.querySelector(".quiz");
+  if (quiz) {
+    const textQuizSplit = document.querySelector('[data-quiz-title="split"]');
+    const bg = document.querySelector(".quiz__bg");
+    const generalHead = quiz.querySelector(".general__head");
+
+    let splitInstance;
+
+    // --- SplitText ---
+    if (textQuizSplit) {
+      splitInstance = new SplitText(textQuizSplit, {
+        type: "words,lines",
+        mask: "lines",
+        linesClass: "line"
+      });
+
+      gsap.set(splitInstance.lines, { yPercent: 120 });
+    }
+
+    // Изначально скрываем родителя
+    gsap.set(generalHead, { opacity: 0, y: 20 });
+
+    // --- Пин блока ---
+    ScrollTrigger.create({
+      trigger: quiz,
+      start: "top top",
+      end: () => "+=" + quiz.offsetHeight * 1.2,
+      pin: true,
+      pinSpacing: true,
+    });
+
+    // --- Анимация фона отдельно, медленнее ---
+    if (window.innerWidth >= 834) {
+      gsap.fromTo(bg,
+        { x: "50%", scale: 0.7 },
+        {
+          x: "0%",
+          scale: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: quiz,
+            start: "top top",
+            end: () => "+=" + quiz.offsetHeight * 1.5,
+            scrub: true,
+          }
+        }
+      );
+    } else {
+      // На маленьких экранах фиксируем положение
+      gsap.set(bg, { x: "0%", scale: 1 });
+    }
+
+    // --- Таймлайн для general__head и SplitText ---
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: quiz,
+        start: "top top",
+        end: () => "+=" + quiz.offsetHeight * 1.5,
+        scrub: true,
+      }
+    });
+
+    // Родитель блока
+    tl.fromTo(generalHead, { opacity: 0, y: 20 }, { opacity: 1, y: 0, ease: "power2.out" }, 0);
+
+    // SplitText линии
+    if (splitInstance) {
+      tl.to(splitInstance.lines, {
+        yPercent: 0,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: "power2.out"
+      }, 0.1);
+    }
+  }
+
+
+  // =========================
+  // 9. Обновление ScrollTrigger
+  // =========================
+  window.addEventListener('resize', () => ScrollTrigger.refresh());
+  window.addEventListener('load', () => ScrollTrigger.refresh());
+
 
 });
 

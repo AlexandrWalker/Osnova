@@ -285,7 +285,7 @@
     }
 
     i {
-      animation: btnBounce 1s cubic-bezier(0.61, 0.48, 1, 0.6) forwards;
+      animation: btnBounce 1s linear forwards;
     }
   }
 
@@ -310,15 +310,11 @@
     transform: translateY(0);
   }
 
-  25% {
+  33% {
     transform: translateY(-1rem);
   }
 
-  50% {
-    transform: translateY(0);
-  }
-
-  75% {
+  66% {
     transform: translateY(0.5rem);
   }
 
