@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
       effect: "creative",
       creativeEffect: {
         prev: {
-          shadow: true,
           translate: ["-20%", 0, -1],
         },
         next: {
@@ -135,6 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
       centeredSlides: true,
       // loop: true,
       speed: 500,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
       mousewheel: {
         forceToAxis: true,
       },
@@ -550,41 +553,50 @@ document.addEventListener('DOMContentLoaded', () => {
    * Эффект рельсов для кнопки
    */
   (function () {
-    const btn = document.querySelector('.magnetic-btn');
-    const area = document.querySelector('.hero');
+    const areas = document.querySelectorAll('.magnetic-area');
 
-    if (!btn || !area) return; // проверяем, что элементы существуют
+    if (!areas.length) return;
 
-    let mouseY = 0; // позиция курсора относительно кнопки
-    let btnY = 0;    // текущая позиция кнопки по Y
+    areas.forEach(area => {
+      const btn = area.querySelector('.magnetic-btn');
+      if (!btn) return;
 
-    area.addEventListener('mousemove', e => {
-      if (window.innerWidth <= 834) return; // отключаем на маленьких экранах
-      const btnRect = btn.getBoundingClientRect();
-      mouseY = e.clientY - (btnRect.top + btnRect.height / 2);
-    });
+      let mouseY = 0;
+      let btnY = 0;
 
-    area.addEventListener('mouseleave', () => {
-      if (window.innerWidth <= 834) return;
-      mouseY = 0;
-    });
+      area.addEventListener('mousemove', e => {
+        if (window.innerWidth <= 834) return;
 
-    function animate() {
-      if (window.innerWidth > 834) {
-        btnY += (mouseY - btnY) * 0.1; // плавное движение
-        const maxOffset = 25;
-        if (btnY > maxOffset) btnY = maxOffset;
-        if (btnY < -maxOffset) btnY = -maxOffset;
-        btn.style.transform = `translateY(${btnY}px)`;
-      } else {
-        // сброс позиции на маленьких экранах
-        btnY = 0;
-        btn.style.transform = `translateY(0)`;
+        const rect = area.getBoundingClientRect();
+        const btnRect = btn.getBoundingClientRect();
+
+        mouseY = e.clientY - (btnRect.top + btnRect.height / 2);
+      });
+
+      area.addEventListener('mouseleave', () => {
+        if (window.innerWidth <= 834) return;
+        mouseY = 0;
+      });
+
+      function animate() {
+        if (window.innerWidth > 834) {
+          btnY += (mouseY - btnY) * 0.1;
+
+          const maxOffset = 25;
+          if (btnY > maxOffset) btnY = maxOffset;
+          if (btnY < -maxOffset) btnY = -maxOffset;
+
+          btn.style.transform = `translateY(${btnY}px)`;
+        } else {
+          btnY = 0;
+          btn.style.transform = `translateY(0)`;
+        }
+
+        requestAnimationFrame(animate);
       }
-      requestAnimationFrame(animate);
-    }
 
-    animate();
+      animate();
+    });
   })();
 
   /**
@@ -865,9 +877,15 @@ if (tasks) {
 
           scale -= inc * 0.06; // Decrease scale on scroll down
           if ($(prevCurrentBlock).attr('data-index') == 1) {
-            $(prevCurrentBlock).css('transform', 'scale(' + Math.max(0.89, scale) + ')');
+            $(prevCurrentBlock).css('transform', 'scale(' + Math.max(0.83, scale) + ')');
           }
           if ($(prevCurrentBlock).attr('data-index') == 2) {
+            $(prevCurrentBlock).css('transform', 'scale(' + Math.max(0.86, scale) + ')');
+          }
+          if ($(prevCurrentBlock).attr('data-index') == 3) {
+            $(prevCurrentBlock).css('transform', 'scale(' + Math.max(0.89, scale) + ')');
+          }
+          if ($(prevCurrentBlock).attr('data-index') == 4) {
             $(prevCurrentBlock).css('transform', 'scale(' + Math.max(0.92, scale) + ')');
           }
 
@@ -898,7 +916,7 @@ if (tasks) {
         var $activeBlock = $('.active');
         var element = tasks.querySelector('.active');
         var h = element.clientHeight / 200;
-        var distanceToTop = $activeBlock.offset().top - $(window).scrollTop() - 130;
+        var distanceToTop = $activeBlock.offset().top - $(window).scrollTop() - 20;
         var top = window.pageYOffset;
 
         // Scroll direction checks
