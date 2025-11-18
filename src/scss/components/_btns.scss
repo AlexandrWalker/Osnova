@@ -38,10 +38,6 @@
     --btn-height: 5rem;
   }
 
-  .magnetic-btn {
-  transition: all 0.8s ease, transform 0.3s ease;
-  }
-
   &::before {
     content: "";
     display: block;
@@ -88,4 +84,8 @@
   .icon-chevron-min {
     transform: rotate(-90deg);
   }
+}
+
+.magnetic-btn {
+  will-change: transform;
 }

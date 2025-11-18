@@ -20,7 +20,7 @@
     right: calc((var(--container-padding) * -1) + 18.6rem);
     z-index: -1;
     transform: translateY(-50%);
-    animation: drill 3s linear infinite;
+    animation: drill 6s linear infinite;
     will-change: top, animation;
 
     @include md {

@@ -39,6 +39,10 @@
 
     &-input {
       color: var(--blue);
+      
+      &::placeholder {
+        color: var(--sizyy-50);
+      }
     }
 
     &-label {

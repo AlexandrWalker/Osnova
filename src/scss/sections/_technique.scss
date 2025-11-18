@@ -1,6 +1,7 @@
 @use './../mixins' as *;
 
 .technique {
+  overflow: hidden;
   margin: 0;
 
   .general__head {
@@ -75,8 +76,13 @@
     }
   }
 
+  &__slider {
+    overflow: visible;
+  }
+
   &__slide {
     opacity: 0 !important;
+    overflow: visible !important;
 
     &.swiper-slide-active {
       opacity: 1 !important;
@@ -117,10 +123,43 @@
       }
     }
 
+    &-title {
+      transition: transform 1s ease;
+
+      .swiper-slide & {
+        transform: translateX(-50%);
+      }
+
+      .swiper-slide-active & {
+        transform: translate(0);
+      }
+
+      .swiper-slide-next & {
+        transform: translateX(50%);
+      }
+    }
+
     &-wrap {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      transition: transform 1s ease 0.1s;
+
+      &:nth-child(3) {
+        transition: transform 1s ease 0.2s;
+      }
+
+      .swiper-slide & {
+        transform: translateX(-50%);
+      }
+
+      .swiper-slide-active & {
+        transform: translate(0);
+      }
+
+      .swiper-slide-next & {
+        transform: translateX(50%);
+      }
     }
 
     &-suptitle {

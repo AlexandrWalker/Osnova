@@ -86,7 +86,7 @@
 
     position: sticky;
     z-index: 2;
-    top: 13rem;
+    top: 0;
     height: fit-content;
 
     @include md {
@@ -133,7 +133,8 @@
     padding: 10rem 0 3.6rem;
 
     position: sticky;
-    top: 13rem;
+    // top: 13rem;
+    top: 2rem;
     z-index: 2;
 
     @include md {
@@ -202,7 +203,8 @@
     background-color: var(--blue);
 
     position: sticky;
-    top: 13rem;
+    // top: 13rem;
+    top: 2rem;
 
     .over {
       position: absolute;

@@ -1,0 +1,22 @@
+@use './../mixins' as *;
+
+.contacts {
+  min-height: 60rem;
+
+  &__content {
+    padding: 4rem 7rem 4.6rem 4rem;
+    background-color: var(--white);
+    max-width: 56rem;
+  }
+
+  &__bg {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+
+    position: absolute;
+    top: 8rem;
+    left: 0;
+    z-index: -1;
+  }
+}

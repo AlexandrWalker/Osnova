@@ -93,10 +93,24 @@
       font-size: 1.4rem;
     }
 
+    &::placeholder {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 130%;
+      color: var(--white-30);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
     &.filled,
     &:focus,
     &:active,
     &:hover {
+
+      &::placeholder {
+        opacity: 1;
+      }
 
       &+.form-label::after {
         width: 100%;
@@ -225,10 +239,24 @@
 
     resize: none;
 
+    &::placeholder {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 130%;
+      color: var(--white-30);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
     &.filled,
     &:focus,
     &:active,
     &:hover {
+
+      &::placeholder {
+        opacity: 1;
+      }
 
       &+.form-label::after {
         width: 100%;

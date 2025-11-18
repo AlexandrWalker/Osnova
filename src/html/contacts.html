@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru" class="page__inner">
+@@include('blocks/head.html', {"title": "Основа"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Секции страницы -->
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="general__head">
+              <div class="general__head-title" data-title="split">
+                <h3>
+                  Контакты
+                </h3>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="contacts">
+        <div class="container">
+          <div class="contacts__inner">
+
+            <div class="contacts__content">
+              <a href="tel:+71235467890">+7 123 546-78-90</a>
+              <p>
+                Для получения консультаций, технической поддержки и заказа услуг Вы можете обратиться по  по телефона
+              </p>
+            </div>
+
+            <div class="contacts__bg">
+              <img src="./../images/temp/map.svg" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')
