@@ -22,6 +22,17 @@
     padding: 0 1.2rem;
   }
 
+  .page__inner & {
+    background-color: var(--blue);
+
+    svg {
+
+      path {
+        fill: var(--white);
+      }
+    }
+  }
+
   .header.show & {
     background-color: var(--blue);
     width: 12rem;

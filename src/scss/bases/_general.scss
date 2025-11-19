@@ -1,20 +1,5 @@
 @use './../mixins' as *;
 
-.page__inner {
-
-  .container:not(.footer .container){
-    --container-padding: 24.5rem;
-
-    @include sm {
-      --container-padding: 2rem;
-    }
-  }
-
-  .wrapper {
-    padding-top: 18rem;
-  }
-}
-
 /* Главный общий блок */
 .general {
 
@@ -28,82 +13,6 @@
 
     @include sm {
       margin-bottom: 2rem;
-    }
-  }
-}
-
-/* Хлебные крошки */
-.breadcrumbs {
-  --breadcrumbs-gap: 1rem;
-
-  background-color: var(--accent);
-  overflow: hidden;
-
-  .container {
-    padding: 0;
-  }
-
-  &__inner {
-    padding: 1.7rem var(--container-padding) 1.8rem;
-    // width: 100vw;
-    width: 100%;
-    overflow-x: auto;
-
-    &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-      padding: 0;
-      margin: 0;
-    }
-
-    @include md {
-      padding: 1.1rem var(--container-padding) 1.2rem;
-    }
-
-    @include sm {
-      padding: 0.8rem var(--container-padding);
-    }
-  }
-
-  ul {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: var(--breadcrumbs-gap);
-    width: fit-content;
-  }
-
-  li {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: var(--breadcrumbs-gap);
-
-    font-weight: 350;
-    font-size: 1.6rem;
-    color: var(--white);
-    white-space: nowrap;
-
-    @include md {
-      font-size: 1.4rem;
-    }
-
-    @include sm {
-      font-size: 1.2rem;
-    }
-
-    &:not(:last-child) {
-
-      &::after {
-        content: "|";
-      }
-    }
-  }
-
-  a {
-
-    &:hover {
-      text-decoration: underline;
     }
   }
 }

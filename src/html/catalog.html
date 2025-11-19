@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru" class="page__inner">
+@@include('blocks/head.html', {"title": "Основа"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Секции страницы -->
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <div class="breadcrumbs__inner">
+                <ul>
+                  <li>
+                    <a href="/Osnova">
+                      Главная
+                    </a>
+                  </li>
+                  <li>
+                    Каталог объектов
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="general__head">
+              <div class="general__head-title" data-title="split">
+                <h3>
+                  Каталог объектов
+                </h3>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

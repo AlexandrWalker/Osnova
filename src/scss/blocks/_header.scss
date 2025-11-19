@@ -46,7 +46,18 @@
     }
 
     &::before {
-      opacity: 0;
+      // opacity: 0;
+      background-color: var(--blue-50);
+    }
+  }
+
+  .page__inner & {
+    background-color: var(--white);
+    backdrop-filter: unset;
+    box-shadow: unset;
+
+    &::before {
+      background-color: var(--blue-50);
     }
   }
 
@@ -147,6 +158,10 @@
       @include sm {
         padding: 2rem 1.6rem;
       }
+    }
+
+    .page__inner & {
+      color: var(--blue);
     }
 
     a {

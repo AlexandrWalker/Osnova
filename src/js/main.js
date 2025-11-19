@@ -337,55 +337,57 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   (function () {
     const videoThumb = document.getElementById('videoThumb');
-    const iframeWrapper = document.getElementById('iframeWrapper');
-    const thumbIframe = document.getElementById('thumbIframe');
-    const exitBtn = document.getElementById('exitBtn');
+    if (videoThumb) {
+      const iframeWrapper = document.getElementById('iframeWrapper');
+      const thumbIframe = document.getElementById('thumbIframe');
+      const exitBtn = document.getElementById('exitBtn');
 
-    const thumbSrc = videoThumb.getAttribute('data-thumb');
-    const mainSrc = videoThumb.getAttribute('data-main');
+      const thumbSrc = videoThumb.getAttribute('data-thumb');
+      const mainSrc = videoThumb.getAttribute('data-main');
 
-    thumbIframe.src = thumbSrc;
-    let isPaused = false;
+      thumbIframe.src = thumbSrc;
+      let isPaused = false;
 
-    // Клик по миниатюре для увеличения и запуска основного видео
-    videoThumb.addEventListener('click', () => {
-      if (!videoThumb.classList.contains('active')) {
-        videoThumb.classList.add('active');
-        iframeWrapper.innerHTML = `<iframe
+      // Клик по миниатюре для увеличения и запуска основного видео
+      videoThumb.addEventListener('click', () => {
+        if (!videoThumb.classList.contains('active')) {
+          videoThumb.classList.add('active');
+          iframeWrapper.innerHTML = `<iframe
         id="mainVideo"
         src="${mainSrc}"
         allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
         frameborder="0"
         allowfullscreen
       ></iframe>`;
-        const mainIframe = document.getElementById('mainVideo');
-        mainIframe.style.pointerEvents = "auto";
+          const mainIframe = document.getElementById('mainVideo');
+          mainIframe.style.pointerEvents = "auto";
 
-        // Клик по контейнеру для паузы/воспроизведения
-        videoThumb.addEventListener('click', () => {
-          const command = isPaused ? 'play' : 'pause';
-          mainIframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: command }), '*');
-          isPaused = !isPaused;
-        });
-      }
-    });
+          // Клик по контейнеру для паузы/воспроизведения
+          videoThumb.addEventListener('click', () => {
+            const command = isPaused ? 'play' : 'pause';
+            mainIframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: command }), '*');
+            isPaused = !isPaused;
+          });
+        }
+      });
 
-    // Клик по крестику
-    exitBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (videoThumb.classList.contains('active')) {
-        // Если видео увеличено → возвращаем миниатюру
-        videoThumb.classList.remove('active');
-        iframeWrapper.innerHTML = `<iframe id="thumbIframe" src="${thumbSrc}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>`;
-        isPaused = false;
-      } else {
-        // Если миниатюра без видео → плавно скрываем
-        videoThumb.classList.add('hide');
-        setTimeout(() => {
-          videoThumb.style.display = 'none';
-        }, 500); // соответствует времени transition opacity
-      }
-    });
+      // Клик по крестику
+      exitBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (videoThumb.classList.contains('active')) {
+          // Если видео увеличено → возвращаем миниатюру
+          videoThumb.classList.remove('active');
+          iframeWrapper.innerHTML = `<iframe id="thumbIframe" src="${thumbSrc}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>`;
+          isPaused = false;
+        } else {
+          // Если миниатюра без видео → плавно скрываем
+          videoThumb.classList.add('hide');
+          setTimeout(() => {
+            videoThumb.style.display = 'none';
+          }, 500); // соответствует времени transition opacity
+        }
+      });
+    }
 
   })();
 
@@ -698,9 +700,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================
   // 6. Скролл-классы для секций и элементов
   // =========================
-  [...gsap.utils.toArray("section"), ...document.querySelectorAll(".work__item"), document.getElementById("footer")].forEach(el => {
+  [...gsap.utils.toArray("section"), ...document.querySelectorAll(".work__item"), ...document.querySelectorAll(".vacancy__item"), document.getElementById("footer")].forEach(el => {
     if (!el) return;
-    ScrollTrigger.create({ trigger: el, start: "top bottom", end: "bottom top", onEnter: () => el.classList.add("showed") });
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top bottom",
+      end: "bottom top",
+      onEnter: () => el.classList.add("showed")
+    });
   });
 
   // =========================

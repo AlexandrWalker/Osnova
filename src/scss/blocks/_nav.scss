@@ -38,9 +38,11 @@
     color: var(--white-50);
     white-space: nowrap;
 
+    .page__inner &,
     .header.show & {
       color: var(--blue-full-50);
-      border: unset;
+      // border: unset;
+      border-color: var(--blue-50);
 
       &:hover {
         background-color: var(--blue);

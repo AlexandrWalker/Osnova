@@ -1,0 +1,31 @@
+@use './../mixins' as *;
+
+.news {
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    @include md {
+      gap: 3rem;
+    }
+
+    @include sm {
+      gap: 2rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h4 {
+
+      @include sm {
+        font-size: 2rem;
+      }
+    }
+  }
+}

@@ -5,10 +5,18 @@
   min-height: unset;
   margin-bottom: 4rem;
 
+  @include sm {
+    margin-bottom: 2rem;
+  }
+
   &__inner {
     display: flex;
     flex-direction: column;
     gap: 5rem;
+
+    @include sm {
+      gap: 2rem;
+    }
   }
 
   .general__head {

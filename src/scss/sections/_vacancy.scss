@@ -1,0 +1,296 @@
+@use './../mixins' as *;
+
+.vacancy {
+  overflow: visible;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    @include md {
+      gap: 3rem;
+    }
+
+    @include sm {
+      gap: 2rem;
+    }
+
+    .page__vacancy-inner & {
+      max-width: 114rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h4 {
+
+      @include sm {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1430/497;
+  }
+
+  &__feat {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    @include md {
+      gap: 1rem 2rem;
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      padding: 4rem 4rem 3.5rem 4rem;
+      border-top: 0;
+      width: calc(25% - (6rem / 4));
+      background-color: var(--white);
+
+      @include md {
+        width: calc(50% - 1rem);
+        gap: 2rem;
+        padding: 2rem 7rem 3rem 2rem;
+      }
+
+      @include sm {
+        width: 100%;
+      }
+
+      h6 {
+        font-weight: 700;
+      }
+
+      p {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    @include sm {
+      gap: 2rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 4rem 0 4rem 14.5rem;
+    transition: all 0.8s ease;
+
+    position: relative;
+
+    @include md {
+      padding: 2rem 0 2rem 9.7rem;
+    }
+
+    @include sm {
+      padding: 0 0 2rem 0;
+    }
+
+    &.showed {
+
+      &:not(:last-child)::before {
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      padding: 4rem 3rem 4rem 14.5rem;
+      color: var(--white);
+
+      @include md {
+        padding: 2rem 3rem 2rem 9.7rem;
+      }
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &:not(:last-child)::before {
+      content: "";
+      width: 0;
+      height: 0.1rem;
+      background: var(--blue-10);
+      box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+      transition: width 2s ease;
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &::after {
+      content: "";
+      width: 0;
+      height: 100%;
+      background-color: var(--blue);
+      box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+      transition: width 0.8s ease;
+
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    &-count {
+      text-transform: uppercase;
+      color: var(--sizyy);
+      transition: all 0.8s ease;
+
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+
+      @include sm {
+        display: none;
+      }
+
+      .vacancy__item:hover & {
+        color: var(--white);
+        left: 3rem;
+      }
+    }
+
+    &-title {
+      transition: all 0.8s ease;
+      text-decoration-style: dotted;
+      text-decoration-color: var(--blue);
+      text-decoration-line: underline;
+
+      .vacancy__item:hover & {
+        text-decoration-color: var(--white);
+      }
+    }
+
+    &-text {
+      transition: all 0.8s ease;
+      text-decoration-style: dotted;
+      text-decoration-color: var(--blue);
+      text-decoration-line: underline;
+
+      .vacancy__item:hover & {
+        text-decoration-color: var(--white);
+      }
+    }
+  }
+
+  &__blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include sm {
+      gap: 1rem;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    padding: 4rem 3rem;
+    border: 0.1rem solid rgb(235, 238, 241);
+
+    @include md {
+      gap: 2rem;
+      padding: 3rem;
+    }
+
+    @include sm {
+      gap: 1.5rem;
+      padding: 2rem 2rem 3rem;
+    }
+
+    h6 {
+      font-weight: 700;
+    }
+  }
+
+  .form {
+
+    .page__vacancy-inner & {
+      padding: 4rem 14.5rem 3rem;
+      background-color: var(--white);
+
+      @include md {
+        padding: 0;
+        background-color: transparent;
+      }
+    }
+
+    &__head {
+      color: var(--blue);
+      padding-left: 0;
+    }
+
+    &-input {
+      color: var(--blue);
+
+      &::placeholder {
+        color: var(--blue-50);
+      }
+    }
+
+    &-label {
+      color: var(--blue-50);
+
+      &::before {
+        background-color: var(--blue-10);
+      }
+
+      &::after {
+        background-color: var(--blue);
+      }
+    }
+
+    &-btn {
+      --btn-color: var(--blue);
+      --btn-border-color: var(--blue);
+
+      max-width: 56rem;
+      justify-content: unset;
+
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+        flex-shrink: 0;
+      }
+
+      i {
+        margin-left: auto;
+      }
+    }
+
+    &-wrap {
+
+      p {
+        color: var(--blue);
+      }
+    }
+  }
+}

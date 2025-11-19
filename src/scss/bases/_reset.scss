@@ -1,3 +1,5 @@
+@use './../mixins' as *;
+
 /* Reset and base styles  */
 * {
   padding: 0px;
@@ -44,9 +46,38 @@ p {
   margin: 0;
 }
 
-ul,
-ul li {
+ul {
   list-style: none;
+}
+
+ul:not(.nav ul, .menu__list ul, .header ul, .breadcrumbs ul) {
+  padding-left: 2.3rem;
+
+  li {
+    margin-bottom: 2rem;
+    position: relative;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &::before {
+      content: "";
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      background-color: var(--sizyy);
+      flex-shrink: 0;
+
+      position: absolute;
+      top: 0.6rem;
+      left: -2.3rem;
+
+      @include sm {
+        top: 0.4rem;
+      }
+    }
+  }
 }
 
 img {
