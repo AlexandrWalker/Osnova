@@ -23,144 +23,186 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Инициализация слайдеров
    */
-  const swiper = document.querySelector('.swiper');
-  if (swiper) {
-    const regulationsSlider = new Swiper(".regulations__slider", {
+  // ---------- Универсальная фабрика для Swiper'ов ----------
+  function createSlider(selector, custom = {}) {
+    const el = document.querySelector(selector);
+    if (!el) return null;
+
+    const defaults = {
       slidesPerGroup: 1,
       slidesPerView: 1,
-      spaceBetween: 10,
-      loop: true,
+      spaceBetween: 20,
       speed: 600,
-      mousewheel: {
-        forceToAxis: true,
-      },
-      navigation: {
-        prevEl: ".regulations-button-prev",
-        nextEl: ".regulations-button-next",
-      },
-      // pagination: {
-      //   el: ".swiper-pagination",
-      //   clickable: true,
-      //   dynamicBullets: true,
-      //   dynamicMainBullets: 1,
-      // },
-      breakpoints: {
-        601: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        835: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-      },
-      // effect: 'fade',
-      // fadeEffect: {
-      //   crossFade: true
-      // },
       grabCursor: true,
-      // effect: "creative",
-      // creativeEffect: {
-      //   prev: {
-      //     shadow: true,
-      //     translate: ["-20%", 0, -1],
-      //   },
-      //   next: {
-      //     translate: ["100%", 0, 0],
-      //   },
-      // },
-    });
-
-    const buildingSlider = new Swiper(".building__slider", {
-      slidesPerGroup: 1,
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      speed: 1000,
+      centeredSlides: false,
+      centeredSlidesBounds: true,
+      centerInsufficientSlides: true,
+      slidesOffsetBefore: 0,
+      slidesOffsetAfter: 0,
+      loop: false,
+      simulateTouch: true,
+      watchOverflow: true,
       mousewheel: {
         forceToAxis: true,
+        sensitivity: 1,
+        releaseOnEdges: true
       },
-      navigation: {
-        prevEl: ".building-button-prev",
-        nextEl: ".building-button-next",
-      },
-      grabCursor: true,
-    });
+      freeMode: {
+        enabled: false,
+        momentum: false,
+        momentumBounce: false,
+        sticky: true,
+      }
+    };
 
-    const techniqueSlider = new Swiper(".technique__slider", {
-      slidesPerGroup: 1,
-      slidesPerView: 1,
-      spaceBetween: 20,
-      loop: true,
-      speed: 600,
-      mousewheel: {
-        forceToAxis: true,
-      },
-      grabCursor: true,
-      effect: "creative",
-      creativeEffect: {
-        prev: {
-          translate: ["-20%", 0, -1],
-        },
-        next: {
-          translate: ["100%", 0, 0],
-        },
-      },
-      navigation: {
-        prevEl: ".technique-button-prev",
-        nextEl: ".technique-button-next",
-      },
-    });
+    const options = Object.assign({}, defaults, custom);
 
-    const techniqueItemSlider = new Swiper(".technique__item-slider", {
-      slidesPerGroup: 1,
-      slidesPerView: 1,
-      spaceBetween: 0,
-      loop: true,
-      speed: 600,
-      mousewheel: {
-        forceToAxis: true,
-      },
-      navigation: {
-        prevEl: ".technique-item-button-prev",
-        nextEl: ".technique-item-button-next",
-      },
-    });
+    const slider = new Swiper(selector, options);
 
-    const teamSliderBig = new Swiper(".team__slider--big", {
-      slidesPerGroup: 1,
-      slidesPerView: 1,
-      spaceBetween: 20,
-      centeredSlides: true,
-      // loop: true,
-      speed: 500,
-      effect: 'fade',
-      fadeEffect: {
-        crossFade: true
-      },
-      mousewheel: {
-        forceToAxis: true,
-      },
-      navigation: {
-        prevEl: ".team-button-prev",
-        nextEl: ".team-button-next",
-      },
-    });
+    // Включаем общую доп.логику, если слайдер инициализировался
+    if (slider) swiperSliderFunc(slider);
 
-    const teamSliderMin = new Swiper(".team__slider--min", {
-      slidesPerGroup: 1,
-      slidesPerView: 2,
-      spaceBetween: 20,
-      // loop: true,
-      speed: 500,
-      mousewheel: {
-        forceToAxis: true,
-      },
-    });
-
-    teamSliderBig.controller.control = teamSliderMin;
-    teamSliderMin.controller.control = teamSliderBig;
+    return slider;
   }
+
+  // ---------- Общая функция для доп. поведения слайдера ----------
+  function swiperSliderFunc(swiperSlider) {
+    // Управление временным свободным режимом при таче/колесе
+    let isTouching = false;
+
+    const el = swiperSlider.el;
+
+    el.addEventListener('touchstart', () => {
+      isTouching = true;
+      swiperSlider.params.freeMode.enabled = true;
+    }, { passive: true });
+
+    el.addEventListener('touchend', () => {
+      isTouching = false;
+      swiperSlider.params.freeMode.enabled = false;
+    });
+
+    el.addEventListener('wheel', (e) => {
+      if (e.ctrlKey || Math.abs(e.deltaX) > 0) {
+        swiperSlider.params.freeMode.enabled = true;
+        clearTimeout(swiperSlider._freeModeTimeout);
+        swiperSlider._freeModeTimeout = setTimeout(() => {
+          swiperSlider.params.freeMode.enabled = false;
+        }, 400);
+      }
+    }, { passive: true });
+
+    // tempoNav: адаптивное решение нажатий на prev/next кнопки для ускорения навигации
+    (function tempoNav() {
+      const nextBtn = el.querySelector('.swiper-button-next');
+      const prevBtn = el.querySelector('.swiper-button-prev');
+      if (!nextBtn && !prevBtn) return;
+
+      let clickTimes = [];
+      const WINDOW_MS = 800;
+      let slideQueue = 0;
+      let isSliding = false;
+      let lastNav = null;
+
+      function recordAndDecide() {
+        const now = Date.now();
+        clickTimes = clickTimes.filter(t => now - t < WINDOW_MS);
+        clickTimes.push(now);
+        const clicks = clickTimes.length;
+        if (clicks >= 5) return { slides: Math.min(4, clicks - 1), speed: 180 };
+        if (clicks >= 3) return { slides: 2, speed: 260 };
+        if (clicks === 2) return { slides: 1, speed: 340 };
+        return { slides: 1, speed: 200 };
+      }
+
+      function processQueue() {
+        if (slideQueue <= 0 || isSliding) return;
+        slideQueue = Math.max(0, slideQueue - 1);
+        const { dir, speed } = lastNav || { dir: 'next', speed: 200 };
+        if (dir === 'next') swiperSlider.slideNext(speed);
+        else swiperSlider.slidePrev(speed);
+      }
+
+      function navHandler(dir) {
+        const { slides, speed } = recordAndDecide();
+        lastNav = { dir, speed };
+        slideQueue += slides;
+        processQueue();
+      }
+
+      if (nextBtn) nextBtn.addEventListener('click', () => navHandler('next'));
+      if (prevBtn) prevBtn.addEventListener('click', () => navHandler('prev'));
+
+      // Подписка на события слайдера для корректной работы очереди
+      swiperSlider.on('slideChangeTransitionStart', () => { isSliding = true; });
+      swiperSlider.on('slideChangeTransitionEnd', () => {
+        isSliding = false;
+        processQueue();
+      });
+    })();
+  }
+
+  // ---------- Создаём все слайдеры с индивидуальными опциями ----------
+  const regs = createSlider('.regulations__slider', {
+    spaceBetween: 10,
+    speed: 600,
+    breakpoints: {
+      601: { slidesPerView: 2, spaceBetween: 20 },
+      835: { slidesPerView: 3, spaceBetween: 20 }
+    },
+    navigation: { prevEl: ".regulations-button-prev", nextEl: ".regulations-button-next" }
+  });
+
+  const building = createSlider('.building__slider', {
+    spaceBetween: 20,
+    speed: 1000,
+    navigation: { prevEl: ".building-button-prev", nextEl: ".building-button-next" }
+  });
+
+  const technique = createSlider('.technique__slider', {
+    spaceBetween: 20,
+    speed: 600,
+    effect: "creative",
+    creativeEffect: {
+      prev: { translate: ["-20%", 0, -1] },
+      next: { translate: ["100%", 0, 0] }
+    },
+    navigation: { prevEl: ".technique-button-prev", nextEl: ".technique-button-next" }
+  });
+
+  const techniqueItem = createSlider('.technique__item-slider', {
+    spaceBetween: 0,
+    speed: 600,
+    navigation: { prevEl: ".technique-item-button-prev", nextEl: ".technique-item-button-next" }
+  });
+
+  const teamBig = createSlider('.team__slider--big', {
+    spaceBetween: 20,
+    speed: 500,
+    effect: 'fade',
+    fadeEffect: { crossFade: true }
+  });
+
+  const teamMin = createSlider('.team__slider--min', {
+    slidesPerView: 1.2,
+    spaceBetween: 10,
+    speed: 500,
+    breakpoints: {
+      601: { slidesPerView: 2, spaceBetween: 20 }
+    },
+    navigation: { prevEl: ".team-button-prev", nextEl: ".team-button-next" }
+  });
+
+  // Синхронизация big <-> min (если оба существуют)
+  if (teamBig && teamMin) {
+    teamBig.controller.control = teamMin;
+    teamMin.controller.control = teamBig;
+  }
+
+  // Подключение внешней логики (если нужно) — пример:
+  // if (regs) swiperSliderFunc(regs); // уже вызывается внутри createSlider
+
+  // ---------- Конец оптимизированного блока ----------
 
   /**
    * Расчёт ширины скроллбара старницы и добавление отступа в body при октрытии попапов
@@ -723,7 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8. Анимация quiz блока
   // =========================
   const quiz = document.querySelector(".quiz");
-  if (quiz) {
+  if (quiz && window.innerWidth >= 835) {
     const textQuizSplit = document.querySelector('[data-quiz-title="split"]');
     const bg = document.querySelector(".quiz__bg");
     const generalHead = quiz.querySelector(".general__head");
@@ -763,8 +805,9 @@ document.addEventListener('DOMContentLoaded', () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: quiz,
-            start: "top top",
-            end: () => "+=" + quiz.offsetHeight * 1.5,
+            start: "top bottom",
+            // end: () => "+=" + quiz.offsetHeight * 1.5,
+            end: "bottom top",
             scrub: true,
           }
         }
@@ -778,8 +821,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: quiz,
-        start: "top top",
-        end: () => "+=" + quiz.offsetHeight * 1.5,
+        start: "top bottom",
+        // end: () => "+=" + quiz.offsetHeight * 1.5,
+        end: "bottom center",
         scrub: true,
       }
     });

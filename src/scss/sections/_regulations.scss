@@ -86,6 +86,10 @@
       opacity: 0;
       padding: 0 0 3rem;
 
+      position: absolute;
+      top: 0;
+      left: 0;
+
       @include md {
         padding-bottom: 2rem;
       }
@@ -102,6 +106,8 @@
       padding-top: 4rem;
       border-top: 0.1rem solid var(--blue-10);
       transition: border-color 0.5s ease;
+      
+      margin-top: 6rem;
 
       @include md {
         padding-top: 2rem;
@@ -119,6 +125,10 @@
     @include sm {
       margin-bottom: 3rem;
     }
+  }
+
+  .swiper-slide {
+    position: static;
   }
 
   .swiper-slide-active {
