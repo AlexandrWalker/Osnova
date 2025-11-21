@@ -1,0 +1,41 @@
+@use './../mixins' as *;
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  @include sm {
+    gap: 0.8rem;
+  }
+
+  .dropdown {
+    max-width: 26rem;
+
+    @include sm {
+      max-width: 100%;
+    }
+
+    &-item {
+      font-size: 1.4rem;
+      color: var(--blue);
+
+      padding: 0 2rem 2rem 2rem;
+
+      &:last-child {
+        padding-bottom: 3.3rem;
+      }
+    }
+
+    &-btn {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--blue);
+
+      padding: 2.1rem 2rem;
+      border-bottom: 0;
+      background-color: var(--white);
+    }
+  }
+}

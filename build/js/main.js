@@ -842,7 +842,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
   // =========================
   // 9. Обновление ScrollTrigger
   // =========================

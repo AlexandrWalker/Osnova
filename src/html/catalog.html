@@ -39,7 +39,62 @@
           </div>
         </div>
       </section>
-      
+
+      <section class="catalog">
+        <div class="container">
+          <div class="catalog__inner">
+
+            <form class="filter">
+
+              <div class="dropdown">
+                <div class="dropdown-btn">
+                  <span>Выбрать вид работы</span>
+                  <i class="icon-chevron-min"></i>
+                </div>
+                <input type="hidden" name="option1">
+                <div class="dropdown-content">
+                  <div class="dropdown-item" data-value="service-1">Вид работы 1</div>
+                  <div class="dropdown-item" data-value="service-2">Вид работы 2</div>
+                  <div class="dropdown-item" data-value="service-3">Вид работы 3</div>
+                </div>
+              </div>
+
+              <div class="dropdown">
+                <div class="dropdown-btn">
+                  <span>Выбрать город</span>
+                  <i class="icon-chevron-min"></i>
+                </div>
+                <input type="hidden" name="option1">
+                <div class="dropdown-content">
+                  <div class="dropdown-item" data-value="service-1">Москва</div>
+                  <div class="dropdown-item" data-value="service-2">Новосибирск</div>
+                  <div class="dropdown-item" data-value="service-3">Санкт-Петербург</div>
+                </div>
+              </div>
+
+              <div class="dropdown">
+                <div class="dropdown-btn">
+                  <span>Район города</span>
+                  <i class="icon-chevron-min"></i>
+                </div>
+                <input type="hidden" name="option1">
+                <div class="dropdown-content">
+                  <div class="dropdown-item" data-value="service-1">Район 1</div>
+                  <div class="dropdown-item" data-value="service-2">Район 2</div>
+                  <div class="dropdown-item" data-value="service-3">Район 3</div>
+                </div>
+              </div>
+
+            </form>
+
+            <div class="catalog__items">
+              @@loop('./elements/catalog-item.html', './data/catalog-items.json')
+            </div>
+
+          </div>
+        </div>
+      </section>
+
     </main>
     <!-- Подвал -->
     @@include('blocks/footer.html')
