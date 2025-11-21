@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="page__inner">
+<html lang="ru" class="page__inner page__press">
 @@include('blocks/head.html', {"title": "Основа"})
 
 <body>
@@ -45,9 +45,24 @@
           <div class="catalog__inner">
 
             <form class="filter">
+              <div class="filter__items">
+                <div class="filter__item filter__item-active">
+                  <input type="radio" id="option1" name="mygroup" value="Новости">
+                  <label for="option1">Новости</label>
+                </div>
+                <div class="filter__item">
+                  <input type="radio" id="option2" name="mygroup" value="Статьи">
+                  <label for="option2">Статьи</label>
+                </div>
+                <div class="filter__item">
+                  <input type="radio" id="option3" name="mygroup" value="Сми о нас">
+                  <label for="option3">Сми о нас</label>
+                </div>
+              </div>
             </form>
 
             <div class="catalog__items">
+              @@loop('./elements/press-item.html', './data/press-items.json')
             </div>
 
           </div>

@@ -10,6 +10,55 @@
     gap: 0.8rem;
   }
 
+  &__items {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    @include sm {
+      gap: 1rem;
+    }
+  }
+
+  &__item {
+
+    input {
+      display: none;
+
+      &:checked+label {
+        color: var(--white);
+
+        background-color: var(--sizyy);
+      }
+    }
+
+    label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20rem;
+      padding: 2.1rem 2rem;
+      background-color: var(--white);
+      flex-shrink: 0;
+      transition: all 0.5s ease;
+
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 120%;
+      text-align: center;
+      white-space: nowrap;
+
+      @include sm {
+        padding: 1rem 1.5rem;
+        height: 4rem;
+        max-width: unset;
+        width: fit-content;
+
+        font-size: 1.2rem;
+      }
+    }
+  }
+
   .dropdown {
     max-width: 26rem;
 
@@ -22,6 +71,12 @@
       color: var(--blue);
 
       padding: 0 2rem 2rem 2rem;
+
+      @include sm {
+        font-size: 1.2rem;
+
+        padding: 0 1.5rem 1.5rem 1.5rem;
+      }
 
       &:last-child {
         padding-bottom: 3.3rem;
@@ -36,6 +91,12 @@
       padding: 2.1rem 2rem;
       border-bottom: 0;
       background-color: var(--white);
+
+      @include sm {
+        font-size: 1.2rem;
+
+        padding: 1.2rem 1.5rem;
+      }
     }
   }
 }

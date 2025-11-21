@@ -1,0 +1,102 @@
+@use './../mixins' as *;
+
+.object {
+
+  &__inner {
+    display: grid;
+    grid-template-columns: calc(50% - 8rem) calc(50% - 8rem);
+    gap: 0 16rem;
+
+    @include md {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    @include sm {
+      gap: 2rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      margin-bottom: 4rem;
+    }
+
+    &-text {
+      margin-bottom: 4rem;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      h6 {
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__wrap {
+    margin-bottom: 3rem;
+
+    &-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+
+      i {
+        font-size: 2.4rem;
+      }
+
+      p {
+
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .form {
+
+    @include md {
+      padding: 0;
+    }
+  }
+
+  .form__head {
+    color: var(--blue);
+    padding: 0;
+  }
+
+  .form-input::placeholder {
+    color: var(--blue-50);
+  }
+
+  .form-label {
+    color: var(--blue-50);
+  }
+
+  .form-label::before {
+    background-color: var(--blue-10);
+  }
+
+  .form-label::after {
+    background-color: var(--blue);
+  }
+
+  .form-btn {
+    --btn-color: var(--blue);
+    --btn-border-color: var(--blue);
+  }
+
+  .form-wrap p {
+    color: var(--blue);
+  }
+}

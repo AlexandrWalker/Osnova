@@ -24,7 +24,7 @@
       width: 100%;
     }
 
-    &-cover {
+    &-img {
       aspect-ratio: 706/288;
 
       img {
@@ -45,7 +45,21 @@
       border-bottom: 0.1rem solid var(--blue-10);
 
       @include md {
+        gap: 3rem;
         padding: 2rem 0;
+      }
+
+      .page__press & {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1fr auto;
+        gap: 9rem 0;
+
+        @include md {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr auto;
+          gap: 1.5rem;
+        }
       }
     }
 
@@ -56,6 +70,44 @@
 
       @include md {
         gap: 1.5rem;
+      }
+
+      .page__press & {
+        grid-column: 1/3;
+        grid-row: 1/2;
+        max-width: 52rem;
+
+        @include md {
+          grid-column: 1/2;
+          grid-row: 2/3;
+        }
+      }
+    }
+
+    &-title {
+
+      h5 {
+
+        @include md {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    &-subtitle {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      @include md {
+        gap: 1.5rem;
+      }
+
+      p {
+
+        @include md {
+          font-size: 1.4rem;
+        }
       }
     }
 
@@ -89,6 +141,10 @@
       align-items: flex-end;
       gap: 1.8rem;
 
+      @include md {
+        gap: 0.5rem;
+      }
+
       span {
         font-weight: 700;
         font-size: 5rem;
@@ -104,11 +160,40 @@
       }
     }
 
+    &-date {
+      color: var(--blue-50);
+      grid-column: 1/2;
+      grid-row: 2/3;
+
+      @include md {
+        grid-row: 1/2;
+      }
+
+      p {
+        
+        @include md {
+          font-size: 1.4rem;
+        }
+      }
+    }
+
     &-link {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 0.9rem;
+
+      .page__press & {
+        grid-column: 2/3;
+        grid-row: 2/3;
+
+        @include md {
+          grid-column: 1/2;
+          grid-row: 3/4;
+
+          margin-top: 1.5rem;
+        }
+      }
 
       p {
         font-weight: 700;
@@ -116,6 +201,10 @@
         text-decoration-style: dotted;
         text-decoration-color: var(--blue);
         text-decoration-line: underline;
+
+        @include md {
+          font-size: 1.4rem;
+        }
       }
 
       i {
