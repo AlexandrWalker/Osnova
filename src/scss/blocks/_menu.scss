@@ -165,6 +165,18 @@
 
       &:hover {
         color: var(--white);
+
+        i {
+
+          &::before {
+            transform: rotate(360deg);
+            transition: all 0.3s ease;
+          }
+
+          &::after {
+            background-color: var(--white);
+          }
+        }
       }
 
       i {

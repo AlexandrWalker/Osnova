@@ -206,6 +206,15 @@
       width: 100%;
       height: 100%;
       padding: 0 5rem;
+
+      i {
+        color: var(--sizyy);
+        transition: all 0.3s ease;
+
+        .header__drop:hover & {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     &-body {
@@ -232,7 +241,9 @@
     &-wrap {
       overflow: hidden;
 
-      .header__drop:hover & {}
+      i {
+        font-size: 2.4rem;
+      }
     }
 
     ul {
@@ -254,6 +265,10 @@
       line-height: 120%;
       text-transform: uppercase;
       color: var(--white);
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

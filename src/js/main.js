@@ -20,6 +20,39 @@ document.addEventListener('DOMContentLoaded', () => {
     lenis.raf(time * 1000);
   });
 
+  function initObjectVideo(swiper) {
+    const slides = swiper.el.querySelectorAll('.object__video');
+
+    slides.forEach(slide => {
+      const btn = slide.querySelector('.object__video-play');
+      const frameBox = slide.querySelector('.object__video-frame');
+      const url = slide.dataset.video;
+
+      btn.addEventListener('click', () => {
+        frameBox.innerHTML = `
+        <iframe 
+          src="${url}?autoplay=1"
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+        ></iframe>
+      `;
+        slide.classList.add('playing');
+      });
+    });
+
+    // Остановка при переключении слайдов
+    swiper.on('slideChange', () => {
+      slides.forEach(slide => {
+        if (slide.classList.contains('playing')) {
+          const frameBox = slide.querySelector('.object__video-frame');
+          frameBox.innerHTML = "";
+          slide.classList.remove('playing');
+        }
+      });
+    });
+  }
+
   /**
    * Инициализация слайдеров
    */
@@ -193,11 +226,42 @@ document.addEventListener('DOMContentLoaded', () => {
     navigation: { prevEl: ".team-button-prev", nextEl: ".team-button-next" }
   });
 
+  const objectMin = createSlider('.object__slider--min', {
+    slidesPerGroup: 1,
+    slidesPerView: 5,
+    spaceBetween: 20,
+    speed: 500,
+    loop: true,
+    watchSlidesProgress: true,
+    mousewheel: false,
+  });
+
+  const objectBig = createSlider('.object__slider--big', {
+    slidesPerGroup: 1,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    speed: 500,
+    loop: true,
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    // navigation: { prevEl: ".object-button-prev", nextEl: ".object-button-next" },
+    thumbs: {
+      swiper: objectMin,
+      multipleActiveThumbs: false,
+    },
+    grabCursor: true,
+  });
+
   // Синхронизация big <-> min (если оба существуют)
   if (teamBig && teamMin) {
     teamBig.controller.control = teamMin;
-    teamMin.controller.control = teamBig;
   }
+
+  if (objectBig && objectMin) {
+    objectBig.controller.control = objectMin;
+  }
+
+  if (objectBig) initObjectVideo(objectBig);
 
   // Подключение внешней логики (если нужно) — пример:
   // if (regs) swiperSliderFunc(regs); // уже вызывается внутри createSlider
@@ -764,11 +828,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================
   // 8. Анимация quiz блока
   // =========================
-  const quiz = document.querySelector(".quiz");
-  if (quiz && window.innerWidth >= 835) {
-    const textQuizSplit = document.querySelector('[data-quiz-title="split"]');
-    const bg = document.querySelector(".quiz__bg");
+  function initQuizAnimation() {
+    const quiz = document.querySelector(".quiz");
+    if (!quiz) return;
+
+    const textQuizSplit = quiz.querySelector('[data-quiz-title="split"]');
+    const bg = quiz.querySelector(".quiz__bg");
     const generalHead = quiz.querySelector(".general__head");
+
+    if (!bg || !generalHead) return;
 
     let splitInstance;
 
@@ -779,68 +847,73 @@ document.addEventListener('DOMContentLoaded', () => {
         mask: "lines",
         linesClass: "line"
       });
-
       gsap.set(splitInstance.lines, { yPercent: 120 });
     }
 
-    // Изначально скрываем родителя
+    // Скрываем general__head
     gsap.set(generalHead, { opacity: 0, y: 20 });
 
-    // --- Пин блока ---
-    ScrollTrigger.create({
-      trigger: quiz,
-      start: "top top",
-      end: () => "+=" + quiz.offsetHeight * 1.2,
-      pin: true,
-      pinSpacing: true,
-    });
-
-    // --- Анимация фона отдельно, медленнее ---
-    if (window.innerWidth >= 834) {
-      gsap.fromTo(bg,
-        { x: "50%", scale: 0.7 },
-        {
-          x: "0%",
-          scale: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: quiz,
-            start: "top bottom",
-            // end: () => "+=" + quiz.offsetHeight * 1.5,
-            end: "bottom top",
-            scrub: true,
-          }
-        }
-      );
-    } else {
-      // На маленьких экранах фиксируем положение
-      gsap.set(bg, { x: "0%", scale: 1 });
-    }
-
-    // --- Таймлайн для general__head и SplitText ---
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: quiz,
-        start: "top bottom",
-        // end: () => "+=" + quiz.offsetHeight * 1.5,
-        end: "bottom center",
-        scrub: true,
+    // --- Пин блока (чтобы фон был виден) ---
+    ScrollTrigger.matchMedia({
+      "(min-width: 835px)": function () {
+        // На экранах >= 834px пин включен
+        ScrollTrigger.create({
+          trigger: quiz,
+          start: "top top",
+          end: () => "+=" + quiz.offsetHeight,
+          pin: true,
+          pinSpacing: true
+        });
+      },
+      "(max-width: 834px)": function () {
+        // На экранах < 834px пин отключен
+        ScrollTrigger.create({
+          trigger: quiz,
+          start: "top top",
+          end: () => "+=" + quiz.offsetHeight,
+          pin: false,
+          pinSpacing: false
+        });
       }
     });
 
-    // Родитель блока
-    tl.fromTo(generalHead, { opacity: 0, y: 20 }, { opacity: 1, y: 0, ease: "power2.out" }, 0);
-
-    // SplitText линии
-    if (splitInstance) {
-      tl.to(splitInstance.lines, {
-        yPercent: 0,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: "power2.out"
-      }, 0.1);
-    }
+    // --- Фон скролл-зависимый ---
+    ScrollTrigger.matchMedia({
+      "(min-width: 835px)": function () {
+        gsap.fromTo(bg,
+          { x: "50%", scale: 0.7 },
+          {
+            x: "0%",
+            scale: 1,
+            ease: "power2.out",
+            duration: 1,
+            scrollTrigger: {
+              trigger: quiz,
+              start: "top bottom", // фон начинает анимироваться, как только блок виден
+              end: "bottom top",
+              once: true, // срабатывает только один раз
+              scrub: true,
+              onEnter: () => { // Анимация текста после завершения фона
+                const tl = gsap.timeline(); tl.to(generalHead, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }); if (splitInstance) { tl.to(splitInstance.lines, { yPercent: 0, stagger: 0.08, duration: 0.8, ease: "power2.out" }, 0); }
+              }
+            }
+          }
+        );
+      },
+      "(max-width: 834px)": function () {
+        // На экранах меньше 834px — фон статичный, текст сразу виден
+        gsap.set(bg, { x: "0%", scale: 1, scrollTrigger: { scrub: false } });
+        gsap.set(generalHead, { opacity: 1, y: 0 });
+        if (splitInstance) {
+          gsap.set(splitInstance.lines, { yPercent: 0 });
+        }
+        // pinTrigger.kill(); // убираем пин, если нужно
+      }
+    });
   }
+
+  // --- Вызов функции ---
+  initQuizAnimation();
 
   // =========================
   // 9. Обновление ScrollTrigger
@@ -848,6 +921,28 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => ScrollTrigger.refresh());
   window.addEventListener('load', () => ScrollTrigger.refresh());
 
+  /**
+   * Инициализация TransferElements
+   */
+  const transfer = document.querySelector('.transfer-elem-1');
+  if (transfer) {
+    $(window).on('resize load', function () {
+      if (window.innerWidth <= 600) {
+        if (document.querySelector('.transfer-pos-1')) {
+          new TransferElements(
+            {
+              sourceElement: document.querySelector('.transfer-elem-1'),
+              breakpoints: {
+                834: {
+                  targetElement: document.querySelector('.transfer-pos-1')
+                }
+              },
+            }
+          );
+        }
+      }
+    });
+  }
 
 });
 

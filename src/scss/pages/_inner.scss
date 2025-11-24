@@ -2,7 +2,7 @@
 
 .page__inner {
 
-  .container:not(.footer .container) {
+  .container:not(.footer .container, .completed .container) {
     --container-padding: 24.5rem;
 
     @include md {
@@ -23,6 +23,23 @@
 
     @include sm {
       padding-top: 9rem;
+    }
+  }
+}
+
+.page__press {
+
+  .filter {
+    overflow-x: auto;
+    width: calc(100% + (var(--container-padding) * 2));
+    margin-left: calc(var(--container-padding) * -1);
+    padding: 0 var(--container-padding);
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
     }
   }
 }

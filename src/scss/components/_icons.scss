@@ -4,4 +4,25 @@
 [class^="icon-"],
 [class*=" icon-"] {
   font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.icon-download-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+
+  text-align: center;
+
+  &::before {
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 0.2rem;
+    background-color: var(--sizyy);
+    transition: all 0.3s ease;
+  }
 }
