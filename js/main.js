@@ -180,10 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
     spaceBetween: 10,
     speed: 600,
     breakpoints: {
-      601: { slidesPerView: 2, spaceBetween: 20 },
-      835: { slidesPerView: 3, spaceBetween: 20 }
+      601: { spaceBetween: 20 },
     },
-    navigation: { prevEl: ".regulations-button-prev", nextEl: ".regulations-button-next" }
+    navigation: { prevEl: ".regulations-button-prev", nextEl: ".regulations-button-next" },
+    pagination: {
+      el: ".swiper-pagination",
+      type: "fraction",
+      clickable: true,
+    },
   });
 
   const building = createSlider('.building__slider', {
@@ -220,10 +224,11 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesPerView: 1.2,
     spaceBetween: 10,
     speed: 500,
+    pagination: { el: ".swiper-pagination", clickable: true },
     breakpoints: {
-      601: { slidesPerView: 2, spaceBetween: 20 }
+      601: { slidesPerView: 2, spaceBetween: 20, pagination: false }
     },
-    navigation: { prevEl: ".team-button-prev", nextEl: ".team-button-next" }
+    navigation: { prevEl: ".team-button-prev", nextEl: ".team-button-next" },
   });
 
   const objectMin = createSlider('.object__slider--min', {
@@ -254,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Синхронизация big <-> min (если оба существуют)
   if (teamBig && teamMin) {
-    teamBig.controller.control = teamMin;
+    teamMin.controller.control = teamBig;
   }
 
   if (objectBig && objectMin) {
@@ -853,20 +858,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Скрываем general__head
     gsap.set(generalHead, { opacity: 0, y: 20 });
 
-    // --- Пин блока (чтобы фон был виден) ---
     ScrollTrigger.matchMedia({
       "(min-width: 835px)": function () {
-        // На экранах >= 834px пин включен
         ScrollTrigger.create({
           trigger: quiz,
           start: "top top",
           end: () => "+=" + quiz.offsetHeight,
-          pin: true,
-          pinSpacing: true
+          pin: false,
+          pinSpacing: false
         });
       },
       "(max-width: 834px)": function () {
-        // На экранах < 834px пин отключен
         ScrollTrigger.create({
           trigger: quiz,
           start: "top top",
@@ -877,10 +879,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // --- Фон скролл-зависимый ---
+    // --- Фон без scrub ---
     ScrollTrigger.matchMedia({
       "(min-width: 835px)": function () {
-        gsap.fromTo(bg,
+        gsap.fromTo(
+          bg,
           { x: "50%", scale: 0.7 },
           {
             x: "0%",
@@ -889,30 +892,52 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 1,
             scrollTrigger: {
               trigger: quiz,
-              start: "top bottom", // фон начинает анимироваться, как только блок виден
+              start: "top bottom",
               end: "bottom top",
-              once: true, // срабатывает только один раз
-              scrub: true,
-              onEnter: () => { // Анимация текста после завершения фона
-                const tl = gsap.timeline(); tl.to(generalHead, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }); if (splitInstance) { tl.to(splitInstance.lines, { yPercent: 0, stagger: 0.08, duration: 0.8, ease: "power2.out" }, 0); }
+              once: true,
+              // scrub удалён
+              onEnter: () => {
+                const tl = gsap.timeline();
+                tl.to(generalHead, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.6,
+                  ease: "power2.out"
+                });
+                if (splitInstance) {
+                  tl.to(
+                    splitInstance.lines,
+                    {
+                      yPercent: 0,
+                      stagger: 0.08,
+                      duration: 0.8,
+                      ease: "power2.out"
+                    },
+                    0
+                  );
+                }
               }
             }
           }
         );
       },
+
       "(max-width: 834px)": function () {
-        // На экранах меньше 834px — фон статичный, текст сразу виден
-        gsap.set(bg, { x: "0%", scale: 1, scrollTrigger: { scrub: false } });
+        gsap.set(bg, {
+          x: "0%",
+          scale: 1
+        });
+
         gsap.set(generalHead, { opacity: 1, y: 0 });
+
         if (splitInstance) {
           gsap.set(splitInstance.lines, { yPercent: 0 });
         }
-        // pinTrigger.kill(); // убираем пин, если нужно
       }
     });
   }
 
-  // --- Вызов функции ---
+  // --- Вызов ---
   initQuizAnimation();
 
   // =========================
