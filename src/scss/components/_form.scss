@@ -440,6 +440,11 @@
 
     a {
       color: var(--sizyy);
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 

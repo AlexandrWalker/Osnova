@@ -59,9 +59,26 @@
   }
 
   a {
+    position: relative;
 
     &:hover {
-      text-decoration: underline;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &::after {
+      content: "";
+      width: 0;
+      height: 0.1rem;
+      background-color: var(--blue);
+      transition: width 0.5s ease;
+
+      position: absolute;
+      bottom: 0.1rem;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 }

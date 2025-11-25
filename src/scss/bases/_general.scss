@@ -40,8 +40,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-
   margin-left: -1.7rem;
+
+  white-space: nowrap;
+
+  @include md {
+    margin-left: 0;
+  }
 }
 
 .digit-container {
@@ -62,4 +67,8 @@
 .digit span {
   display: block;
   line-height: 1em;
+
+  @include md {
+    line-height: 100%;
+  }
 }

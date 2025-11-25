@@ -59,6 +59,55 @@
     }
   }
 
+  &__download {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+
+    color: var(--sizyy);
+
+    @include md {
+      margin-left: 0;
+    }
+
+    @include sm {
+      margin-top: 0.7rem;
+    }
+
+    &:hover {
+      color: var(--blue);
+
+      i {
+
+        &::before {
+          transform: rotate(360deg);
+          transition: all 0.3s ease;
+        }
+
+        &::after {
+          background-color: var(--blue);
+        }
+      }
+    }
+
+    i {
+      font-size: 1rem;
+
+      &::after {
+        height: 0.1rem;
+      }
+    }
+
+    p {
+
+      @include md {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
   .dropdown {
     max-width: 26rem;
 
@@ -88,6 +137,7 @@
       font-size: 1.4rem;
       color: var(--blue);
 
+      height: 6rem;
       padding: 2.1rem 2rem;
       border-bottom: 0;
       background-color: var(--white);

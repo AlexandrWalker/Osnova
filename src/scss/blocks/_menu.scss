@@ -44,7 +44,7 @@
       .menu--open & {
         height: 100%;
 
-        transition: height 1s linear 1.5s;
+        transition: height 1s linear 1s;
 
         @include md {
           width: 100%;
@@ -219,7 +219,7 @@
       .menu--open & {
         width: 100%;
 
-        transition: width 1s linear 0.8s;
+        transition: width 1s linear 0.5s;
 
         @include md {
           transition: width 1s linear 0.3s;

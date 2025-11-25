@@ -42,9 +42,9 @@
 
       <section class="catalog">
         <div class="container">
-          <div class="catalog__inner">
+          <form class="catalog__inner">
 
-            <form class="filter">
+            <div class="filter">
               <div class="filter__items">
                 <div class="filter__item">
                   <input type="radio" id="option1" name="mygroup" value="Новости" checked>
@@ -59,13 +59,13 @@
                   <label for="option3">Сми о нас</label>
                 </div>
               </div>
-            </form>
+            </div>
 
             <div class="catalog__items">
               @@loop('./elements/press-item.html', './data/press-items.json')
             </div>
 
-          </div>
+          </form>
         </div>
       </section>
 

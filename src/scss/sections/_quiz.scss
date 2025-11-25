@@ -10,12 +10,7 @@
   position: relative;
 
   @include md {
-    padding: 18rem 0 49.9rem 0;
     min-height: auto;
-  }
-
-  @include sm {
-    padding: 7rem 0 24rem 0;
   }
 
   &.showed {
@@ -30,6 +25,7 @@
   }
 
   .general__head {
+    margin-bottom: 0;
 
     &-title {
       margin-bottom: 5rem;
@@ -75,18 +71,28 @@
     padding: 10rem 0;
     height: 100%;
     position: relative;
+
+    @include md {
+      padding: 18rem 0 49.9rem 0;
+    }
+
+    @include sm {
+      padding: 7rem 0 24rem 0;
+    }
   }
 
   &__btn {
     width: 25%;
 
     @include md {
-      max-width: 43.6rem;
+      // max-width: 43.6rem;
+      max-width: calc((100% / 754) * 378);
       width: 100%;
     }
 
     @include sm {
       max-width: 26.3rem;
+      max-width: calc((100% / 353) * 266);
     }
   }
 
@@ -109,7 +115,25 @@
     width: auto;
 
     @include md {
-      display: none;
+      // display: none;
+    }
+
+    &-line-3 {
+
+      @include md {
+        display: block;
+      }
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    &-line-4 {
+
+      @include sm {
+        display: block;
+      }
     }
 
     &-line-5 {
@@ -117,6 +141,14 @@
       height: 0;
       grid-column: 9 / 10;
       background-color: var(--white-30);
+
+      @include md {
+        display: block;
+      }
+
+      @include sm {
+        display: none;
+      }
     }
   }
 }

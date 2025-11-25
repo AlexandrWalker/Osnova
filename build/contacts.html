@@ -300,6 +300,21 @@
         <div class="container">
           <div class="template__inner">
 
+            <div class="breadcrumbs">
+              <div class="breadcrumbs__inner">
+                <ul>
+                  <li>
+                    <a href="/Osnova">
+                      Главная
+                    </a>
+                  </li>
+                  <li>
+                    Контакты
+                  </li>
+                </ul>
+              </div>
+            </div>
+
             <div class="general__head">
               <div class="general__head-title" data-title="split">
                 <h3>
@@ -317,14 +332,52 @@
           <div class="contacts__inner">
 
             <div class="contacts__content">
-              <a href="tel:+71235467890">+7 123 546-78-90</a>
-              <p>
-                Для получения консультаций, технической поддержки и заказа услуг Вы можете обратиться по  по телефона
-              </p>
+              <div class="contacts__items">
+                <div class="contacts__wrap">
+                  <a href="tel:+71235467890">+7 123 546-78-90</a>
+                  <div class="contacts__wrap-wrap">
+                    <p>
+                      Для получения консультаций, технической поддержки и заказа услуг Вы можете обратиться по 
+                      по телефона
+                    </p>
+                  </div>
+                </div>
+                <div class="contacts__item">
+                  <div class="contacts__item-title">
+                    <p>
+                      Режим работы
+                    </p>
+                  </div>
+                  <div class="contacts__item-wrap">
+                    <p>
+                      с 10:00 до 18:00 по Новосибирску, обед с 13:00 до 14:00
+                    </p>
+                  </div>
+                </div>
+                <div class="contacts__item">
+                  <div class="contacts__item-title">
+                    <p>
+                      Соцсети
+                    </p>
+                  </div>
+                  <div class="contacts__item-wrap">
+                    <a href="/">
+                      WhatsApp
+                    </a>
+                    <a href="/">
+                      Telegram
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="contacts__bg">
-              <img src="./images/temp/map.svg" alt="">
+              <picture>
+                <source media="(min-width: 835px)" srcset="./images/temp/map.svg">
+                <source media="(max-width: 834px)" srcset="./images/temp/map-mob.svg">
+                <img src="./images/temp/map.svg" alt="">
+              </picture>
             </div>
 
           </div>

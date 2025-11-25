@@ -81,6 +81,18 @@
     }
   }
 
+  &__body {
+    margin-bottom: 6rem;
+
+    @include md {
+      margin-bottom: 4rem;
+    }
+
+    @include sm {
+      margin-bottom: 3rem;
+    }
+  }
+
   &__inner {
     padding-top: 6rem;
 

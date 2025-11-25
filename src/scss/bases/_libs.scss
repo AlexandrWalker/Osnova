@@ -16,6 +16,25 @@
   &-slide {
     height: auto;
   }
+
+  &-pagination {
+    text-align: left;
+    margin-top: 3rem;
+    position: static;
+
+    &-bullet {
+      border-radius: 0;
+      width: 0.5rem;
+      height: 0.5rem;
+      margin: 0 0.25rem !important;
+      background-color: var(--sizyy);
+      opacity: 1;
+
+      &-active {
+        background-color: var(--blue);
+      }
+    }
+  }
 }
 
 [class^="swiper-button-"]:not([class^="swiper-button-alt-"]),

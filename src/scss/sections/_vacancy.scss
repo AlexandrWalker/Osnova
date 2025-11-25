@@ -120,11 +120,23 @@
       color: var(--white);
 
       @include md {
-        padding: 2rem 3rem 2rem 9.7rem;
+        padding: 2rem 2rem 2rem 9.7rem;
+      }
+
+      @include sm {
+        padding: 0 0 2rem 0;
+        color: inherit;
       }
 
       &::after {
         width: 100%;
+      }
+    }
+
+    &:last-child {
+
+      @include sm {
+        padding: 0;
       }
     }
 
@@ -154,6 +166,10 @@
       bottom: 0;
       left: 0;
       z-index: -1;
+
+      @include sm {
+        display: none;
+      }
     }
 
     &-count {
@@ -173,6 +189,10 @@
       .vacancy__item:hover & {
         color: var(--white);
         left: 3rem;
+
+        @include md {
+          left: 2rem;
+        }
       }
     }
 
@@ -183,7 +203,17 @@
       text-decoration-line: underline;
 
       .vacancy__item:hover & {
-        text-decoration-color: var(--white);
+
+        @include dosm {
+          text-decoration-color: var(--white);
+        }
+      }
+
+      h6 {
+
+        @include sm {
+          font-size: 1.4rem;
+        }
       }
     }
 
@@ -193,8 +223,31 @@
       text-decoration-color: var(--blue);
       text-decoration-line: underline;
 
+      @include sm {
+        text-decoration: none;
+      }
+
       .vacancy__item:hover & {
         text-decoration-color: var(--white);
+      }
+
+      p {
+
+        @include sm {
+          display: none;
+        }
+      }
+
+      i {
+        display: none;
+
+        font-size: 4rem;
+        line-height: 1.5rem;
+        transform: rotate(-90deg);
+
+        @include sm {
+          display: block;
+        }
       }
     }
   }
@@ -228,10 +281,12 @@
 
     h6 {
       font-weight: 700;
+      font-size: 2rem;
     }
   }
 
   .form {
+    padding: 2rem 0 0 0;
 
     .page__vacancy-inner & {
       padding: 4rem 14.5rem 3rem;
@@ -240,6 +295,10 @@
       @include md {
         padding: 0;
         background-color: transparent;
+      }
+
+      @include sm {
+        padding: 1rem 0;
       }
     }
 

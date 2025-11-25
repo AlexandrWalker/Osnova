@@ -170,6 +170,9 @@
       font-weight: 700;
       font-size: 2rem;
       line-height: 100%;
+      white-space: nowrap;
+
+      position: relative;
 
       @include md {
         font-size: 2.5rem;
@@ -178,6 +181,31 @@
 
       @include sm {
         font-size: 1.6rem;
+      }
+
+      &:hover {
+
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &::after {
+        content: "";
+        width: 0;
+        height: 0.2rem;
+        background-color: var(--white);
+        transition: width 0.5s ease;
+
+        position: absolute;
+        bottom: 0.1rem;
+        left: 50%;
+        transform: translateX(-50%);
+
+        .header.show &,
+        .page__inner & {
+          background-color: var(--blue);
+        }
       }
     }
   }
@@ -266,8 +294,26 @@
       text-transform: uppercase;
       color: var(--white);
 
+      position: relative;
+
       &:hover {
-        text-decoration: underline;
+
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &::after {
+        content: "";
+        width: 0;
+        height: 0.1rem;
+        background-color: var(--white);
+        transition: width 0.5s ease;
+
+        position: absolute;
+        bottom: 0.1rem;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   }

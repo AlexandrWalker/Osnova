@@ -4,8 +4,9 @@
 
   &__inner {
     display: flex;
-    flex-direction: column;
-    gap: 4rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem 2rem;
 
     @include md {
       gap: 3rem;
@@ -16,15 +17,45 @@
     }
   }
 
+  &__date {
+    color: var(--sizyy);
+    margin-bottom: -1rem;
+
+    @include md {
+      margin-bottom: 0;
+    }
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 100%;
+
+    &--cover {
+      width: calc(39.86% - 1rem);
+
+      @include md {
+        width: 100%;
+      }
+    }
 
     h4 {
 
       @include sm {
         font-size: 2rem;
+      }
+    }
+  }
+
+  &__img {
+
+    &--cover {
+      aspect-ratio: 850/497;
+      width: calc(60.14% - 1rem);
+
+      @include md {
+        width: 100%;
       }
     }
   }
