@@ -21,6 +21,10 @@
     }
   }
 
+  &-btn {
+    cursor: pointer;
+  }
+
   &__inner {
     display: grid;
     justify-content: flex-end;
