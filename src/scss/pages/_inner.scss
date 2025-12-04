@@ -43,3 +43,28 @@
     }
   }
 }
+
+.page__services {
+
+  .reviews,
+  .catalog {
+    min-height: unset;
+
+    .general__head {
+      margin-bottom: 4rem;
+
+      @include md {
+        margin-bottom: 3rem;
+      }
+    }
+  }
+
+  .catalog__inner {
+    gap: 0;
+  }
+
+  .catalog__item {
+    width: 100%;
+    height: 100%;
+  }
+}

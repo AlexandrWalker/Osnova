@@ -1,0 +1,80 @@
+[
+  {
+    "count": "01",
+    "img": "./../images/temp/services-item-1.png",
+    "title": "Устройство буронабивных свай, методом НПШ, методом обсадной трубы",
+    "link": "/"
+  },
+  {
+    "count": "02",
+    "img": "./../images/temp/services-item-2.png",
+    "title": "Анкерное крепление бортов котлована",
+    "link": "/"
+  },
+  {
+    "count": "03",
+    "img": "./../images/temp/services-item-3.png",
+    "title": "Шпунтовые ограждения любого типа",
+    "link": "/"
+  },
+  {
+    "count": "04",
+    "img": "./../images/temp/services-item-1.png",
+    "title": "Нагельные крепления",
+    "link": "/"
+  },
+  {
+    "count": "05",
+    "img": "./../images/temp/services-item-3.png",
+    "title": "Вибропогружение шпунта Ларсона",
+    "link": "/"
+  },
+  {
+    "count": "06",
+    "img": "./../images/temp/services-item-2.png",
+    "title": "Монолитные работы",
+    "link": "/"
+  },
+  {
+    "count": "07",
+    "img": "./../images/temp/services-item-5.png",
+    "title": "Усиление оснований (вертикальное армирование грунтов)",
+    "link": "/"
+  },
+  {
+    "count": "08",
+    "img": "./../images/temp/services-item-4.png",
+    "title": "⁠⁠Усиление грунтов (селикатизация, цементация)",
+    "link": "/"
+  },
+  {
+    "count": "09",
+    "img": "./../images/temp/services-item-1.png",
+    "title": "⁠⁠Строительное водопонижение",
+    "link": "/"
+  },
+  {
+    "count": "10",
+    "img": "./../images/temp/services-item-2.png",
+    "title": "⁠Разработка котлована",
+    "link": "/"
+  },
+  {
+    "count": "11",
+    "img": "./../images/temp/services-item-1.png",
+    "title": "⁠Геологические изыскания",
+    "link": "/"
+  },
+  {
+    "count": "12",
+    "img": "./../images/temp/services-item-4.png",
+    "title": "Геотехнический мониторинг",
+    "link": "/"
+  },
+  {
+    "count": "13",
+    "img": "./../images/temp/services-item-1.png",
+    "title": "Выкорчевывание деревьев",
+    "link": "/"
+  }
+]

@@ -14,6 +14,19 @@
     @include sm {
       margin-bottom: 2rem;
     }
+
+    &-title {
+
+      & * {
+
+        .template & {
+
+          @include sm {
+            font-size: 3rem;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -70,5 +83,13 @@
 
   @include md {
     line-height: 100%;
+  }
+}
+
+.fancybox__slide {
+  padding: 6.2rem 2rem;
+
+  @include md {
+    padding: 1rem;
   }
 }

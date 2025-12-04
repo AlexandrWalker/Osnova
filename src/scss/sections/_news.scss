@@ -39,13 +39,6 @@
         width: 100%;
       }
     }
-
-    h4 {
-
-      @include sm {
-        font-size: 2rem;
-      }
-    }
   }
 
   &__img {

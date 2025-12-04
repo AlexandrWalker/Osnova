@@ -257,6 +257,30 @@ document.addEventListener('DOMContentLoaded', () => {
     grabCursor: true,
   });
 
+  const catalogBig = createSlider('.catalog__slider', {
+    slidesPerGroup: 1,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    speed: 500,
+    loop: true,
+    grabCursor: true,
+    breakpoints: {
+      835: { slidesPerView: 2, spaceBetween: 20 }
+    },
+  });
+
+  const reviewsBig = createSlider('.reviews__slider', {
+    slidesPerGroup: 1,
+    slidesPerView: "auto",
+    spaceBetween: 10,
+    speed: 500,
+    loop: true,
+    grabCursor: true,
+    breakpoints: {
+      835: { slidesPerView: 3, spaceBetween: 92 }
+    },
+  });
+
   // Синхронизация big <-> min (если оба существуют)
   if (teamBig && teamMin) {
     teamMin.controller.control = teamBig;
@@ -968,6 +992,39 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  function initServicesToggle() {
+    const items = document.querySelectorAll('.services__item');
+    if (!items.length) return;
+
+    let enabled = false;
+
+    function handler() {
+      const active = this.classList.contains('services__item-active');
+      items.forEach(el => el.classList.remove('services__item-active'));
+      if (!active) this.classList.add('services__item-active');
+    }
+
+    function check() {
+      if (window.innerWidth <= 834 && !enabled) {
+        enabled = true;
+        items.forEach(el => el.addEventListener('click', handler));
+      }
+
+      if (window.innerWidth > 834 && enabled) {
+        enabled = false;
+        items.forEach(el => {
+          el.classList.remove('services__item-active');
+          el.removeEventListener('click', handler);
+        });
+      }
+    }
+
+    check();
+    window.addEventListener('resize', check);
+  }
+
+  initServicesToggle();
 
 });
 

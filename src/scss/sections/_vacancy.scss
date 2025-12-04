@@ -25,13 +25,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-
-    h4 {
-
-      @include sm {
-        font-size: 2rem;
-      }
-    }
   }
 
   &__img {

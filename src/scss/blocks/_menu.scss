@@ -107,6 +107,10 @@
         top: 50%;
         left: 0;
         transform: translateY(-50%) rotate(-90deg);
+
+        @include md {
+          display: none;
+        }
       }
     }
   }

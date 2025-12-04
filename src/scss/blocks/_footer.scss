@@ -27,10 +27,18 @@
         padding: 0;
       }
 
+      @include sm {
+        padding-bottom: 3rem;
+      }
+
       a {
 
         @include md {
           font-size: 2rem;
+        }
+
+        @include sm {
+          font-size: 1.6rem;
         }
       }
     }
@@ -50,6 +58,9 @@
 
       @include sm {
         flex-direction: column;
+
+        border-top: 0.1rem solid var(--white-10);
+        padding-top: 3rem;
       }
 
       &::before {
@@ -128,6 +139,10 @@
       flex-direction: column;
       width: 100%;
       gap: 0;
+    }
+
+    @include sm {
+      padding-bottom: 6rem;
     }
 
     &::before {
@@ -245,6 +260,7 @@
 
     @include md {
       padding: 2rem 2rem;
+      border-top: 0.1rem solid var(--white-10);
     }
 
     @include sm {

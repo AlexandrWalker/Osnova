@@ -203,13 +203,6 @@
       @include sm {
         margin-bottom: 0;
       }
-
-      h4 {
-
-        @include sm {
-          font-size: 2rem;
-        }
-      }
     }
 
     &-text {

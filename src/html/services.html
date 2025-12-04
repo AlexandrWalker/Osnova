@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru" class="page__inner">
+@@include('blocks/head.html', {"title": "Основа"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Секции страницы -->
+    <main class="main">
+
+      <section class="template">
+        <div class="container">
+          <div class="template__inner">
+
+            <div class="breadcrumbs">
+              <div class="breadcrumbs__inner">
+                <ul>
+                  <li>
+                    <a href="/Osnova">
+                      Главная
+                    </a>
+                  </li>
+                  <li>
+                    Услуги
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="general__head">
+              <div class="general__head-title" data-title="split">
+                <h3>
+                  Услуги
+                </h3>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="services">
+        <div class="container">
+          <div class="services__inner">
+
+            <div class="general__head">
+              <div class="general__head-title" data-title="split">
+                <h4>
+                  Проектирование
+                </h4>
+              </div>
+            </div>
+
+            <div class="services__blocks">
+              <div class="services__block">
+                <div class="services__block-img" data-animation="parallax-img">
+                  <img src="./../images/temp/services-design-1.png" alt="">
+                </div>
+                <div class="design__item">
+                  <div class="design__item-count">
+                    <span>
+                      01
+                    </span>
+                  </div>
+                  <div class="design__item-content">
+                    <div class="design__item-title">
+                      <h6>
+                        ⁠Проектирование крепления бортов временного котлована, геотехнический прогноз
+                      </h6>
+                    </div>
+                    <div class="design__item-text">
+                      <p>
+                        Примерный текст под торговым предложением
+                        в две строки или более трех строк
+                        в зависимости от контента сайта. Примерный текст под торговым предложением в две строки или
+                        более
+                        трех строк в зависимости
+                        от контента сайта.
+                      </p>
+                    </div>
+                    <div class="design__item-btn btn panel-btn" data-target="design-panel-1">
+                      ПОдробнее
+                      <i class="icon-chevron-min"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="services__block">
+                <div class="design__item">
+                  <div class="design__item-count">
+                    <span>
+                      02
+                    </span>
+                  </div>
+                  <div class="design__item-content">
+                    <div class="design__item-title">
+                      <h6>
+                        Проектирование оснований под фундамент
+                      </h6>
+                    </div>
+                    <div class="design__item-text">
+                      <p>
+                        Примерный текст под торговым предложением
+                        в две строки или более трех строк
+                        в зависимости от контента сайта. Примерный текст под торговым предложением в две строки или
+                        более
+                        трех строк в зависимости
+                        от контента сайта.
+                      </p>
+                    </div>
+                    <div class="design__item-btn btn panel-btn" data-target="design-panel-2">
+                      ПОдробнее
+                      <i class="icon-chevron-min"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="services__block-img" data-animation="parallax-img">
+                  <img src="./../images/temp/services-design-2.png" alt="">
+                </div>
+              </div>
+            </div>
+
+            <div class="general__head">
+              <div class="general__head-title" data-title="split">
+                <h4>
+                  Исполнительные работы
+                </h4>
+              </div>
+            </div>
+
+            <div class="services__items">
+
+              @@loop('./elements/services-item.html', './data/services-items.json')
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')
