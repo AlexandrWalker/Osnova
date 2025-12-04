@@ -2,6 +2,10 @@
 
 .services {
 
+  .design__item {
+    margin-right: 0;
+  }
+
   &__blocks {
     display: flex;
     flex-direction: column;
