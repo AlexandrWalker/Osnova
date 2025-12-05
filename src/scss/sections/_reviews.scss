@@ -91,6 +91,13 @@
         text-decoration-style: dotted;
         text-decoration-color: var(--blue);
         text-decoration-line: underline;
+
+        .reviews__item:hover & {
+
+          @include domd {
+            text-decoration: none;
+          }
+        }
       }
     }
   }

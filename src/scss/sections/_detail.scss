@@ -128,12 +128,24 @@
       align-items: center;
       height: 4rem;
       padding: 0 1.5rem;
-      border: 0.1rem solid var(--blue);
+      border: 0.1rem solid var(--blue-30);
+      transition: all 0.3s ease;
 
       font-weight: 500;
       font-size: 1.4rem;
       line-height: 120%;
       text-align: center;
+
+      @include md {
+        border-color: var(--blue);
+      }
+
+      &:hover {
+
+        @include domd {
+          border-color: var(--blue);
+        }
+      }
     }
 
     &-text {

@@ -998,6 +998,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!items.length) return;
 
     let enabled = false;
+    let lastState = null;
 
     function handler() {
       const active = this.classList.contains('services__item-active');
@@ -1005,23 +1006,38 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!active) this.classList.add('services__item-active');
     }
 
-    function check() {
-      if (window.innerWidth <= 834 && !enabled) {
-        enabled = true;
-        items.forEach(el => el.addEventListener('click', handler));
-      }
+    function enable() {
+      if (enabled) return;
+      enabled = true;
+      items.forEach(el => el.addEventListener('click', handler));
+    }
 
-      if (window.innerWidth > 834 && enabled) {
-        enabled = false;
-        items.forEach(el => {
-          el.classList.remove('services__item-active');
-          el.removeEventListener('click', handler);
-        });
+    function disable() {
+      if (!enabled) return;
+      enabled = false;
+      items.forEach(el => {
+        el.classList.remove('services__item-active');
+        el.removeEventListener('click', handler);
+      });
+    }
+
+    function check() {
+      const isMobile = window.innerWidth <= 834;
+
+      if (isMobile !== lastState) {
+        lastState = isMobile;
+        isMobile ? enable() : disable();
       }
     }
 
-    check();
+    // ✅ Срабатывает всегда, даже в Safari DevTools
+    setInterval(check, 200);
+
+    // ✅ На всякий случай
     window.addEventListener('resize', check);
+    window.addEventListener('orientationchange', check);
+
+    check();
   }
 
   initServicesToggle();
