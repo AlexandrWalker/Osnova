@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lenis = new Lenis({
     anchors: {
       offset: -60,
+      duration: 4,
     },
   });
 
@@ -318,6 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function burgerNav() {
     const burgerBtn = document.getElementById('burger-btn');
     const burgerMenuInner = document.querySelector('.burger-menu__inner');
+    const menuList = document.querySelector('.menu__list'); // Добавляем селектор списка меню
 
     const openMenu = () => {
       burgerBtn.classList.add('burger--open');
@@ -350,7 +352,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const clickInsideMenu = burgerMenuInner.contains(event.target);
       const clickOnButton = burgerBtn.contains(event.target);
 
+      // Проверяем, кликнули ли по ссылке внутри menu__list
+      const clickOnMenuLink = menuList && menuList.contains(event.target) && event.target.tagName === 'A';
+
       if (isMenuOpen && !clickInsideMenu && !clickOnButton) {
+        closeMenu();
+      }
+
+      // Дополнительно: закрываем меню при клике по ссылке внутри меню
+      if (isMenuOpen && clickOnMenuLink) {
         closeMenu();
       }
     });
