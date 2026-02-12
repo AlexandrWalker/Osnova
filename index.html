@@ -11,7 +11,11 @@
   <meta name="format-detection" content="address=no">
   <meta name="format-detection" content="email=no">
   <!-- favicon -->
-
+  <link rel="icon" type="image/png" href="./images/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./images/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="./images/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Osnova" />
   <!-- title -->
   <title>Основа</title>
   <!-- icons -->
@@ -137,9 +141,9 @@
             <div class="header__drop-wrap">
               <ul>
                 <li>
-                  <i class="icon-whatsapp"></i>
+                  <i class="icon-max"></i>
                   <a href="/">
-                    Написать в whats app
+                    Написать в Max
                   </a>
                 </li>
                 <li>
@@ -210,9 +214,9 @@
       </a>
     </li>
     <li>
-      <a href="/Osnova">
+      <a href="/Osnova/site-map.html">
         <i class="icon-chevron-min"></i>
-        Свяжитесь с нами
+        Карта сайта
       </a>
     </li>
     <li>
@@ -243,7 +247,7 @@
             Соцсети
           </div>
           <a class="menu__item-link" href="/">
-            WhatsApp
+            Max
           </a>
           <a class="menu__item-link" href="/">
             Telegram
@@ -2328,9 +2332,9 @@
       </a>
     </li>
     <li>
-      <a href="/Osnova">
+      <a href="/Osnova/site-map.html">
         <i class="icon-chevron-min"></i>
-        Свяжитесь с нами
+        Карта сайта
       </a>
     </li>
     <li>
@@ -2360,7 +2364,7 @@
               Соцсети
             </div>
             <a class="menu__item-link" href="/">
-              WhatsApp
+              Max
             </a>
             <a class="menu__item-link" href="/">
               Telegram
@@ -2449,13 +2453,34 @@
               заказать консультацию
               <i class="icon-chevron-min"></i>
             </button>
-            <div class="form-group">
-              <div class="form-wrap">
-                <input id="foot_checkbox" class="form-checkbox" type="checkbox">
-                <label for="foot_checkbox" class="form-checkbox--item"></label>
-                <p>
-                  Нажимая кнопку «Отправить», <a href="/Osnova">вы принимаете условия обработки пользовательских данных</a>
-                </p>
+            <div class="form__foot-wrap">
+              <div class="form-group">
+                <div class="form-wrap">
+                  <input id="foot_checkbox_policy" class="form-checkbox" type="checkbox">
+                  <label for="foot_checkbox_policy" class="form-checkbox--item"></label>
+                  <p>
+                    Я согласен на обработку <a href="/Osnova">персональных данных</a>
+                  </p>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-wrap">
+                  <input id="foot_checkbox_ad" class="form-checkbox" type="checkbox">
+                  <label for="foot_checkbox_ad" class="form-checkbox--item"></label>
+                  <p>
+                    Я согласен на <a href="/Osnova">рекламные уведомления</a>
+                  </p>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-wrap">
+                  <div class="form__foot-text">
+                    <p>
+                      Нажимая на кнопку «Отправить» <a href="/Osnova">вы соглашаетесь с Политикой обработки персональных
+                        данных</a>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -2533,7 +2558,8 @@
         </div>
         <div class="col-xs-12">
           <div class="form-group">
-            <input class="form-input invalid" id="popup_tel" name="popup_tel" type="tel" placeholder="Введите номер телефона">
+            <input class="form-input invalid" id="popup_tel" name="popup_tel" type="tel"
+              placeholder="Введите номер телефона">
             <label class="form-label" for="popup_tel">
               <div>
                 Телефон <span>*</span>
@@ -2574,13 +2600,34 @@
         Отправить
         <i class="icon-chevron-min"></i>
       </button>
-      <div class="form-group">
-        <div class="form-wrap">
-          <input id="popup_checkbox" class="form-checkbox" type="checkbox">
-          <label for="popup_checkbox" class="form-checkbox--item"></label>
-          <p>
-            Нажимая кнопку «Отправить», <a href="/Osnova">вы принимаете условия обработки пользовательских данных</a>
-          </p>
+      <div class="form__foot-wrap">
+        <div class="form-group">
+          <div class="form-wrap">
+            <input id="popup_checkbox_policy" class="form-checkbox" type="checkbox">
+            <label for="popup_checkbox_policy" class="form-checkbox--item"></label>
+            <p>
+              Я согласен на обработку <a href="/Osnova">персональных данных</a>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-wrap">
+            <input id="popup_checkbox_ad" class="form-checkbox" type="checkbox">
+            <label for="popup_checkbox_ad" class="form-checkbox--item"></label>
+            <p>
+              Я согласен на <a href="/Osnova">рекламные уведомления</a>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-wrap">
+            <div class="form__foot-text">
+              <p>
+                Нажимая на кнопку «Отправить» <a href="/Osnova">вы соглашаетесь с Политикой обработки персональных
+                  данных</a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2697,7 +2744,8 @@
             </div>
             <div class="col-xs-12">
               <div class="form-group">
-                <input class="form-input" id="panel_tel" name="panel_tel" type="text" placeholder="Введите номер телефона">
+                <input class="form-input" id="panel_tel" name="panel_tel" type="text"
+                  placeholder="Введите номер телефона">
                 <label class="form-label" for="panel_tel">
                   <div>
                     Телефон <span>*</span>
@@ -2719,14 +2767,23 @@
               <div class="form-group">
                 <div class="dropdown">
                   <div class="dropdown-btn">
-                    <span>Выберите пункт</span>
+                    <input class="dropdown-input dropdown-input--js" type="hidden" value="">
+                    <label class="dropdown-label dropdown-label--js">Выберите услугу</label>
                     <i class="icon-chevron-min"></i>
                   </div>
-                  <input type="hidden" name="option1">
                   <div class="dropdown-content">
-                    <div class="dropdown-item" data-value="service-1">Услуга 1</div>
-                    <div class="dropdown-item" data-value="service-2">Услуга 2</div>
-                    <div class="dropdown-item" data-value="service-3">Услуга 3</div>
+                    <div class="dropdown-item">
+                      <input id="services_1" class="dropdown-radio" name="services_1" type="radio" value="Услуга 1">
+                      <label for="services_1" class="dropdown-label">Услуга 1</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input id="services_2" class="dropdown-radio" name="services_2" type="radio" value="Услуга 2">
+                      <label for="services_2" class="dropdown-label">Услуга 2</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input id="services_3" class="dropdown-radio" name="services_3" type="radio" value="Услуга 3">
+                      <label for="services_3" class="dropdown-label">Услуга 3</label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2738,13 +2795,34 @@
             Отправить заявку
             <i class="icon-chevron-min"></i>
           </button>
-          <div class="form-group">
-            <div class="form-wrap">
-              <input id="panel_checkbox" class="form-checkbox" type="checkbox">
-              <label for="panel_checkbox" class="form-checkbox--item"></label>
-              <p>
-                Нажимая кнопку «Отправить», <a href="/Osnova">вы принимаете условия обработки пользовательских данных</a>
-              </p>
+          <div class="form__foot-wrap">
+            <div class="form-group">
+              <div class="form-wrap">
+                <input id="panel_1_checkbox_policy" class="form-checkbox" type="checkbox">
+                <label for="panel_1_checkbox_policy" class="form-checkbox--item"></label>
+                <p>
+                  Я согласен на обработку <a href="/Osnova">персональных данных</a>
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-wrap">
+                <input id="panel_1_checkbox_ad" class="form-checkbox" type="checkbox">
+                <label for="panel_1_checkbox_ad" class="form-checkbox--item"></label>
+                <p>
+                  Я согласен на <a href="/Osnova">рекламные уведомления</a>
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-wrap">
+                <div class="form__foot-text">
+                  <p>
+                    Нажимая на кнопку «Отправить» <a href="/Osnova">вы соглашаетесь с Политикой обработки персональных
+                      данных</a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2886,12 +2964,24 @@
             <div class="col-xs-12">
               <div class="form-group">
                 <div class="dropdown">
-                  <div class="dropdown-btn">Выберите услугу</div>
-                  <input type="hidden" name="option1">
+                  <div class="dropdown-btn">
+                    <input class="dropdown-input dropdown-input--js" type="hidden" value="">
+                    <label class="dropdown-label dropdown-label--js">Выберите услугу</label>
+                    <i class="icon-chevron-min"></i>
+                  </div>
                   <div class="dropdown-content">
-                    <div class="dropdown-item" data-value="service-1">Услуга 1</div>
-                    <div class="dropdown-item" data-value="service-2">Услуга 2</div>
-                    <div class="dropdown-item" data-value="service-3">Услуга 3</div>
+                    <div class="dropdown-item">
+                      <input id="services_4" class="dropdown-radio" name="services_4" type="radio" value="Услуга 1">
+                      <label for="services_4" class="dropdown-label">Услуга 1</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input id="services_5" class="dropdown-radio" name="services_5" type="radio" value="Услуга 2">
+                      <label for="services_5" class="dropdown-label">Услуга 2</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input id="services_6" class="dropdown-radio" name="services_6" type="radio" value="Услуга 3">
+                      <label for="services_6" class="dropdown-label">Услуга 3</label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2903,13 +2993,34 @@
             Отправить заявку
             <i class="icon-chevron-min"></i>
           </button>
-          <div class="form-group">
-            <div class="form-wrap">
-              <input id="panel_checkbox" class="form-checkbox" type="checkbox">
-              <label for="panel_checkbox" class="form-checkbox--item"></label>
-              <p>
-                Нажимая кнопку «Отправить», <a href="/Osnova">вы принимаете условия обработки пользовательских данных</a>
-              </p>
+          <div class="form__foot-wrap">
+            <div class="form-group">
+              <div class="form-wrap">
+                <input id="panel_2_checkbox_policy" class="form-checkbox" type="checkbox">
+                <label for="panel_2_checkbox_policy" class="form-checkbox--item"></label>
+                <p>
+                  Я согласен на обработку <a href="/Osnova">персональных данных</a>
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-wrap">
+                <input id="panel_2_checkbox_ad" class="form-checkbox" type="checkbox">
+                <label for="panel_2_checkbox_ad" class="form-checkbox--item"></label>
+                <p>
+                  Я согласен на <a href="/Osnova">рекламные уведомления</a>
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-wrap">
+                <div class="form__foot-text">
+                  <p>
+                    Нажимая на кнопку «Отправить» <a href="/Osnova">вы соглашаетесь с Политикой обработки персональных
+                      данных</a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
