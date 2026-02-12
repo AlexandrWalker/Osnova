@@ -3,11 +3,34 @@
 .filter {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 2rem;
 
   @include sm {
-    gap: 0.8rem;
+    gap: 1.5rem;
+    flex-direction: column;
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+
+    @include md {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include xmd {
+      grid-template-columns: 1fr;
+    }
+
+    @include sm {
+      gap: 0.8rem;
+    }
   }
 
   &__items {
@@ -56,6 +79,12 @@
 
         font-size: 1.2rem;
       }
+
+      &:hover {
+        color: var(--white);
+
+        background-color: var(--sizyy);
+      }
     }
   }
 
@@ -64,8 +93,9 @@
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-    margin-left: auto;
+    margin: 2rem 0;
 
+    white-space: nowrap;
     color: var(--sizyy);
 
     @include md {
@@ -73,7 +103,7 @@
     }
 
     @include sm {
-      margin-top: 0.7rem;
+      margin: 0;
     }
 
     &:hover {
@@ -111,7 +141,7 @@
   .dropdown {
     max-width: 26rem;
 
-    @include sm {
+    @include xmd {
       max-width: 100%;
     }
 

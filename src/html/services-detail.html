@@ -95,14 +95,23 @@
                       <div class="form-group">
                         <div class="dropdown">
                           <div class="dropdown-btn">
-                            <span>Выберите пункт</span>
+                            <input class="dropdown-input dropdown-input--js" type="hidden" value="">
+                            <label class="dropdown-label dropdown-label--js">Выберите пункт</label>
                             <i class="icon-chevron-min"></i>
                           </div>
-                          <input type="hidden" name="option1">
                           <div class="dropdown-content">
-                            <div class="dropdown-item" data-value="service-1">Услуга 1</div>
-                            <div class="dropdown-item" data-value="service-2">Услуга 2</div>
-                            <div class="dropdown-item" data-value="service-3">Услуга 3</div>
+                            <div class="dropdown-item">
+                              <input id="punkt_1" class="dropdown-radio" name="punkt_1" type="radio" value="Услуга 1">
+                              <label for="punkt_1" class="dropdown-label">Пункт 1</label>
+                            </div>
+                            <div class="dropdown-item">
+                              <input id="punkt_2" class="dropdown-radio" name="punkt_2" type="radio" value="Услуга 2">
+                              <label for="punkt_2" class="dropdown-label">Пункт 2</label>
+                            </div>
+                            <div class="dropdown-item">
+                              <input id="punkt_3" class="dropdown-radio" name="punkt_3" type="radio" value="Услуга 3">
+                              <label for="punkt_3" class="dropdown-label">Пункт 3</label>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -114,14 +123,35 @@
                     Отправить заявку
                     <i class="icon-chevron-min"></i>
                   </button>
-                  <div class="form-group">
-                    <div class="form-wrap">
-                      <input id="panel_checkbox" class="form-checkbox" type="checkbox">
-                      <label for="panel_checkbox" class="form-checkbox--item"></label>
-                      <p>
-                        Нажимая кнопку «Отправить», <a href="/Osnova">вы принимаете условия обработки пользовательских
-                          данных</a>
-                      </p>
+                  <div class="form__foot-wrap">
+                    <div class="form-group">
+                      <div class="form-wrap">
+                        <input id="panel_2_checkbox_policy" class="form-checkbox" type="checkbox">
+                        <label for="panel_2_checkbox_policy" class="form-checkbox--item"></label>
+                        <p>
+                          Я согласен на обработку <a href="/Osnova">персональных данных</a>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-wrap">
+                        <input id="panel_2_checkbox_ad" class="form-checkbox" type="checkbox">
+                        <label for="panel_2_checkbox_ad" class="form-checkbox--item"></label>
+                        <p>
+                          Я согласен на <a href="/Osnova">рекламные уведомления</a>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-wrap">
+                        <div class="form__foot-text">
+                          <p>
+                            Нажимая на кнопку «Отправить» <a href="/Osnova">вы соглашаетесь с Политикой обработки
+                              персональных
+                              данных</a>
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

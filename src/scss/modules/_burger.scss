@@ -186,6 +186,7 @@
 
     .menu--open & {
       grid-template-columns: calc(100% - 39rem) 39rem;
+
       clip-path: circle(150% at 100% 0);
       transition: clip-path 0.5s linear, grid-template-columns 1s ease-in-out;
     }

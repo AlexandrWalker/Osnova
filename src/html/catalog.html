@@ -46,40 +46,69 @@
 
             <div class="catalog__head">
               <div class="filter">
-                <div class="dropdown">
-                  <div class="dropdown-btn">
-                    <span>Выбрать вид работы</span>
-                    <i class="icon-chevron-min"></i>
+                <div class="filter__wrap">
+                  <div class="dropdown">
+                    <div class="dropdown-btn">
+                      <input class="dropdown-input dropdown-input--js" type="hidden" value="">
+                      <label class="dropdown-label dropdown-label--js">Выбрать вид работы</label>
+                      <i class="icon-chevron-min"></i>
+                    </div>
+                    <div class="dropdown-content">
+                      <div class="dropdown-item">
+                        <input id="radio_1" class="dropdown-radio" name="radio_1" type="radio" value="Вид работы 1">
+                        <label for="radio_1" class="dropdown-label">Вид работы 1</label>
+                      </div>
+                      <div class="dropdown-item">
+                        <input id="radio_2" class="dropdown-radio" name="radio_2" type="radio" value="Вид работы 2">
+                        <label for="radio_2" class="dropdown-label">Вид работы 2</label>
+                      </div>
+                      <div class="dropdown-item">
+                        <input id="radio_3" class="dropdown-radio" name="radio_3" type="radio" value="Вид работы 3">
+                        <label for="radio_3" class="dropdown-label">Вид работы 3</label>
+                      </div>
+                    </div>
                   </div>
-                  <input type="hidden" name="option1">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item" data-value="service-1">Вид работы 1</div>
-                    <div class="dropdown-item" data-value="service-2">Вид работы 2</div>
-                    <div class="dropdown-item" data-value="service-3">Вид работы 3</div>
+                  <div class="dropdown">
+                    <div class="dropdown-btn">
+                      <input class="dropdown-input dropdown-input--js" type="hidden" value="">
+                      <label class="dropdown-label dropdown-label--js">Выбрать город</label>
+                      <i class="icon-chevron-min"></i>
+                    </div>
+                    <div class="dropdown-content">
+                      <div class="dropdown-item">
+                        <input id="radio_4" class="dropdown-radio" name="radio_4" type="radio" value="Москва">
+                        <label for="radio_4" class="dropdown-label">Москва</label>
+                      </div>
+                      <div class="dropdown-item">
+                        <input id="radio_5" class="dropdown-radio" name="radio_5" type="radio" value="Новосибирск">
+                        <label for="radio_5" class="dropdown-label">Новосибирск</label>
+                      </div>
+                      <div class="dropdown-item">
+                        <input id="radio_6" class="dropdown-radio" name="radio_6" type="radio" value="Санкт-Петербург">
+                        <label for="radio_6" class="dropdown-label">Санкт-Петербург</label>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="dropdown">
-                  <div class="dropdown-btn">
-                    <span>Выбрать город</span>
-                    <i class="icon-chevron-min"></i>
-                  </div>
-                  <input type="hidden" name="option2">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item" data-value="service-1">Москва</div>
-                    <div class="dropdown-item" data-value="service-2">Новосибирск</div>
-                    <div class="dropdown-item" data-value="service-3">Санкт-Петербург</div>
-                  </div>
-                </div>
-                <div class="dropdown">
-                  <div class="dropdown-btn">
-                    <span>Район города</span>
-                    <i class="icon-chevron-min"></i>
-                  </div>
-                  <input type="hidden" name="option3">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item" data-value="service-1">Район 1</div>
-                    <div class="dropdown-item" data-value="service-2">Район 2</div>
-                    <div class="dropdown-item" data-value="service-3">Район 3</div>
+                  <div class="dropdown">
+                    <div class="dropdown-btn">
+                      <input class="dropdown-input dropdown-input--js" type="hidden" value="">
+                      <label class="dropdown-label dropdown-label--js">Район города</label>
+                      <i class="icon-chevron-min"></i>
+                    </div>
+                    <div class="dropdown-content">
+                      <div class="dropdown-item">
+                        <input id="radio_7" class="dropdown-radio" name="radio_7" type="radio" value="Район 1">
+                        <label for="radio_7" class="dropdown-label">Район 1</label>
+                      </div>
+                      <div class="dropdown-item">
+                        <input id="radio_8" class="dropdown-radio" name="radio_8" type="radio" value="Район 2">
+                        <label for="radio_8" class="dropdown-label">Район 2</label>
+                      </div>
+                      <div class="dropdown-item">
+                        <input id="radio_9" class="dropdown-radio" name="radio_9" type="radio" value="Район 3">
+                        <label for="radio_9" class="dropdown-label">Район 3</label>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

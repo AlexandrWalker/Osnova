@@ -278,15 +278,23 @@
 
     &.show {
 
-      .dropdown-btn {
+      .dropdown-label {
         color: var(--blue);
         border-color: transparent;
       }
+
+      i {
+        color: var(--blue);
+      }
     }
 
-    &-btn {
+    &-label {
       color: var(--white-50);
       border-color: var(--white-10);
+    }
+
+    i {
+      color: var(--white-50);
     }
   }
 

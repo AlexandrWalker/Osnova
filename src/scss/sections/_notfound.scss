@@ -1,0 +1,152 @@
+@use './../mixins' as *;
+
+.notfound {
+  padding-top: 2rem;
+  min-height: unset;
+  overflow: visible;
+
+  &__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    position: relative;
+
+    @include sm {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    left: 0;
+    z-index: 1;
+
+    @include md {
+      width: 100%;
+
+      position: relative;
+    }
+  }
+
+  &__suptitle {
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 40rem;
+    line-height: 100%;
+    line-height: 26.5rem;
+
+    margin-left: -2.5rem;
+    margin-bottom: 4rem;
+
+    @include md {
+      font-size: 20rem;
+      line-height: 13.2rem;
+
+      margin-left: -1.2rem;
+      margin-bottom: 4.7rem;
+    }
+
+    @include sm {
+      font-size: calc(100vw/(393/135));
+      line-height: calc(100vw/(393/88));
+
+      margin-left: -0.9rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__title {
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 100%;
+
+    margin-bottom: 2rem;
+
+    @include md {
+      font-size: 2.5rem;
+
+      max-width: 30.2rem;
+    }
+  }
+
+  &__text {
+    max-width: 77.6rem;
+    margin-bottom: 5rem;
+
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 140%;
+
+    @include md {
+      max-width: calc(100vw/(834/353));
+      margin-bottom: 3rem;
+
+      font-size: 1.4rem;
+    }
+    
+    @include sm {
+      max-width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    a {
+      font-weight: 700;
+    }
+  }
+
+  &__btn {
+    --btn-width: 100%;
+    --btn-color: var(--blue);
+    --btn-border-color: var(--blue);
+
+    max-width: 43.5rem;
+
+    @include md {
+      max-width: 27rem;
+    }
+
+    @include sm {
+      max-width: 100%;
+    }
+  }
+
+  &__cover {
+    width: fit-content;
+    height: 74.5rem;
+    margin-top: -5rem;
+    margin-right: -12rem;
+
+    position: relative;
+    z-index: 2;
+
+    @include md {
+      height: calc(100vw/(834/370));
+      margin-top: 0;
+      margin-right: 0;
+
+      position: absolute;
+      right: 0;
+      bottom: -1.5rem;
+    }
+
+    @include sm {
+      height: 37rem;
+      margin-left: -0.4rem;
+
+      position: static;
+    }
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

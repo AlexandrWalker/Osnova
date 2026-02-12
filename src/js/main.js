@@ -460,17 +460,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Обработка кликов по пунктам
   document.querySelectorAll('.dropdown').forEach(dropdown => {
     const btn = dropdown.querySelector('.dropdown-btn');
-    const span = btn.querySelector('span');
-    const input = dropdown.querySelector('input[type="hidden"]');
+    const inputJs = dropdown.querySelector('.dropdown-input--js');
+    const labelJs = dropdown.querySelector('.dropdown-label--js');
+    const inputHidden = dropdown.querySelector('input[type="hidden"]');
     const items = dropdown.querySelectorAll('.dropdown-item');
 
     items.forEach(item => {
       item.addEventListener('click', () => {
-        const value = item.dataset.value;
-        const text = item.textContent || item.innerText;;
+        const radio = item.querySelector('.dropdown-radio');
+        const label = item.querySelector('.dropdown-label');
+        const value = radio.value;
+        const text = label.textContent || label.innerText;;
 
-        input.value = value;
-        span.textContent = text;
+        inputJs.value = value;
+        labelJs.textContent = text;
+        inputHidden.value = value;
         btn.classList.add('filled');
         dropdown.classList.remove('show');
       });

@@ -21,7 +21,8 @@
         </div>
         <div class="col-xs-12">
           <div class="form-group">
-            <input class="form-input invalid" id="popup_tel" name="popup_tel" type="tel" placeholder="Введите номер телефона">
+            <input class="form-input invalid" id="popup_tel" name="popup_tel" type="tel"
+              placeholder="Введите номер телефона">
             <label class="form-label" for="popup_tel">
               <div>
                 Телефон <span>*</span>
@@ -62,13 +63,34 @@
         Отправить
         <i class="icon-chevron-min"></i>
       </button>
-      <div class="form-group">
-        <div class="form-wrap">
-          <input id="popup_checkbox" class="form-checkbox" type="checkbox">
-          <label for="popup_checkbox" class="form-checkbox--item"></label>
-          <p>
-            Нажимая кнопку «Отправить», <a href="/Osnova">вы принимаете условия обработки пользовательских данных</a>
-          </p>
+      <div class="form__foot-wrap">
+        <div class="form-group">
+          <div class="form-wrap">
+            <input id="popup_checkbox_policy" class="form-checkbox" type="checkbox">
+            <label for="popup_checkbox_policy" class="form-checkbox--item"></label>
+            <p>
+              Я согласен на обработку <a href="/Osnova">персональных данных</a>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-wrap">
+            <input id="popup_checkbox_ad" class="form-checkbox" type="checkbox">
+            <label for="popup_checkbox_ad" class="form-checkbox--item"></label>
+            <p>
+              Я согласен на <a href="/Osnova">рекламные уведомления</a>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-wrap">
+            <div class="form__foot-text">
+              <p>
+                Нажимая на кнопку «Отправить» <a href="/Osnova">вы соглашаетесь с Политикой обработки персональных
+                  данных</a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

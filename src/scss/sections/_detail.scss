@@ -2,7 +2,6 @@
 
 .detail {
 
-
   &__inner {
     display: grid;
     grid-template-columns: calc(55.07% - (16.5rem / 2)) calc(44.93% - (16.5rem / 2));
@@ -263,6 +262,15 @@
     &-wrap {
 
       p {
+        color: var(--white);
+
+        @include domd {
+          color: var(--blue-50);
+        }
+      }
+
+      a {
+        color: var(--sizyy);
 
         @include domd {
           color: var(--blue);
@@ -271,26 +279,61 @@
     }
   }
 
-  .dropdown {
+  .dropdown-btn {
 
-    @include md {
+    i {
+      color: var(--white);
 
-      &.show {
+      @include domd {
+        color: var(--blue-50);
+      }
+    }
 
-        .dropdown-btn {
-          border-color: var(--white-10);
+    &.filled {
+
+      i {
+        color: var(--white);
+
+        @include domd {
           color: var(--blue);
         }
       }
+    }
+  }
 
-      &-btn {
-        border-color: var(--white-10);
-        color: var(--white-50);
+  .dropdown-label {
+    color: var(--blue-50);
 
-        &.filled {
-          border-color: var(--white);
-          color: var(--white);
-        }
+    @include md {
+      color: var(--white-50);
+    }
+  }
+
+  .show {
+
+    i {
+      color: var(--blue);
+    }
+
+    .dropdown-label {
+      color: var(--blue);
+    }
+
+    .filled {
+
+      .dropdown-label {
+        color: var(--blue);
+      }
+    }
+  }
+
+  .filled {
+
+    .dropdown-label {
+      color: var(--blue);
+
+      @include md {
+        color: var(--white);
       }
     }
   }

@@ -33,6 +33,10 @@
     @include md {
       display: none;
     }
+
+    * {
+      overflow: visible !important;
+    }
   }
 
   &__inner {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" class="page__inner">
+@@include('blocks/head.html', {"title": "Основа"})
+
+<body>
+  <div class="wrapper">
+    <!-- Шапка -->
+    @@include('./blocks/header.html')
+    <!-- Секции страницы -->
+    <main id="main" class="main">
+
+      <section class="notfound">
+        <div class="container">
+          <div class="notfound__inner">
+
+            <div class="notfound__content">
+              <div class="notfound__suptitle">
+                404
+              </div>
+              <div class="notfound__title">
+                Обидно, досадно, но ладно...
+              </div>
+              <div class="notfound__text">
+                Ссылка, по которой вы перешли, устарела или содержит ошибку. Пожалуйста, вернитесь на <a href="/Osnova">главную</a>, чтобы
+                найти нужный вам раздел.
+              </div>
+              <a class="notfound__btn btn" href="/Osnova">
+                перейти на главную
+                <i class="icon-chevron-min"></i>
+              </a>
+            </div>
+            <div class="notfound__cover">
+              <img src="./../images/temp/notfound-cover.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Подвал -->
+    @@include('blocks/footer.html')

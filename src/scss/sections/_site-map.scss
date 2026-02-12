@@ -1,0 +1,60 @@
+@use './../mixins' as *;
+
+.site-map {
+  min-height: unset;
+
+  &__items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 3rem 24.5rem;
+
+    @include md {
+      gap: 3rem 5rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    a {
+      transition: all 0.3s ease-in-out;
+
+      position: relative;
+
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 130%;
+      color: var(--blue);
+
+      @include md {
+        font-size: 1.4rem;
+      }
+
+      &:hover {
+
+        @include domd {
+          padding-left: 3rem;
+
+          i {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    i {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+
+      font-size: 1.3rem;
+
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) rotate(-90deg);
+    }
+  }
+}
