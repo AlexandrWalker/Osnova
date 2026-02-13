@@ -21,6 +21,42 @@ document.addEventListener('DOMContentLoaded', () => {
     lenis.raf(time * 1000);
   });
 
+  /* new */
+  /**
+ * Функция для скролла к якорю из URL
+ */
+  function scrollToHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    // Удаляем ведущий символ '#', если нужен чистый ID
+    const targetId = hash.slice(1);
+    const target = document.getElementById(targetId);
+
+    if (target) {
+      lenis.scrollTo(target, {
+        offset: -60, // Согласуем с anchors.offset
+        duration: 4,
+      });
+    } else {
+      console.warn(`Элемент с id="${targetId}" не найден.`);
+    }
+  }
+
+  /**
+   * Вызываем скролл к якорю после инициализации Lenis
+   * Используем requestAnimationFrame для синхронизации с рендерингом
+   */
+  requestAnimationFrame(() => {
+    scrollToHash();
+  });
+
+  /**
+   * Обрабатываем изменения хеша (например, при клике по ссылкам #section)
+   */
+  window.addEventListener('hashchange', scrollToHash);
+  /* /new */
+
   function initObjectVideo(swiper) {
     const slides = swiper.el.querySelectorAll('.object__video');
 
