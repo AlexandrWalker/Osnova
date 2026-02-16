@@ -91,8 +91,8 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -107,8 +107,16 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
+  src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
+  src: url("../fonts/Gotham-Ultra.woff2") format("woff2"), url("../fonts/Gotham-Ultra.woff") format("woff");
+  font-weight: 1000;
   font-style: normal;
 }
 
@@ -123,16 +131,8 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
-  src: url("../fonts/Gotham-Ultra.woff2") format("woff2"), url("../fonts/Gotham-Ultra.woff") format("woff");
-  font-weight: 1000;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
@@ -235,14 +235,6 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-display: swap;
   src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
@@ -261,6 +253,14 @@ a {
   font-display: swap;
   src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2"), url("../fonts/Montserrat-SemiBold.woff") format("woff");
   font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-display: swap;
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -5940,6 +5940,32 @@ p {
   text-decoration-line: underline;
 }
 
+.privacy__inner {
+  max-width: 126rem;
+  width: 100%;
+}
+
+.privacy p {
+  margin-bottom: 2rem;
+}
+
+.privacy h4 {
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.privacy ul {
+  margin-bottom: 2rem;
+}
+
+.privacy ul li {
+  margin-bottom: 2rem !important;
+}
+
+.privacy a:hover {
+  text-decoration: underline;
+}
+
 .quiz {
   padding: 0;
   margin-bottom: 0;
@@ -8571,6 +8597,23 @@ p {
 
   .partners__item-tags {
     max-width: 43.4rem;
+  }
+
+  .privacy p {
+    margin-bottom: 1rem;
+  }
+
+  .privacy h4 {
+    padding-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .privacy ul {
+    margin-bottom: 1rem;
+  }
+
+  .privacy ul li {
+    margin-bottom: 1rem !important;
   }
 
   .quiz {
