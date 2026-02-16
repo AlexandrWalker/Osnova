@@ -5,6 +5,7 @@
 
   &__head {
     // padding: 6rem 0 5rem;
+    max-width: 100%;
     margin-bottom: 5rem;
 
     @include md {
@@ -16,6 +17,7 @@
     }
 
     &-title {
+      max-width: 100%;
 
       & * {
 
