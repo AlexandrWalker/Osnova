@@ -2,6 +2,32 @@
 
 .privacy {
 
+  &__page {
+
+    .general__head {
+      max-width: 126rem;
+
+      &-title {
+
+        * {
+          font-family: var(--font-family);
+          font-weight: 700;
+          font-size: 5rem;
+          line-height: 100%;
+          text-transform: unset;
+
+          @include md {
+            font-size: 5rem;
+          }
+
+          @include sm {
+            font-size: 3rem;
+          }
+        }
+      }
+    }
+  }
+
   &__inner {
     max-width: 126rem;
     width: 100%;
@@ -15,7 +41,7 @@
     }
   }
 
-  h4 {
+  .h4 {
     padding-top: 1rem;
     margin-bottom: 2rem;
 
