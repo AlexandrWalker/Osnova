@@ -91,8 +91,8 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
@@ -107,16 +107,16 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
+  src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -259,16 +259,16 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Thin.woff2") format("woff2"), url("../fonts/Montserrat-Thin.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2"), url("../fonts/Montserrat-SemiBold.woff") format("woff");
+  font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2"), url("../fonts/Montserrat-SemiBold.woff") format("woff");
-  font-weight: 600;
+  src: url("../fonts/Montserrat-Thin.woff2") format("woff2"), url("../fonts/Montserrat-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -1765,6 +1765,7 @@ body {
 
 /* Главный заголовок страницы */
 
+.h1,
 h1 {
   font-family: var(--second-family);
   font-weight: 700;
@@ -1775,6 +1776,7 @@ h1 {
 
 /* Заголовки блоков */
 
+.h2,
 h2 {
   font-family: var(--second-family);
   font-style: normal;
@@ -1783,6 +1785,7 @@ h2 {
   line-height: 100%;
 }
 
+.h3,
 h3 {
   font-weight: 700;
   font-size: 5rem;
@@ -1796,12 +1799,14 @@ h4 {
   line-height: 120%;
 }
 
+.h5,
 h5 {
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 120%;
 }
 
+.h6,
 h6 {
   font-weight: 500;
   font-size: 2rem;
@@ -1814,6 +1819,29 @@ p {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 130%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: anywhere;
+}
+
+h1 div,
+h2 div,
+h3 div,
+h4 div,
+h5 div,
+h6 div {
+  min-width: 0;
+}
+
+.line {
+  display: block !important;
+  width: 100%;
 }
 
 .video-thumb {
@@ -3310,7 +3338,7 @@ p {
   gap: 2rem;
 }
 
-.panel__item-head h6 {
+.panel__item-head {
   font-weight: 700;
 }
 
@@ -3336,11 +3364,11 @@ p {
   gap: 2rem;
 }
 
-.panel__feat-days h3 {
+.panel__feat-days {
   font-weight: 400;
 }
 
-.panel__feat-days h3 span {
+.panel__feat-days span {
   font-weight: 400;
   font-size: 2.5rem;
 }
@@ -3535,6 +3563,14 @@ p {
 
 .template .general__head {
   margin: 0;
+}
+
+.template .general__head-title * {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 100%;
+  text-transform: unset;
 }
 
 .timeline-wrapper {
@@ -4615,7 +4651,7 @@ p {
   display: none;
 }
 
-.detail__item-head * {
+.detail__item-head {
   font-weight: 700;
 }
 
@@ -4955,12 +4991,9 @@ p {
 }
 
 .exp__item-title {
+  font-weight: 700;
   color: var(--white);
   margin-bottom: 3rem;
-}
-
-.exp__item-title h6 {
-  font-weight: 700;
 }
 
 .exp .lines-line {
@@ -5549,7 +5582,7 @@ p {
   gap: 2rem;
 }
 
-.object__content-list h6 {
+.object__content-list .h6 {
   font-weight: 700;
 }
 
@@ -6210,9 +6243,6 @@ p {
 
 .reviews__item-title {
   margin-bottom: 3rem;
-}
-
-.reviews__item-title * {
   font-weight: 700;
 }
 
@@ -6315,17 +6345,11 @@ p {
   padding: 1rem 0 0 1.3rem;
   background-color: var(--blue);
   overflow: hidden;
-  color: var(--white);
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.services__item-count h6 {
   font-weight: 400;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  color: var(--white);
 }
 
 .services__item-img {
@@ -6625,6 +6649,8 @@ p {
   bottom: 0;
   left: 0;
   z-index: 2;
+  font-style: italic;
+  font-weight: 400;
 }
 
 .team__item-quote::before {
@@ -6637,11 +6663,6 @@ p {
   background-size: 100% 100%;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-}
-
-.team__item-quote h5 {
-  font-style: italic;
-  font-weight: 400;
 }
 
 .team__item-content {
@@ -6927,7 +6948,7 @@ p {
   background-color: var(--white);
 }
 
-.vacancy__feat-item h6 {
+.vacancy__feat-item .h6 {
   font-weight: 700;
 }
 
@@ -7081,7 +7102,7 @@ p {
   border: 0.1rem solid rgb(235, 238, 241);
 }
 
-.vacancy__block h6 {
+.vacancy__block .h6 {
   font-weight: 700;
   font-size: 2rem;
 }
@@ -7544,6 +7565,7 @@ p {
 
   .form-textarea {
     height: 4rem;
+    padding: 1rem 0 2rem 2rem;
   }
 
   .form-btns {
@@ -7574,11 +7596,13 @@ p {
     display: none;
   }
 
+  .h1,
   h1 {
     font-size: 9.5923261391vw;
     line-height: 120%;
   }
 
+  .h2,
   h2 {
     font-size: 5rem;
     line-height: 120%;
@@ -7589,6 +7613,7 @@ p {
     font-size: 2rem;
   }
 
+  .h6,
   h6 {
     font-size: 1.6rem;
   }
@@ -8018,7 +8043,7 @@ p {
     grid-row: 2/3;
   }
 
-  .catalog__item-title h5 {
+  .catalog__item-title {
     font-size: 2rem;
   }
 
@@ -8281,7 +8306,7 @@ p {
     gap: 1rem;
   }
 
-  .detail__item-head * {
+  .detail__item-head {
     font-size: 1.4rem;
   }
 
@@ -8633,7 +8658,7 @@ p {
     margin-bottom: 4rem;
   }
 
-  .quiz .general__head-title h2 {
+  .quiz .general__head-title .h2 {
     font-size: 8rem;
   }
 
@@ -8725,9 +8750,6 @@ p {
 
   .reviews__item-title {
     margin-bottom: 2rem;
-  }
-
-  .reviews__item-title * {
     font-size: 2rem;
   }
 
@@ -8800,7 +8822,7 @@ p {
     margin-bottom: 2rem;
   }
 
-  .services__item-title h5 {
+  .services__item-title {
     font-size: 1.4rem;
   }
 
@@ -9101,16 +9123,19 @@ p {
     font-size: 1.3rem;
   }
 
+  .h1,
   h1 {
     font-size: 4rem;
     line-height: 100%;
   }
 
+  .h2,
   h2 {
     font-size: 3rem;
     line-height: 120%;
   }
 
+  .h3,
   h3 {
     font-size: 3.5rem;
   }
@@ -9302,7 +9327,7 @@ p {
     max-width: 30.5rem;
   }
 
-  .panel__feat-days h3 {
+  .panel__feat-days {
     font-size: 5rem;
   }
 
@@ -9335,6 +9360,10 @@ p {
 
   .template__inner {
     gap: 2rem;
+  }
+
+  .template .general__head-title * {
+    font-size: 3.5rem;
   }
 
   .page__inner .container:not(.footer .container, .completed .container) {
@@ -9593,7 +9622,7 @@ p {
     padding: 2rem 2rem 3rem;
   }
 
-  .partners__item-title h5 {
+  .partners__item-title {
     font-size: 2rem;
   }
 
@@ -9613,7 +9642,7 @@ p {
     margin-bottom: 3rem;
   }
 
-  .quiz .general__head-title h2 {
+  .quiz .general__head-title .h2 {
     font-size: 4rem;
   }
 
@@ -9708,22 +9737,19 @@ p {
     padding: 0;
     opacity: 1 !important;
     position: static;
+    font-size: 1.6rem;
+    color: var(--blue);
   }
 
   .team__item-quote::before {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDMiIGhlaWdodD0iMzQiIHZpZXdCb3g9IjAgMCA0MyAzNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xOC40IDBMMTEuOCAyNEw5LjYgMTVDMTIuNDY2NyAxNSAxNC44IDE1LjgzMzMgMTYuNiAxNy41QzE4LjQgMTkuMTY2NyAxOS4zIDIxLjQ2NjcgMTkuMyAyNC40QzE5LjMgMjcuMjY2NyAxOC4zNjY3IDI5LjYgMTYuNSAzMS40QzE0LjcgMzMuMTMzMyAxMi40MzMzIDM0IDkuNyAzNEM2LjkgMzQgNC41NjY2NyAzMy4xMzMzIDIuNyAzMS40QzAuOSAyOS42IDAgMjcuMjY2NyAwIDI0LjRDMCAyMy41MzMzIDAuMDY2NjY2NyAyMi43IDAuMiAyMS45QzAuMzMzMzMzIDIxLjAzMzMgMC42IDIwLjAzMzMgMSAxOC45QzEuNCAxNy43NjY3IDEuOTY2NjcgMTYuMjY2NyAyLjcgMTQuNEw4LjUgMEgxOC40Wk00MiAwTDM1LjQgMjRMMzMuMiAxNUMzNi4wNjY3IDE1IDM4LjQgMTUuODMzMyA0MC4yIDE3LjVDNDIgMTkuMTY2NyA0Mi45IDIxLjQ2NjcgNDIuOSAyNC40QzQyLjkgMjcuMjY2NyA0MS45NjY3IDI5LjYgNDAuMSAzMS40QzM4LjMgMzMuMTMzMyAzNi4wMzMzIDM0IDMzLjMgMzRDMzAuNSAzNCAyOC4xNjY3IDMzLjEzMzMgMjYuMyAzMS40QzI0LjUgMjkuNiAyMy42IDI3LjI2NjcgMjMuNiAyNC40QzIzLjYgMjMuNTMzMyAyMy42NjY3IDIyLjcgMjMuOCAyMS45QzIzLjkzMzMgMjEuMDMzMyAyNC4yIDIwLjAzMzMgMjQuNiAxOC45QzI1IDE3Ljc2NjcgMjUuNTY2NyAxNi4yNjY3IDI2LjMgMTQuNEwzMi4xIDBINDJaIiBmaWxsPSIjMDMyMTU0Ii8+DQo8L3N2Zz4NCg==);
   }
 
-  .team__item-quote h5 {
-    font-size: 1.6rem;
-    color: var(--blue);
-  }
-
   .team__item-content {
     gap: 1rem;
   }
 
-  .team__item-name h5 {
+  .team__item-name {
     font-size: 2rem;
   }
 
@@ -9799,7 +9825,7 @@ p {
     display: none;
   }
 
-  .vacancy__item-title h6 {
+  .vacancy__item-title {
     font-size: 1.4rem;
   }
 

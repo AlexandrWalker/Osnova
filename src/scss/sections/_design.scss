@@ -125,7 +125,6 @@
     width: calc(50% - (var(--inner-margin-right)/2));
     min-height: 50.7rem;
     margin-right: var(--inner-margin-right);
-    // padding: 6rem 10.6rem 6rem 14.4rem;
     padding: 6rem 12.4rem 6rem 14.4rem;
     background-color: var(--white);
     transition: all 0.3s linear;
@@ -138,10 +137,6 @@
       padding: 6.5rem 3rem 3rem 2rem;
       background-color: var(--blue);
       min-height: auto;
-    }
-
-    @include sm {
-      // min-height: 38.9rem;
     }
 
     &:hover {
@@ -217,7 +212,6 @@
       text-decoration-line: underline;
 
       margin-bottom: 4rem;
-
       transition: all 0.3s linear;
 
       @include md {

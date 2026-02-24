@@ -136,20 +136,6 @@
       width: 100%;
     }
 
-    &:nth-child(1) {
-
-      .numbers {
-        // margin-left: -2.5rem;
-      }
-    }
-
-    &:nth-child(2) {
-
-      .numbers {
-        // margin-left: -5.5rem;
-      }
-    }
-
     .number-roll {
       font-family: var(--second-family);
       font-weight: 700;
@@ -241,7 +227,6 @@
     width: 50%;
     padding: 0 7rem 0 5rem;
     margin: var(--exp-item-margin-top) 0;
-    // border-top: 0.1rem solid var(--white-10);
     border-left: 0.1rem solid var(--white);
     color: var(--sizyy);
 
@@ -297,19 +282,14 @@
     }
 
     &-title {
+      font-weight: 700;
       color: var(--white);
       margin-bottom: 3rem;
 
       @include md {
         margin-bottom: 2rem;
       }
-
-      h6 {
-        font-weight: 700;
-      }
     }
-
-    &-text {}
   }
 
   .lines {

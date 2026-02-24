@@ -13,7 +13,6 @@
     justify-content: flex-end;
 
     position: absolute;
-    // right: 14.5rem;
     right: 0;
     bottom: 0;
 
@@ -108,10 +107,6 @@
 
       @include md {
         display: none;
-      }
-
-      .team__slide {
-        // padding: 0 14.5rem 0 0;
       }
 
       .swiper-slide {
@@ -265,12 +260,18 @@
       left: 0;
       z-index: 2;
 
+      font-style: italic;
+      font-weight: 400;
+
       @include sm {
         gap: 2rem;
         padding: 0;
         opacity: 1 !important;
 
         position: static;
+
+        font-size: 1.6rem;
+        color: var(--blue);
       }
 
       &::before {
@@ -285,16 +286,6 @@
 
         @include sm {
           background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDMiIGhlaWdodD0iMzQiIHZpZXdCb3g9IjAgMCA0MyAzNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xOC40IDBMMTEuOCAyNEw5LjYgMTVDMTIuNDY2NyAxNSAxNC44IDE1LjgzMzMgMTYuNiAxNy41QzE4LjQgMTkuMTY2NyAxOS4zIDIxLjQ2NjcgMTkuMyAyNC40QzE5LjMgMjcuMjY2NyAxOC4zNjY3IDI5LjYgMTYuNSAzMS40QzE0LjcgMzMuMTMzMyAxMi40MzMzIDM0IDkuNyAzNEM2LjkgMzQgNC41NjY2NyAzMy4xMzMzIDIuNyAzMS40QzAuOSAyOS42IDAgMjcuMjY2NyAwIDI0LjRDMCAyMy41MzMzIDAuMDY2NjY2NyAyMi43IDAuMiAyMS45QzAuMzMzMzMzIDIxLjAzMzMgMC42IDIwLjAzMzMgMSAxOC45QzEuNCAxNy43NjY3IDEuOTY2NjcgMTYuMjY2NyAyLjcgMTQuNEw4LjUgMEgxOC40Wk00MiAwTDM1LjQgMjRMMzMuMiAxNUMzNi4wNjY3IDE1IDM4LjQgMTUuODMzMyA0MC4yIDE3LjVDNDIgMTkuMTY2NyA0Mi45IDIxLjQ2NjcgNDIuOSAyNC40QzQyLjkgMjcuMjY2NyA0MS45NjY3IDI5LjYgNDAuMSAzMS40QzM4LjMgMzMuMTMzMyAzNi4wMzMzIDM0IDMzLjMgMzRDMzAuNSAzNCAyOC4xNjY3IDMzLjEzMzMgMjYuMyAzMS40QzI0LjUgMjkuNiAyMy42IDI3LjI2NjcgMjMuNiAyNC40QzIzLjYgMjMuNTMzMyAyMy42NjY3IDIyLjcgMjMuOCAyMS45QzIzLjkzMzMgMjEuMDMzMyAyNC4yIDIwLjAzMzMgMjQuNiAxOC45QzI1IDE3Ljc2NjcgMjUuNTY2NyAxNi4yNjY3IDI2LjMgMTQuNEwzMi4xIDBINDJaIiBmaWxsPSIjMDMyMTU0Ii8+DQo8L3N2Zz4NCg==);
-        }
-      }
-
-      h5 {
-        font-style: italic;
-        font-weight: 400;
-
-        @include sm {
-          font-size: 1.6rem;
-          color: var(--blue);
         }
       }
     }
@@ -313,8 +304,6 @@
       }
     }
 
-    &-post {}
-
     &-name {
       max-width: 80%;
 
@@ -322,11 +311,8 @@
         max-width: 100%;
       }
 
-      h5 {
-
-        @include sm {
-          font-size: 2rem;
-        }
+      @include sm {
+        font-size: 2rem;
       }
     }
 

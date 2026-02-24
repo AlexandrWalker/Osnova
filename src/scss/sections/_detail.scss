@@ -102,17 +102,12 @@
     }
 
     &-head {
+      font-weight: 700;
 
-      * {
-        font-weight: 700;
-
-        @include md {
-          font-size: 1.4rem;
-        }
+      @include md {
+        font-size: 1.4rem;
       }
     }
-
-    &-body {}
 
     &-tags {
       display: flex;

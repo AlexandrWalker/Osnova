@@ -9,7 +9,7 @@
   }
 
   &__slider {
-    
+
     @include md {
       max-width: 100vw;
       width: calc(100% + (var(--container-padding) * 2));
@@ -34,11 +34,6 @@
     @include sm {
       width: 100%;
     }
-
-    // &:hover {
-    //   background-color: var(--blue);
-    //   color: var(--white);
-    // }
 
     &-img {
       aspect-ratio: 706/288;
@@ -102,11 +97,8 @@
 
     &-title {
 
-      h5 {
-
-        @include md {
-          font-size: 2rem;
-        }
+      @include md {
+        font-size: 2rem;
       }
     }
 

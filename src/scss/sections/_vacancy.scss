@@ -62,7 +62,7 @@
         width: 100%;
       }
 
-      h6 {
+      .h6 {
         font-weight: 700;
       }
 
@@ -202,11 +202,8 @@
         }
       }
 
-      h6 {
-
-        @include sm {
-          font-size: 1.4rem;
-        }
+      @include sm {
+        font-size: 1.4rem;
       }
     }
 
@@ -272,7 +269,7 @@
       padding: 2rem 2rem 3rem;
     }
 
-    h6 {
+    .h6 {
       font-weight: 700;
       font-size: 2rem;
     }

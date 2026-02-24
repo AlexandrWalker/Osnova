@@ -116,16 +116,14 @@
       padding: 1rem 0 0 1.3rem;
       background-color: var(--blue);
       overflow: hidden;
-      color: var(--white);
 
       position: absolute;
       top: 0;
       left: 0;
 
-      h6 {
-        font-weight: 400;
-        width: fit-content;
-      }
+      font-weight: 400;
+      // width: fit-content;
+      color: var(--white);
     }
 
     &-img {
@@ -172,10 +170,8 @@
 
     &-title {
 
-      h5 {
-        @include md {
-          font-size: 1.4rem;
-        }
+      @include md {
+        font-size: 1.4rem;
       }
     }
 

@@ -63,17 +63,13 @@
 
     &-title {
       margin-bottom: 3rem;
+      
+      font-weight: 700;
 
       @include md {
         margin-bottom: 2rem;
-      }
-
-      & * {
-        font-weight: 700;
-
-        @include md {
-          font-size: 2rem;
-        }
+        
+        font-size: 2rem;
       }
     }
 

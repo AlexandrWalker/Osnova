@@ -133,7 +133,6 @@
     padding: 10rem 0 3.6rem;
 
     position: sticky;
-    // top: 13rem;
     top: 2rem;
     z-index: 2;
 
@@ -203,7 +202,6 @@
     background-color: var(--blue);
 
     position: sticky;
-    // top: 13rem;
     top: 2rem;
 
     .over {
@@ -247,11 +245,8 @@
 
     &-title {
 
-      h5 {
-
-        @include sm {
-          font-size: 2rem;
-        }
+      @include sm {
+        font-size: 2rem;
       }
     }
 

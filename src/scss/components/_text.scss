@@ -1,6 +1,7 @@
 @use './../mixins' as *;
 
 /* Главный заголовок страницы */
+.h1,
 h1 {
   font-family: var(--second-family);
   font-weight: 700;
@@ -26,6 +27,7 @@ h1 {
 }
 
 /* Заголовки блоков */
+.h2,
 h2 {
   font-family: var(--second-family);
   font-style: normal;
@@ -49,6 +51,7 @@ h2 {
   }
 }
 
+.h3,
 h3 {
   font-weight: 700;
   font-size: 5rem;
@@ -70,12 +73,14 @@ h4 {
   }
 }
 
+.h5,
 h5 {
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 120%;
 }
 
+.h6,
 h6 {
   font-weight: 500;
   font-size: 2rem;
@@ -95,4 +100,22 @@ p {
   @include sm {
     font-size: 1.4rem;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: anywhere;
+
+  div {
+    min-width: 0;
+  }
+}
+
+.line {
+  display: block !important;
+  width: 100%;
 }

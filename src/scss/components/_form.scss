@@ -75,12 +75,7 @@
 
   &-group {
     width: 100%;
-    // height: 5rem;
     position: relative;
-
-    @include md {
-      // height: 4rem;
-    }
 
     &--file {
       display: flex;
@@ -162,7 +157,6 @@
     padding: 1rem 0 2rem 5rem;
     background: transparent;
     transition: all 0.3s ease;
-    // border-bottom: 0.1rem solid var(--white-10);
 
     font-family: var(--font-family);
     font-weight: 400;
@@ -208,7 +202,6 @@
 
       &+.form-label>div {
         top: -2rem;
-        // left: -3rem;
       }
     }
 
@@ -329,6 +322,7 @@
 
     @include md {
       height: 4rem;
+      padding: 1rem 0 2rem 2rem;
     }
 
     &::placeholder {
