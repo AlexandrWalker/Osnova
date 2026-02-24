@@ -91,8 +91,8 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
+  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -107,16 +107,16 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
-  font-weight: 700;
+  src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
@@ -2169,6 +2169,7 @@ h6 div {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.59);
+  -webkit-backdrop-filter: blur(7.65px);
   backdrop-filter: blur(7.65px);
   opacity: 0;
   visibility: hidden;
@@ -2470,6 +2471,7 @@ h6 div {
   background: rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
   box-shadow: 0px 4px 82.6px rgba(3, 33, 84, 0.2);
+  -webkit-backdrop-filter: blur(12.05px);
   backdrop-filter: blur(12.05px);
 }
 
@@ -2496,6 +2498,7 @@ h6 div {
 .header.show {
   --header-height: 5rem;
   background-color: var(--white);
+  -webkit-backdrop-filter: unset;
   backdrop-filter: unset;
 }
 
@@ -2505,6 +2508,7 @@ h6 div {
 
 .page__inner .header {
   background-color: var(--white);
+  -webkit-backdrop-filter: unset;
   backdrop-filter: unset;
   -webkit-box-shadow: unset;
   box-shadow: unset;
@@ -3423,6 +3427,7 @@ h6 div {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.59);
+  -webkit-backdrop-filter: blur(7.65px);
   backdrop-filter: blur(7.65px);
   opacity: 0;
   visibility: hidden;
