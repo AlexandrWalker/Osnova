@@ -268,6 +268,8 @@
 
     background-color: var(--sizyy-10);
     border-radius: 50%;
+    overflow: hidden;
+    transition: color 0.5s ease;
 
     position: relative;
     z-index: 2;

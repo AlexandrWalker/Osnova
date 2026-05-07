@@ -82,10 +82,12 @@
 
   &__slide {
     opacity: 0 !important;
+    visibility: hidden;
     overflow: visible !important;
 
     &.swiper-slide-active {
       opacity: 1 !important;
+      visibility: visible;
     }
   }
 
