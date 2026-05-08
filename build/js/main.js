@@ -69,6 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }, true);
 
+  // Сбрасываем позицию как можно раньше — до load
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!window.location.hash) return;
+    window.scrollTo(0, 0);
+  });
+
   window.addEventListener('load', () => {
     const hash = window.location.hash.slice(1);
     if (!hash) return;
