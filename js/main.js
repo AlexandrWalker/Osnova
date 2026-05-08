@@ -42,13 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const [path, hash] = href.split('#');
     if (!hash) return;
 
-    const currentPath = window.location.pathname;
-    if (path && path !== currentPath) return;
-
-    const target = document.getElementById(hash);
-    if (!target) return;
+    // Нормализуем пути — убираем trailing slash перед сравнением
+    const normalize = (p) => p.replace(/\/$/, '') || '/';
+    const currentPath = normalize(window.location.pathname);
+    if (path && normalize(path) !== currentPath) return;
 
     e.preventDefault();
+
+    const target = document.getElementById(hash);
+    if (!target) {
+      console.warn(`Элемент с id="${hash}" не найден.`);
+      return;
+    }
 
     const isMenuOpen = document.documentElement.classList.contains('menu--open');
 

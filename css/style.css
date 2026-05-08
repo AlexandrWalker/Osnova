@@ -100,6 +100,14 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
   src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
@@ -130,14 +138,6 @@ a {
 }
 
 @font-face {
-  font-family: Gotham;
-  font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
-  font-style: normal;
-}
-
-@font-face {
   font-family: HalvarBreit;
   font-display: swap;
   src: url("../fonts/HalvarBreit-Black.woff2") format("woff2"), url("../fonts/HalvarBreit-Black.woff") format("woff");
@@ -164,16 +164,16 @@ a {
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-ExtraThin.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraThin.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/HalvarBreit-ExtraThin.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraThin.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -7086,6 +7086,9 @@ h6 div {
   --btn-border-color: var(--blue);
   max-width: 41.5rem;
   width: 100%;
+  position: absolute;
+  left: calc(50% + 8rem);
+  bottom: 0;
 }
 
 .team__inner {
@@ -7116,10 +7119,12 @@ h6 div {
 
 .team__slider--big .swiper-slide {
   opacity: 0;
+  visibility: hidden;
 }
 
 .team__slider--big .swiper-slide-active {
   opacity: 1;
+  visibility: visible;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
@@ -7127,6 +7132,7 @@ h6 div {
 
 .team__slider--big .swiper-slide-next .team__item-cover {
   opacity: 0;
+  visibility: hidden;
 }
 
 .team__slider--min {
@@ -7148,15 +7154,17 @@ h6 div {
 
 .team__slider--min .swiper-slide {
   opacity: 0;
-  -webkit-transition: all 0.5s linear, opacity 0.3s linear, -webkit-transform 0.3s linear;
-  transition: all 0.5s linear, opacity 0.3s linear, -webkit-transform 0.3s linear;
-  -o-transition: all 0.5s linear, transform 0.3s linear, opacity 0.3s linear;
-  transition: all 0.5s linear, transform 0.3s linear, opacity 0.3s linear;
-  transition: all 0.5s linear, transform 0.3s linear, opacity 0.3s linear, -webkit-transform 0.3s linear;
+  visibility: hidden;
+  -webkit-transition: all 0.5s linear, opacity 0.3s linear, visibility 0.3s linear, -webkit-transform 0.3s linear;
+  transition: all 0.5s linear, opacity 0.3s linear, visibility 0.3s linear, -webkit-transform 0.3s linear;
+  -o-transition: all 0.5s linear, transform 0.3s linear, opacity 0.3s linear, visibility 0.3s linear;
+  transition: all 0.5s linear, transform 0.3s linear, opacity 0.3s linear, visibility 0.3s linear;
+  transition: all 0.5s linear, transform 0.3s linear, opacity 0.3s linear, visibility 0.3s linear, -webkit-transform 0.3s linear;
 }
 
 .team__slider--min .swiper-slide-active {
   opacity: 1;
+  visibility: visible;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
@@ -7164,6 +7172,7 @@ h6 div {
 
 .team__slider--min .swiper-slide-next {
   opacity: 1;
+  visibility: visible;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
@@ -7175,10 +7184,12 @@ h6 div {
 
 .team__slider--min .team__item-cover::before {
   opacity: 0;
+  visibility: hidden;
 }
 
 .team__slider--min .team__item-quote {
   opacity: 0;
+  visibility: hidden;
 }
 
 .team__slider--min .team__item-exp {
@@ -7239,6 +7250,7 @@ h6 div {
   background: -o-linear-gradient(bottom, #000000 0%, rgba(0, 0, 0, 0) 100%);
   background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
   opacity: 1;
+  visibility: visible;
   -webkit-transition: all 0.5s linear;
   -o-transition: all 0.5s linear;
   transition: all 0.5s linear;
@@ -7264,6 +7276,7 @@ h6 div {
   transition: all 0.5s linear;
   color: var(--white);
   opacity: 1;
+  visibility: visible;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -9629,6 +9642,7 @@ h6 div {
     grid-row: 2/3;
     margin-left: 6rem;
     max-width: 36.7rem;
+    position: static;
   }
 
   .team__inner {
@@ -9659,6 +9673,7 @@ h6 div {
 
   .team__slider--min .swiper-slide {
     opacity: 1;
+    visibility: visible;
   }
 
   .team__item-content {
@@ -10500,6 +10515,7 @@ h6 div {
     gap: 2rem;
     padding: 0;
     opacity: 1 !important;
+    visibility: visible;
     position: static;
     font-size: 1.6rem;
     color: var(--blue);
