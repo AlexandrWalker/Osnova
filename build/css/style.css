@@ -100,14 +100,6 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
   src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
@@ -118,6 +110,14 @@ a {
   font-display: swap;
   src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
   font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
@@ -244,16 +244,16 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Regular.woff2") format("woff2"), url("../fonts/Montserrat-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2"), url("../fonts/Montserrat-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -292,9 +292,9 @@ a {
 
 [data-animation=parallax-img] img {
   width: 100%;
-  height: auto;
-  -o-object-fit: contain;
-  object-fit: contain;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 .numbers {
@@ -2900,6 +2900,12 @@ h6 div {
 .header.show .header__phone a::after,
 .page__inner .header__phone a::after {
   background-color: var(--blue);
+}
+
+.header__btn {
+  border-left: 0.1rem solid var(--blue-50);
+  z-index: 0;
+  height: 100%;
 }
 
 .header__drop {
@@ -7985,6 +7991,8 @@ h6 div {
   }
 
   .btn--white:hover {
+    --btn-color: var(--white);
+    --btn-background: var(--blue);
     --btn-padding-x: 5rem;
   }
 

@@ -211,6 +211,10 @@
   }
 
   &__btn {
+    border-left: 0.1rem solid var(--blue-50);
+    z-index: 0;
+
+    height: 100%;
 
     @include md {
       display: none;

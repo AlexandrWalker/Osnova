@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     history.scrollRestoration = 'manual';
   }
 
-  // Длительность анимации закрытия меню в мс
   const MENU_CLOSE_DURATION = 1000;
 
   const lenis = new Lenis();
@@ -42,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const [path, hash] = href.split('#');
     if (!hash) return;
 
-    // Нормализуем пути — убираем trailing slash перед сравнением
     const normalize = (p) => p.replace(/\/$/, '') || '/';
     const currentPath = normalize(window.location.pathname);
     if (path && normalize(path) !== currentPath) return;
@@ -69,15 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }, true);
 
-  // Сбрасываем позицию как можно раньше — до load
-  document.addEventListener('DOMContentLoaded', () => {
-    if (!window.location.hash) return;
-    window.scrollTo(0, 0);
-  });
-
   window.addEventListener('load', () => {
     const hash = window.location.hash.slice(1);
     if (!hash) return;
+
+    // Сбрасываем позицию — страница полностью загружена,
+    // браузер уже не может прыгнуть сам
+    window.scrollTo(0, 0);
 
     const target = document.getElementById(hash);
     if (!target) {
@@ -85,11 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    window.scrollTo(0, 0);
-
-    requestAnimationFrame(() => {
-      scrollToTarget(target);
-    });
+    scrollToTarget(target);
   });
 
   function initObjectVideo(swiper) {

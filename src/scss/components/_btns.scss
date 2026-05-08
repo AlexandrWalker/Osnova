@@ -102,6 +102,8 @@
     &:hover {
 
       @include dosm {
+        --btn-color: var(--white);
+        --btn-background: var(--blue);
         --btn-padding-x: 5rem;
       }
     }
