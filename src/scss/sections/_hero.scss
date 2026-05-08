@@ -282,8 +282,8 @@
   &:hover {
     color: var(--white);
 
-    &::before {
-      clip-path: circle(50% at 50% 50%);
+    &::after {
+      transform: translate(-50%, -50%) scale(1);
     }
 
     i {
@@ -291,19 +291,19 @@
     }
   }
 
-  &::before {
+  &::after {
     content: "";
     width: 105%;
     height: 105%;
     background-color: var(--blue);
-    clip-path: circle(0% at 50% 50%);
-    transition: clip-path 0.8s ease;
+    border-radius: 50%;
+    transition: all 0.8s ease;
 
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 1;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
   }
 }
 

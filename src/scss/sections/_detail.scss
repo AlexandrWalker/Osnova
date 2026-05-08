@@ -1,6 +1,7 @@
 @use './../mixins' as *;
 
 .detail {
+  overflow: visible;
 
   &__inner {
     display: grid;
@@ -80,8 +81,13 @@
     flex-direction: column;
     gap: 3rem;
 
+    position: sticky;
+    top: var(--header-height);
+
     @include md {
       gap: 2rem;
+
+      position: static;
     }
   }
 

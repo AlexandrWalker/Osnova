@@ -134,6 +134,7 @@
       .work__item:hover & {
 
         @include dosm {
+          transition: 0.2s;
           text-decoration-color: var(--white);
         }
       }

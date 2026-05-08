@@ -22,13 +22,6 @@
 @font-face {
 	font-family: Gotham;
 	font-display: swap;
-	src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-	font-weight: 350;
-	font-style: normal;
-}
-@font-face {
-	font-family: Gotham;
-	font-display: swap;
 	src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
 	font-weight: 500;
 	font-style: normal;
@@ -48,6 +41,13 @@
 	font-style: normal;
 }
 @font-face {
+	font-family: Gotham;
+	font-display: swap;
+	src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+	font-weight: 350;
+	font-style: normal;
+}
+@font-face {
 	font-family: HalvarBreit;
 	font-display: swap;
 	src: url("../fonts/HalvarBreit-Black.woff2") format("woff2"), url("../fonts/HalvarBreit-Black.woff") format("woff");
@@ -57,15 +57,15 @@
 @font-face {
 	font-family: HalvarBreit;
 	font-display: swap;
-	src: url("../fonts/HalvarBreit-ExtraBold.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraBold.woff") format("woff");
-	font-weight: 800;
+	src: url("../fonts/HalvarBreit-Bold.woff2") format("woff2"), url("../fonts/HalvarBreit-Bold.woff") format("woff");
+	font-weight: 700;
 	font-style: normal;
 }
 @font-face {
 	font-family: HalvarBreit;
 	font-display: swap;
-	src: url("../fonts/HalvarBreit-Bold.woff2") format("woff2"), url("../fonts/HalvarBreit-Bold.woff") format("woff");
-	font-weight: 700;
+	src: url("../fonts/HalvarBreit-ExtraBold.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraBold.woff") format("woff");
+	font-weight: 800;
 	font-style: normal;
 }
 @font-face {

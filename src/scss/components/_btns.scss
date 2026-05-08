@@ -84,6 +84,28 @@
   .icon-chevron-min {
     transform: rotate(-90deg);
   }
+
+  &--white {
+    --btn-height: 100%;
+    --btn-padding-x: 5rem;
+    --btn-color: var(--blue);
+    --btn-background: var(--white);
+
+    border: 0;
+    background-color: var(--btn-background);
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+
+      @include dosm {
+        --btn-padding-x: 5rem;
+      }
+    }
+  }
 }
 
 .magnetic-btn {

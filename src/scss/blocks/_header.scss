@@ -210,6 +210,13 @@
     }
   }
 
+  &__btn {
+
+    @include md {
+      display: none;
+    }
+  }
+
   &__drop {
     width: 100%;
     height: 100%;

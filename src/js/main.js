@@ -7,55 +7,79 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  /**
-   * Инициализация Lenis
-   */
-  const lenis = new Lenis({
-    anchors: {
-      offset: -60,
-      duration: 4,
-    },
-  });
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // Длительность анимации закрытия меню в мс
+  const MENU_CLOSE_DURATION = 1000;
+
+  const lenis = new Lenis();
+
+  window.lenis = lenis;
 
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
   });
 
-  /* new */
-  /**
- * Функция для скролла к якорю из URL
- */
-  function scrollToHash() {
-    const hash = window.location.hash;
-    if (!hash) return;
+  gsap.ticker.lagSmoothing(0);
 
-    // Удаляем ведущий символ '#', если нужен чистый ID
-    const targetId = hash.slice(1);
-    const target = document.getElementById(targetId);
-
-    if (target) {
-      lenis.scrollTo(target, {
-        offset: -60, // Согласуем с anchors.offset
-        duration: 4,
-      });
-    } else {
-      console.warn(`Элемент с id="${targetId}" не найден.`);
-    }
+  function scrollToTarget(target) {
+    lenis.scrollTo(target, {
+      offset: -60,
+      duration: 4,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
   }
 
-  /**
-   * Вызываем скролл к якорю после инициализации Lenis
-   * Используем requestAnimationFrame для синхронизации с рендерингом
-   */
-  requestAnimationFrame(() => {
-    scrollToHash();
-  });
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
 
-  /**
-   * Обрабатываем изменения хеша (например, при клике по ссылкам #section)
-   */
-  window.addEventListener('hashchange', scrollToHash);
-  /* /new */
+    const href = link.getAttribute('href');
+    if (!href || !href.includes('#')) return;
+
+    const [path, hash] = href.split('#');
+    if (!hash) return;
+
+    const currentPath = window.location.pathname;
+    if (path && path !== currentPath) return;
+
+    const target = document.getElementById(hash);
+    if (!target) return;
+
+    e.preventDefault();
+
+    const isMenuOpen = document.documentElement.classList.contains('menu--open');
+
+    if (isMenuOpen) {
+      lenis.stop();
+      setTimeout(() => {
+        lenis.start();
+        scrollToTarget(target);
+      }, MENU_CLOSE_DURATION);
+    } else {
+      scrollToTarget(target);
+    }
+
+  }, true);
+
+  window.addEventListener('load', () => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+
+    const target = document.getElementById(hash);
+    if (!target) {
+      console.warn(`Элемент с id="${hash}" не найден.`);
+      return;
+    }
+
+    window.scrollTo(0, 0);
+
+    requestAnimationFrame(() => {
+      scrollToTarget(target);
+    });
+  });
 
   function initObjectVideo(swiper) {
     const slides = swiper.el.querySelectorAll('.object__video');
@@ -838,7 +862,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================
   document.querySelectorAll('[data-animation="parallax-img"]').forEach(container => {
     const img = container.querySelector('img');
-    if (img) gsap.fromTo(img, { y: '-10%', scale: 0.9 }, { y: '10%', scale: 1, scrollTrigger: { trigger: container, start: 'top 90%', end: 'bottom top', scrub: true } });
+    if (img) gsap.fromTo(img, { y: '-10%', scale: 1 }, { y: '10%', scale: 1.1, scrollTrigger: { trigger: container, start: 'top 90%', end: 'bottom top', scrub: true } });
   });
 
   // =========================

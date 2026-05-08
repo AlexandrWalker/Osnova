@@ -37,17 +37,9 @@
   overflow: hidden;
 
   img {
-    width: 120%;
-    min-width: 120%;
-    height: 120% !important;
-    margin-top: -10%;
-    margin-left: -10%;
-    object-fit: cover;
-
-    @include sm {
-      height: 120% !important;
-      margin-top: -10%;
-    }
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 }
 
@@ -94,4 +86,9 @@
   @include md {
     padding: 1rem;
   }
+}
+
+.fancybox__backdrop {
+  background: rgba(0, 0, 0, 0.59);
+  backdrop-filter: blur(7.65px);
 }
