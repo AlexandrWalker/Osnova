@@ -55,12 +55,18 @@
       max-width: 41.5rem;
       width: 100%;
 
+      position: absolute;
+      left: calc(50% + 8rem);
+      bottom: 0;
+
       @include md {
         grid-column: 2/3;
         grid-row: 2/3;
 
         margin-left: 6rem;
         max-width: 36.7rem;
+
+        position: static;
       }
 
       @include sm {
@@ -111,10 +117,12 @@
 
       .swiper-slide {
         opacity: 0;
+        visibility: hidden;
       }
 
       .swiper-slide-active {
         opacity: 1;
+        visibility: visible;
 
         transform: scale(1);
       }
@@ -123,6 +131,7 @@
 
         .team__item-cover {
           opacity: 0;
+          visibility: hidden;
         }
       }
     }
@@ -155,21 +164,25 @@
 
       .swiper-slide {
         opacity: 0;
-        transition: all 0.5s linear, transform 0.3s linear, opacity 0.3s linear;
+        visibility: hidden;
+        transition: all 0.5s linear, transform 0.3s linear, opacity 0.3s linear, visibility 0.3s linear;
 
         @include md {
           opacity: 1;
+          visibility: visible;
         }
       }
 
       .swiper-slide-active {
         opacity: 1;
+        visibility: visible;
 
         transform: scale(1);
       }
 
       .swiper-slide-next {
         opacity: 1;
+        visibility: visible;
 
         transform: scale(1);
       }
@@ -180,10 +193,12 @@
 
       .team__item-cover::before {
         opacity: 0;
+        visibility: hidden;
       }
 
       .team__item-quote {
         opacity: 0;
+        visibility: hidden;
       }
 
       .team__item-exp {
@@ -237,6 +252,7 @@
         height: 21.7rem;
         background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
         opacity: 1;
+        visibility: visible;
         transition: all 0.5s linear;
 
         position: absolute;
@@ -255,6 +271,7 @@
       transition: all 0.5s linear;
       color: var(--white);
       opacity: 1;
+      visibility: visible;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -267,6 +284,7 @@
         gap: 2rem;
         padding: 0;
         opacity: 1 !important;
+        visibility: visible;
 
         position: static;
 
