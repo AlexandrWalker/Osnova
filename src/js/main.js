@@ -23,10 +23,38 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Якоря на текущей странице
    */
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  // document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  //   anchor.addEventListener('click', (e) => {
+  //     const hash = anchor.getAttribute('href');
+  //     if (!hash || hash === '#') return;
+
+  //     const target = document.querySelector(hash);
+  //     if (!target) return;
+
+  //     e.preventDefault();
+  //     history.pushState(null, null, hash);
+
+  //     lenis.scrollTo(target, {
+  //       offset: -60,
+  //       duration: 1.5,
+  //     });
+  //   });
+  // });
+
+  document.querySelectorAll('a[href^="#"], a[href*="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
-      const hash = anchor.getAttribute('href');
-      if (!hash || hash === '#') return;
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+
+      // Парсим ссылку
+      const url = new URL(href, window.location.origin);
+
+      // Если путь отличается от текущего — пусть браузер переходит на другую страницу
+      if (url.pathname !== window.location.pathname) return;
+
+      // Путь совпадает — скроллим без перезагрузки
+      const hash = url.hash;
+      if (!hash) return;
 
       const target = document.querySelector(hash);
       if (!target) return;
