@@ -108,16 +108,16 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
+  src: url("../fonts/Gotham-Medium.woff2") format("woff2"), url("../fonts/Gotham-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -236,16 +236,16 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -9513,6 +9513,13 @@ h6 div {
   }
 
   .services__blocks {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
     margin-bottom: 3rem;
   }
 
