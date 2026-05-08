@@ -7,81 +7,54 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-
-  const MENU_CLOSE_DURATION = 1000;
+  /**
+   * Инициализация Lenis
+   */
+  // Запрещаем браузеру самому прыгать к якорю
+  history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
 
   const lenis = new Lenis();
-
-  window.lenis = lenis;
 
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
   });
 
-  gsap.ticker.lagSmoothing(0);
+  /**
+   * Якоря на текущей странице
+   */
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      const hash = anchor.getAttribute('href');
+      if (!hash || hash === '#') return;
 
-  function scrollToTarget(target) {
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      e.preventDefault();
+      history.pushState(null, null, hash);
+
+      lenis.scrollTo(target, {
+        offset: -60,
+        duration: 1.5,
+      });
+    });
+  });
+
+  /**
+   * Ждём полной загрузки страницы, потом скроллим к якорю
+   */
+  window.addEventListener('load', () => {
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const target = document.querySelector(hash);
+    if (!target) return;
+
     lenis.scrollTo(target, {
       offset: -60,
-      duration: 4,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 1.5,
     });
-  }
-
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href]');
-    if (!link) return;
-
-    const href = link.getAttribute('href');
-    if (!href || !href.includes('#')) return;
-
-    const [path, hash] = href.split('#');
-    if (!hash) return;
-
-    const normalize = (p) => p.replace(/\/$/, '') || '/';
-    const currentPath = normalize(window.location.pathname);
-    if (path && normalize(path) !== currentPath) return;
-
-    e.preventDefault();
-
-    const target = document.getElementById(hash);
-    if (!target) {
-      console.warn(`Элемент с id="${hash}" не найден.`);
-      return;
-    }
-
-    const isMenuOpen = document.documentElement.classList.contains('menu--open');
-
-    if (isMenuOpen) {
-      lenis.stop();
-      setTimeout(() => {
-        lenis.start();
-        scrollToTarget(target);
-      }, MENU_CLOSE_DURATION);
-    } else {
-      scrollToTarget(target);
-    }
-
-  }, true);
-
-  window.addEventListener('load', () => {
-    const hash = window.location.hash.slice(1);
-    if (!hash) return;
-
-    // Сбрасываем позицию — страница полностью загружена,
-    // браузер уже не может прыгнуть сам
-    window.scrollTo(0, 0);
-
-    const target = document.getElementById(hash);
-    if (!target) {
-      console.warn(`Элемент с id="${hash}" не найден.`);
-      return;
-    }
-
-    scrollToTarget(target);
   });
 
   function initObjectVideo(swiper) {
