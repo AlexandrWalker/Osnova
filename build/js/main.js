@@ -10,14 +10,94 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Инициализация Lenis
    */
-  // Запрещаем браузеру самому прыгать к якорю
-  history.scrollRestoration = 'manual';
-  window.scrollTo(0, 0);
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+  }
+
+  const MENU_CLOSE_DURATION = 400;
 
   const lenis = new Lenis();
 
+  window.lenis = lenis;
+
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
+  });
+
+  gsap.ticker.lagSmoothing(0);
+
+  function scrollToTarget(target) {
+    lenis.scrollTo(target, {
+      offset: -60,
+      duration: 1.5,
+    });
+  }
+
+  function waitForPreloader() {
+    return new Promise((resolve) => {
+      if (!document.documentElement.classList.contains('preloader--active')) {
+        resolve();
+        return;
+      }
+
+      const observer = new MutationObserver(() => {
+        if (!document.documentElement.classList.contains('preloader--active')) {
+          observer.disconnect();
+          resolve();
+        }
+      });
+
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href || !href.includes('#')) return;
+
+    const hash = href.split('#')[1];
+    if (!hash) return;
+
+    // Если элемента нет на текущей странице — браузер переходит сам
+    const target = document.getElementById(hash);
+    if (!target) return;
+
+    // Элемент найден — скроллим без перезагрузки
+    e.preventDefault();
+    history.pushState(null, null, `#${hash}`);
+
+    const isMenuOpen = document.documentElement.classList.contains('menu--open');
+
+    if (isMenuOpen) {
+      lenis.stop();
+      setTimeout(() => {
+        lenis.start();
+        scrollToTarget(target);
+      }, MENU_CLOSE_DURATION);
+    } else {
+      scrollToTarget(target);
+    }
+
+  }, true);
+
+  window.addEventListener('load', () => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+
+    const target = document.getElementById(hash);
+    if (!target) return;
+
+    window.scrollTo(0, 0);
+
+    waitForPreloader().then(() => {
+      scrollToTarget(target);
+    });
   });
 
   /**
@@ -41,49 +121,200 @@ document.addEventListener('DOMContentLoaded', () => {
   //   });
   // });
 
-  document.querySelectorAll('a[href^="#"], a[href*="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (!href) return;
-
-      // Парсим ссылку
-      const url = new URL(href, window.location.origin);
-
-      // Если путь отличается от текущего — пусть браузер переходит на другую страницу
-      if (url.pathname !== window.location.pathname) return;
-
-      // Путь совпадает — скроллим без перезагрузки
-      const hash = url.hash;
-      if (!hash) return;
-
-      const target = document.querySelector(hash);
-      if (!target) return;
-
-      e.preventDefault();
-      history.pushState(null, null, hash);
-
-      lenis.scrollTo(target, {
-        offset: -60,
-        duration: 1.5,
-      });
-    });
-  });
-
   /**
-   * Ждём полной загрузки страницы, потом скроллим к якорю
+   * Прелоадер
    */
-  window.addEventListener('load', () => {
-    const hash = window.location.hash;
-    if (!hash) return;
+  (function () {
+    window.PRELOADER_MODE = window.PRELOADER_MODE || {
+      mode: 'overlay',
+      assets: {
+        logoWhiteSrc: './images/logo/preloader-logo-1.svg',
+        logoCyanSrc: './images/logo/preloader-logo-2.svg'
+      },
+      logoWidth: 500,
+      logoHeight: 223,
+      safetyTimeoutMs: 8000,
+      overlayHideDelayMs: 600
+    };
 
-    const target = document.querySelector(hash);
-    if (!target) return;
+    const config = window.PRELOADER_MODE;
+    const mode = config.mode;
 
-    lenis.scrollTo(target, {
-      offset: -60,
-      duration: 1.5,
-    });
-  });
+    const preloaderEl = document.querySelector('.preloader');
+    if (!preloaderEl) return;
+
+    document.body.classList.add('no-scroll');
+
+    // Добавляем класс на html пока прелоадер активен
+    document.documentElement.classList.add('preloader--active');
+
+    const safetyTimer = setTimeout(function () {
+      const preloader = document.querySelector('.preloader');
+      if (preloader && preloader.style.display !== 'none') {
+        preloader.style.display = 'none';
+        restoreScroll();
+      }
+    }, config.safetyTimeoutMs);
+
+    function restoreScroll() {
+      document.body.classList.remove('no-scroll');
+    }
+
+    function clearSafety() {
+      try { clearTimeout(safetyTimer); } catch (e) { }
+    }
+
+    const canvas = document.getElementById('logo-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function hidePreloader() {
+      gsap.set(canvas, { opacity: 0 });
+
+      gsap.to(preloaderEl, {
+        scaleY: 0,
+        duration: 0.7,
+        ease: 'power2.inOut',
+        transformOrigin: 'top center',
+        onComplete: function () {
+          preloaderEl.style.display = 'none';
+          restoreScroll();
+          clearSafety();
+
+          // Удаляем класс после полного скрытия прелоадера
+          document.documentElement.classList.remove('preloader--active');
+        }
+      });
+
+      gsap.to(canvas, {
+        scaleY: 2,
+        duration: 0.7,
+        ease: 'power2.inOut',
+        transformOrigin: 'bottom center'
+      });
+    }
+
+    function initCanvas() {
+      const logoWidth = config.logoWidth;
+      const logoHeight = config.logoHeight;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = logoWidth * dpr;
+      canvas.height = logoHeight * dpr;
+      if (ctx.setTransform) ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+      return { logoWidth, logoHeight };
+    }
+
+    function startOverlayPreloader() {
+      const { logoWidth, logoHeight } = initCanvas();
+      let fillHeight = 0;
+
+      const logoWhite = new Image();
+      const logoCyan = new Image();
+      let loadedImages = 0;
+
+      function draw() {
+        ctx.clearRect(0, 0, logoWidth, logoHeight);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.drawImage(logoWhite, 0, 0, logoWidth, logoHeight);
+        ctx.globalCompositeOperation = 'source-atop';
+        ctx.fillStyle = '#FFFFFF';
+        var rectY = logoHeight - fillHeight;
+        ctx.fillRect(0, rectY, logoWidth, fillHeight);
+        ctx.globalCompositeOperation = 'source-over';
+      }
+
+      function onImageLoaded() {
+        loadedImages++;
+        if (loadedImages === 2) start();
+      }
+
+      logoWhite.onload = onImageLoaded;
+      logoCyan.onload = onImageLoaded;
+      logoWhite.onerror = onImageLoaded;
+      logoCyan.onerror = onImageLoaded;
+      logoWhite.src = config.assets.logoWhiteSrc;
+      logoCyan.src = config.assets.logoCyanSrc;
+
+      function start() {
+        draw();
+
+        var progress = { val: 0 };
+
+        gsap.to(progress, {
+          val: 30,
+          duration: 0.4,
+          ease: 'power2.out',
+          onUpdate: function () {
+            fillHeight = (progress.val / 100) * logoHeight;
+            draw();
+          }
+        });
+
+        gsap.to(progress, {
+          val: 85,
+          duration: 2.5,
+          ease: 'power1.out',
+          delay: 0.4,
+          onUpdate: function () {
+            fillHeight = (progress.val / 100) * logoHeight;
+            draw();
+          }
+        });
+
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+          gsap.killTweensOf(progress);
+          gsap.to(progress, {
+            val: 100,
+            duration: 0.4,
+            ease: 'power2.out',
+            onUpdate: function () {
+              fillHeight = (progress.val / 100) * logoHeight;
+              draw();
+            },
+            onComplete: function () {
+              setTimeout(hidePreloader, config.overlayHideDelayMs);
+            }
+          });
+        });
+      }
+    }
+
+    function startSingleLogoPreloader() {
+      const { logoWidth, logoHeight } = initCanvas();
+
+      const logo = new Image();
+      logo.onload = function () {
+        ctx.clearRect(0, 0, logoWidth, logoHeight);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.drawImage(logo, 0, 0, logoWidth, logoHeight);
+        ctx.globalCompositeOperation = 'source-over';
+
+        gsap.fromTo(canvas, { opacity: 0.2, scaleY: 0.98 }, { opacity: 1, scaleY: 1, duration: 0.4, ease: 'power2.out' });
+
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+          hidePreloader();
+        });
+      };
+
+      logo.onerror = function () {
+        window.addEventListener('load', function onWindowLoad() {
+          window.removeEventListener('load', onWindowLoad);
+          hidePreloader();
+        });
+      };
+
+      logo.src = config.assets.logoWhiteSrc;
+    }
+
+    if (mode === 'singleLogo') {
+      startSingleLogoPreloader();
+    } else {
+      startOverlayPreloader();
+    }
+  })();
 
   function initObjectVideo(swiper) {
     const slides = swiper.el.querySelectorAll('.object__video');

@@ -1,0 +1,26 @@
+@use './../mixins' as *;
+
+.preloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue);
+  transform-origin: top center;
+  
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+canvas {
+  display: block;
+  width: 50rem;
+  height: 22.3rem;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  @include md {
+    width: 80%;
+    height: auto;
+  }
+}
