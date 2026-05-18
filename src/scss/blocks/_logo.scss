@@ -6,7 +6,8 @@
   align-items: center;
   width: 22.5rem;
   height: 15rem;
-  background-color: var(--white);
+  // background-color: var(--white);
+  background-color: var(--blue);
   flex-shrink: 0;
   transition: all 0.5s ease;
 
@@ -46,8 +47,10 @@
     }
 
     svg {
-      width: 100%;
-      height: auto;
+      // width: 100%;
+      width: auto;
+      // height: auto;
+      height: 3.9rem;
 
       path {
         fill: var(--white);
@@ -67,12 +70,14 @@
   }
 
   svg {
+    width: auto;
     height: 6.8rem;
     object-fit: contain;
     transition: all 0.5s ease;
 
     path {
-      fill: var(--blue);
+      // fill: var(--blue);
+      fill: var(--white);
       transition: fill 0.5s ease;
     }
 
