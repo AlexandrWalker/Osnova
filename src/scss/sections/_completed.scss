@@ -2,17 +2,59 @@
 
 .completed {
   background-color: var(--white);
-  padding: 10rem 0;
   margin: 0;
   color: var(--blue);
   position: relative;
 
-  @include md {
-    padding: 4rem 0;
+  &__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10rem 0;
+
+    position: relative;
+    z-index: 2;
+
+    @include md {
+      flex-direction: column;
+      padding: 4rem 0;
+    }
+
+    @include sm {
+      padding: 3rem 0;
+    }
   }
 
-  @include sm {
-    padding: 3rem 0;
+  &__head {
+    // max-width: 85.1rem;
+    max-width: 70rem;
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include md {
+      display: none;
+    }
+  }
+
+  &__btn {
+    --btn-border-color: var(--blue);
+    --btn-color: var(--blue);
+
+    max-width: 43rem;
+    width: 100%;
+
+    &--active,
+    &:hover {
+      --btn-border-color: var(--blue);
+      --btn-background: var(--blue);
+      --btn-color: var(--white);
+
+      background-color: var(--btn-background);
+    }
   }
 
   &__mask {
@@ -25,10 +67,12 @@
     font-size: 20rem;
     line-height: 0.66;
     color: var(--page-bg);
+    pointer-events: none;
 
     position: absolute;
     bottom: 7.6rem;
-    left: 8.8rem;
+    left: -1.2rem;
+    z-index: 1;
 
     @include md {
       display: none;
@@ -39,47 +83,47 @@
     }
   }
 
-  &__inner {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-right: 15rem;
-
-    @include md {
-      flex-direction: column;
-      padding-right: 0;
-    }
-  }
-
-  &__head {
-    max-width: 85.1rem;
-  }
-
   &__body {
-    width: auto;
-    height: 99.5rem;
-
-    margin-top: -2.2rem;
-    margin-bottom: -2.1rem;
-
+    width: 88.2rem;
+    height: 110.7rem;
+    margin-top: -7.8rem;
+    margin-bottom: -7.8rem;
     position: relative;
 
     @include md {
       display: none;
     }
+  }
+
+  &__block {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    &--active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__markers {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    position: absolute;
+    inset: 0;
+    z-index: 2;
 
     img {
-      max-width: unset;
-      width: 84.233rem;
-      // height: 84.6rem;
-      height: 80.6rem;
+      max-width: 100%;
+      width: auto;
+      height: 100%;
       object-fit: contain;
-      pointer-events: none;
-
-      position: absolute;
-      top: 2.9rem;
-      left: -15rem;
-      z-index: 2;
 
       @include md {
         width: 100%;
@@ -229,29 +273,33 @@
       }
     }
 
-    .btn {
-      --btn-border-color: var(--blue);
-      --btn-color: var(--blue);
+    // .btn {
+    //   --btn-border-color: var(--blue);
+    //   --btn-color: var(--blue);
 
-      max-width: 43.5rem;
-      width: 100%;
+    //   max-width: 43.5rem;
+    //   width: 100%;
 
-      @include md {
-        display: none;
-      }
-    }
+    //   @include md {
+    //     display: none;
+    //   }
+    // }
   }
 
   svg {
-    max-width: unset;
-    width: 58.666rem;
-    // height: 103.5rem;
-    height: 99.5rem;
+    max-width: 100%;
+    width: auto;
+    height: 100%;
     object-fit: contain;
-    cursor: pointer;
 
     position: relative;
     z-index: 1;
+
+    &-link {
+      cursor: pointer;
+      outline: none;
+      text-decoration: none;
+    }
   }
 
   path {
@@ -260,5 +308,17 @@
 
   filter {
     transition: all 0.3s ease;
+  }
+
+  .lines {
+    z-index: -1;
+
+    @include md {
+      display: none;
+    }
+
+    &-line {
+      background-color: var(--blue-10);
+    }
   }
 }

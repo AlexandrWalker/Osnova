@@ -1351,6 +1351,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initServicesToggle();
 
+  (function () {
+    const completed = document.querySelector('.completed');
+
+    if (!completed) return;
+
+    const buttons = completed.querySelectorAll('.completed__btn');
+    const blocks = completed.querySelectorAll('.completed__block');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const city = btn.dataset.city;
+
+        // Снимаем активные классы со всех кнопок и блоков
+        buttons.forEach(b => b.classList.remove('completed__btn--active'));
+        blocks.forEach(b => b.classList.remove('completed__block--active'));
+
+        // Добавляем активные классы совпадающим элементам
+        btn.classList.add('completed__btn--active');
+
+        blocks.forEach(block => {
+          if (block.dataset.city === city) {
+            block.classList.add('completed__block--active');
+          }
+        });
+      });
+    });
+  })();
+
 });
 
 /*=================Скрипт для блока со скролом=====================*/
