@@ -16,6 +16,7 @@ html {
   &.video--show {
 
     &::after {
+      pointer-events: all;
       transition: all 0.5s ease 0.3s;
       opacity: 1;
     }

@@ -12,6 +12,7 @@ html {
 }
 
 html.video--show::after {
+  pointer-events: all;
   -webkit-transition: all 0.5s ease 0.3s;
   -o-transition: all 0.5s ease 0.3s;
   transition: all 0.5s ease 0.3s;
@@ -117,24 +118,16 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
   src: url("../fonts/Gotham-Bold.woff2") format("woff2"), url("../fonts/Gotham-Bold.woff") format("woff");
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
+  src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -159,6 +152,14 @@ a {
   font-display: swap;
   src: url("../fonts/Gotham-Ultra.woff2") format("woff2"), url("../fonts/Gotham-Ultra.woff") format("woff");
   font-weight: 1000;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gotham;
+  font-display: swap;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
@@ -189,16 +190,16 @@ a {
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-ExtraThin.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraThin.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/HalvarBreit-ExtraThin.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraThin.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
@@ -261,16 +262,16 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -2179,7 +2180,7 @@ h6 div {
 
 .video-thumb.active {
   width: calc(100% - 5rem);
-  height: calc(100% - 5rem);
+  height: calc(100% - 15rem);
   position: fixed;
   top: 50%;
   bottom: unset;

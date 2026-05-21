@@ -831,6 +831,17 @@ document.addEventListener('DOMContentLoaded', () => {
       thumbIframe.src = thumbSrc;
       let isPaused = false;
 
+      function closeVideo() {
+        if (videoThumb.classList.contains('active')) {
+          document.body.classList.remove('no-scroll');
+          document.documentElement.classList.remove('video--show');
+          lenis.start();
+          videoThumb.classList.remove('active');
+          iframeWrapper.innerHTML = `<iframe id="thumbIframe" src="${thumbSrc}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>`;
+          isPaused = false;
+        }
+      }
+
       // Клик по миниатюре для увеличения и запуска основного видео
       videoThumb.addEventListener('click', () => {
         if (!videoThumb.classList.contains('active')) {
@@ -839,14 +850,14 @@ document.addEventListener('DOMContentLoaded', () => {
           lenis.stop();
           videoThumb.classList.add('active');
           iframeWrapper.innerHTML = `<iframe
-        id="mainVideo"
-        src="${mainSrc}"
-        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>`;
+          id="mainVideo"
+          src="${mainSrc}"
+          allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>`;
           const mainIframe = document.getElementById('mainVideo');
-          mainIframe.style.pointerEvents = "auto";
+          mainIframe.style.pointerEvents = 'auto';
 
           // Клик по контейнеру для паузы/воспроизведения
           videoThumb.addEventListener('click', () => {
@@ -861,23 +872,22 @@ document.addEventListener('DOMContentLoaded', () => {
       exitBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (videoThumb.classList.contains('active')) {
-          // Если видео увеличено → возвращаем миниатюру
-          document.body.classList.remove('no-scroll');
-          document.documentElement.classList.remove('video--show');
-          lenis.start();
-          videoThumb.classList.remove('active');
-          iframeWrapper.innerHTML = `<iframe id="thumbIframe" src="${thumbSrc}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>`;
-          isPaused = false;
+          closeVideo();
         } else {
-          // Если миниатюра без видео → плавно скрываем
           videoThumb.classList.add('hide');
           setTimeout(() => {
             videoThumb.style.display = 'none';
-          }, 500); // соответствует времени transition opacity
+          }, 500);
+        }
+      });
+
+      // Клик вне videoThumb закрывает видео
+      document.addEventListener('click', (e) => {
+        if (!videoThumb.contains(e.target) && videoThumb.classList.contains('active')) {
+          closeVideo();
         }
       });
     }
-
   })();
 
   /**
