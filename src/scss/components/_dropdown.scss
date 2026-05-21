@@ -87,6 +87,45 @@
     transition: all 0.5s ease;
     z-index: 100;
 
+    &::after {
+      content: "\e906";
+      font-family: 'OsnovaIconFont' !important;
+      speak: never;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 2rem;
+      color: var(--blue);
+      opacity: 0;
+      transition: all 0.3s ease;
+
+      display: block;
+      width: fit-content;
+      height: 3.3rem;
+      margin-left: auto;
+      pointer-events: none;
+
+      position: sticky;
+      right: 1.5rem;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    &.dropdown-content--long {
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    .dropdown-item:last-child {
+      padding-bottom: 0 !important;
+    }
+
     .show & {
       max-height: 20rem;
       opacity: 1;

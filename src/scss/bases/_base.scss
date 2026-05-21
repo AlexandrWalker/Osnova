@@ -12,9 +12,34 @@ html {
   @include md {
     font-size: 62.5%;
   }
+
+  &.video--show {
+
+    &::after {
+      transition: all 0.5s ease 0.3s;
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.59);
+    backdrop-filter: blur(7.65px);
+    transition: all 0.5s ease;
+    opacity: 0;
+
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+  }
 }
 
 @media (min-width: 1921px) {
+
   html {
     $ratio: 0;
     font-size: calc(10px + ($ratio * 10) * ((100vw - var(--refRes) * 1px) / var(--refRes)));

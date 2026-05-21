@@ -9,16 +9,26 @@
   display: none;
   width: 100%;
   overflow: hidden;
-  transition: transform 0.5s linear;
-  transition-delay: 0.3s;
+  transition: transform 0.5s linear 0.3s, background-color 0.5s ease;
   background-color: var(--blue);
 
   @include sm {
     display: block;
   }
 
+  .footer--show & {
+    background-color: var(--white);
+  }
+
   .btn {
     --btn-width: 100%;
     --btn-height: 6rem;
+
+    transition: all 0.5s ease;
+
+    .footer--show & {
+      --btn-color: var(--blue);
+      --btn-border-color: var(--blue);
+    }
   }
 }

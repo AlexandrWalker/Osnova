@@ -36,7 +36,7 @@
       width: 63.9rem;
       height: 20.9rem;
       right: calc((18.1rem - var(--container-padding))*-1);
-      bottom: -12.9rem;
+      bottom: -16rem;
     }
   }
 
@@ -47,6 +47,10 @@
 
     @include md {
       padding: 4rem 0 8.7rem;
+    }
+
+    @include sm {
+      padding: 3rem 0 7rem;
     }
 
     &::before {

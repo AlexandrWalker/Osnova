@@ -390,15 +390,28 @@
 
     &:checked {
 
-      &+.form-checkbox--item {
+      &+.form-checkbox-label {
 
-        &::after {
-          background-color: var(--blue);
+        .form-checkbox--item {
+
+          &::after {
+            background-color: var(--blue);
+          }
         }
       }
     }
 
+    &-label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
     &--item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 1.6rem;
       height: 1.6rem;
       border-radius: 50%;
@@ -441,10 +454,6 @@
   }
 
   &-wrap {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.6rem;
 
     .footer & {
       margin-left: -0.7rem;

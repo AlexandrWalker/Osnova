@@ -7,154 +7,137 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  /**
-   * Инициализация Lenis
-   */
+  // Блокируем браузерное восстановление скролла до того как браузер успеет прыгнуть к якорю
   if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
   }
 
-  const MENU_CLOSE_DURATION = 400;
-
-  const lenis = new Lenis();
-
-  window.lenis = lenis;
-
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-
-  gsap.ticker.lagSmoothing(0);
-
-  function scrollToTarget(target) {
-    lenis.scrollTo(target, {
-      offset: -60,
-      duration: 1.5,
-    });
-  }
-
-  function waitForPreloader() {
-    return new Promise((resolve) => {
-      if (!document.documentElement.classList.contains('preloader--active')) {
-        resolve();
-        return;
-      }
-
-      const observer = new MutationObserver(() => {
-        if (!document.documentElement.classList.contains('preloader--active')) {
-          observer.disconnect();
-          resolve();
-        }
-      });
-
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ['class'],
-      });
-    });
-  }
-
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href]');
-    if (!link) return;
-
-    const href = link.getAttribute('href');
-    if (!href || !href.includes('#')) return;
-
-    const hash = href.split('#')[1];
-    if (!hash) return;
-
-    // Если элемента нет на текущей странице — браузер переходит сам
-    const target = document.getElementById(hash);
-    if (!target) return;
-
-    // Элемент найден — скроллим без перезагрузки
-    e.preventDefault();
-    history.pushState(null, null, `#${hash}`);
-
-    const isMenuOpen = document.documentElement.classList.contains('menu--open');
-
-    if (isMenuOpen) {
-      lenis.stop();
-      setTimeout(() => {
-        lenis.start();
-        scrollToTarget(target);
-      }, MENU_CLOSE_DURATION);
-    } else {
-      scrollToTarget(target);
-    }
-
-  }, true);
-
-  window.addEventListener('load', () => {
-    const hash = window.location.hash.slice(1);
-    if (!hash) return;
-
-    const target = document.getElementById(hash);
-    if (!target) return;
-
-    window.scrollTo(0, 0);
-
-    waitForPreloader().then(() => {
-      scrollToTarget(target);
-    });
-  });
-
-  /**
-   * Якоря на текущей странице
-   */
-  // document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  //   anchor.addEventListener('click', (e) => {
-  //     const hash = anchor.getAttribute('href');
-  //     if (!hash || hash === '#') return;
-
-  //     const target = document.querySelector(hash);
-  //     if (!target) return;
-
-  //     e.preventDefault();
-  //     history.pushState(null, null, hash);
-
-  //     lenis.scrollTo(target, {
-  //       offset: -60,
-  //       duration: 1.5,
-  //     });
-  //   });
-  // });
-
-  /**
-   * Прелоадер
-   */
   (function () {
-    window.PRELOADER_MODE = window.PRELOADER_MODE || {
+
+    // Длительность анимации закрытия мобильного меню в миллисекундах
+    const MENU_CLOSE_DURATION = 400;
+
+    // Конфигурация прелоадера
+    const PRELOADER_CONFIG = {
       mode: 'overlay',
       assets: {
         logoWhiteSrc: './images/logo/preloader-logo-1.svg',
-        logoCyanSrc: './images/logo/preloader-logo-2.svg'
+        logoCyanSrc: './images/logo/preloader-logo-2.svg',
       },
       logoWidth: 500,
       logoHeight: 223,
       safetyTimeoutMs: 8000,
-      overlayHideDelayMs: 600
+      overlayHideDelayMs: 600,
     };
 
-    const config = window.PRELOADER_MODE;
-    const mode = config.mode;
+    // Инициализация Lenis и привязка к GSAP ticker
+    const lenis = new Lenis();
+    window.lenis = lenis;
 
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    // Плавный скролл к целевому элементу через Lenis
+    function scrollToTarget(target) {
+      lenis.scrollTo(target, {
+        offset: -60,
+        duration: 1.5,
+      });
+    }
+
+    // Возвращает промис который резолвится когда прелоадер скрыт
+    // Используем MutationObserver чтобы отследить удаление класса preloader--active
+    function waitForPreloader() {
+      return new Promise((resolve) => {
+        if (!document.documentElement.classList.contains('preloader--active')) {
+          resolve();
+          return;
+        }
+
+        const observer = new MutationObserver(() => {
+          if (!document.documentElement.classList.contains('preloader--active')) {
+            observer.disconnect();
+            resolve();
+          }
+        });
+
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['class'],
+        });
+      });
+    }
+
+    // Обработчик кликов по якорным ссылкам
+    // capture: true позволяет перехватить событие раньше stopPropagation в меню
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+
+      // Не мешаем Fancybox — пропускаем ссылки с data-fancybox
+      if (link.hasAttribute('data-fancybox')) return;
+
+      const href = link.getAttribute('href');
+      if (!href || !href.includes('#')) return;
+
+      const hash = href.split('#')[1];
+      if (!hash) return;
+
+      // Ищем элемент на текущей странице
+      // Если его нет — браузер сам перейдёт на нужную страницу
+      // После загрузки сработает обработчик load ниже
+      const target = document.getElementById(hash);
+      if (!target) return;
+
+      e.preventDefault();
+      history.pushState(null, null, `#${hash}`);
+
+      const isMenuOpen = document.documentElement.classList.contains('menu--open');
+
+      if (isMenuOpen) {
+        // Останавливаем Lenis пока меню закрывается анимацией
+        lenis.stop();
+        setTimeout(() => {
+          lenis.start();
+          scrollToTarget(target);
+        }, MENU_CLOSE_DURATION);
+      } else {
+        scrollToTarget(target);
+      }
+
+    }, true);
+
+    // При загрузке страницы с якорем в URL
+    // Сначала сбрасываем позицию чтобы браузер не прыгал сам
+    // Потом ждём конца прелоадера и плавно скроллим
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.slice(1);
+      if (!hash) return;
+
+      const target = document.getElementById(hash);
+      if (!target) return;
+
+      window.scrollTo(0, 0);
+
+      waitForPreloader().then(() => scrollToTarget(target));
+    });
+
+    // Инициализация прелоадера
     const preloaderEl = document.querySelector('.preloader');
     if (!preloaderEl) return;
 
+    // Блокируем скролл страницы пока прелоадер активен
     document.body.classList.add('no-scroll');
-
-    // Добавляем класс на html пока прелоадер активен
     document.documentElement.classList.add('preloader--active');
 
-    const safetyTimer = setTimeout(function () {
-      const preloader = document.querySelector('.preloader');
-      if (preloader && preloader.style.display !== 'none') {
-        preloader.style.display = 'none';
+    // Страховочный таймер на случай если что-то пошло не так
+    // Принудительно скрывает прелоадер через safetyTimeoutMs миллисекунд
+    const safetyTimer = setTimeout(() => {
+      if (preloaderEl.style.display !== 'none') {
+        preloaderEl.style.display = 'none';
         restoreScroll();
       }
-    }, config.safetyTimeoutMs);
+    }, PRELOADER_CONFIG.safetyTimeoutMs);
 
     function restoreScroll() {
       document.body.classList.remove('no-scroll');
@@ -168,6 +151,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
+    // Настраиваем canvas с учётом плотности пикселей экрана
+    function initCanvas() {
+      const { logoWidth, logoHeight } = PRELOADER_CONFIG;
+      const dpr = window.devicePixelRatio || 1;
+
+      canvas.width = logoWidth * dpr;
+      canvas.height = logoHeight * dpr;
+
+      if (ctx.setTransform) ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      return { logoWidth, logoHeight };
+    }
+
+    // Скрываем прелоадер с анимацией схлопывания
+    // После завершения анимации удаляем класс preloader--active с html
     function hidePreloader() {
       gsap.set(canvas, { opacity: 0 });
 
@@ -176,42 +175,30 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 0.7,
         ease: 'power2.inOut',
         transformOrigin: 'top center',
-        onComplete: function () {
+        onComplete() {
           preloaderEl.style.display = 'none';
           restoreScroll();
           clearSafety();
-
-          // Удаляем класс после полного скрытия прелоадера
           document.documentElement.classList.remove('preloader--active');
-        }
+        },
       });
 
       gsap.to(canvas, {
         scaleY: 2,
         duration: 0.7,
         ease: 'power2.inOut',
-        transformOrigin: 'bottom center'
+        transformOrigin: 'bottom center',
       });
     }
 
-    function initCanvas() {
-      const logoWidth = config.logoWidth;
-      const logoHeight = config.logoHeight;
-      const dpr = window.devicePixelRatio || 1;
-      canvas.width = logoWidth * dpr;
-      canvas.height = logoHeight * dpr;
-      if (ctx.setTransform) ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-      return { logoWidth, logoHeight };
-    }
-
+    // Режим overlay — два логотипа с анимацией заливки снизу вверх
     function startOverlayPreloader() {
       const { logoWidth, logoHeight } = initCanvas();
       let fillHeight = 0;
 
       const logoWhite = new Image();
       const logoCyan = new Image();
-      let loadedImages = 0;
+      let loadedCount = 0;
 
       function draw() {
         ctx.clearRect(0, 0, logoWidth, logoHeight);
@@ -219,103 +206,110 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(logoWhite, 0, 0, logoWidth, logoHeight);
         ctx.globalCompositeOperation = 'source-atop';
         ctx.fillStyle = '#FFFFFF';
-        var rectY = logoHeight - fillHeight;
-        ctx.fillRect(0, rectY, logoWidth, fillHeight);
+        ctx.fillRect(0, logoHeight - fillHeight, logoWidth, fillHeight);
         ctx.globalCompositeOperation = 'source-over';
       }
 
       function onImageLoaded() {
-        loadedImages++;
-        if (loadedImages === 2) start();
+        loadedCount++;
+        if (loadedCount === 2) startAnimation();
       }
 
-      logoWhite.onload = onImageLoaded;
-      logoCyan.onload = onImageLoaded;
-      logoWhite.onerror = onImageLoaded;
-      logoCyan.onerror = onImageLoaded;
-      logoWhite.src = config.assets.logoWhiteSrc;
-      logoCyan.src = config.assets.logoCyanSrc;
+      logoWhite.onload = logoWhite.onerror = onImageLoaded;
+      logoCyan.onload = logoCyan.onerror = onImageLoaded;
+      logoWhite.src = PRELOADER_CONFIG.assets.logoWhiteSrc;
+      logoCyan.src = PRELOADER_CONFIG.assets.logoCyanSrc;
 
-      function start() {
+      function startAnimation() {
         draw();
 
-        var progress = { val: 0 };
+        const progress = { val: 0 };
 
+        // Быстрый старт до 30%
         gsap.to(progress, {
           val: 30,
           duration: 0.4,
           ease: 'power2.out',
-          onUpdate: function () {
+          onUpdate() {
             fillHeight = (progress.val / 100) * logoHeight;
             draw();
-          }
+          },
         });
 
+        // Медленное движение до 85% пока грузится страница
         gsap.to(progress, {
           val: 85,
           duration: 2.5,
           ease: 'power1.out',
           delay: 0.4,
-          onUpdate: function () {
+          onUpdate() {
             fillHeight = (progress.val / 100) * logoHeight;
             draw();
-          }
+          },
         });
 
-        window.addEventListener('load', function onWindowLoad() {
-          window.removeEventListener('load', onWindowLoad);
+        // После полной загрузки страницы добиваем до 100% и скрываем
+        window.addEventListener('load', function onLoad() {
+          window.removeEventListener('load', onLoad);
           gsap.killTweensOf(progress);
+
           gsap.to(progress, {
             val: 100,
             duration: 0.4,
             ease: 'power2.out',
-            onUpdate: function () {
+            onUpdate() {
               fillHeight = (progress.val / 100) * logoHeight;
               draw();
             },
-            onComplete: function () {
-              setTimeout(hidePreloader, config.overlayHideDelayMs);
-            }
+            onComplete() {
+              setTimeout(hidePreloader, PRELOADER_CONFIG.overlayHideDelayMs);
+            },
           });
         });
       }
     }
 
+    // Режим singleLogo — одно лого без заливки, скрывается после загрузки
     function startSingleLogoPreloader() {
       const { logoWidth, logoHeight } = initCanvas();
-
       const logo = new Image();
-      logo.onload = function () {
+
+      function showAndWait() {
+        window.addEventListener('load', function onLoad() {
+          window.removeEventListener('load', onLoad);
+          hidePreloader();
+        });
+      }
+
+      logo.onload = () => {
         ctx.clearRect(0, 0, logoWidth, logoHeight);
         ctx.globalCompositeOperation = 'source-over';
         ctx.drawImage(logo, 0, 0, logoWidth, logoHeight);
-        ctx.globalCompositeOperation = 'source-over';
 
-        gsap.fromTo(canvas, { opacity: 0.2, scaleY: 0.98 }, { opacity: 1, scaleY: 1, duration: 0.4, ease: 'power2.out' });
+        gsap.fromTo(canvas,
+          { opacity: 0.2, scaleY: 0.98 },
+          { opacity: 1, scaleY: 1, duration: 0.4, ease: 'power2.out' }
+        );
 
-        window.addEventListener('load', function onWindowLoad() {
-          window.removeEventListener('load', onWindowLoad);
-          hidePreloader();
-        });
+        showAndWait();
       };
 
-      logo.onerror = function () {
-        window.addEventListener('load', function onWindowLoad() {
-          window.removeEventListener('load', onWindowLoad);
-          hidePreloader();
-        });
-      };
-
-      logo.src = config.assets.logoWhiteSrc;
+      logo.onerror = showAndWait;
+      logo.src = PRELOADER_CONFIG.assets.logoWhiteSrc;
     }
 
-    if (mode === 'singleLogo') {
+    // Запускаем нужный режим прелоадера
+    if (PRELOADER_CONFIG.mode === 'singleLogo') {
       startSingleLogoPreloader();
     } else {
       startOverlayPreloader();
     }
+
   })();
 
+  /**
+   * Инициализация слайдеров
+   */
   function initObjectVideo(swiper) {
     const slides = swiper.el.querySelectorAll('.object__video');
 
@@ -349,9 +343,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /**
-   * Инициализация слайдеров
-   */
   // ---------- Универсальная фабрика для Swiper'ов ----------
   function createSlider(selector, custom = {}) {
     const el = document.querySelector(selector);
@@ -700,9 +691,21 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   function headerFunc() {
     const header = document.getElementById('header');
+    const footer = document.getElementById('footer');
     const firstSection = document.querySelector('section');
     let lastScrollTop = 1;
     const scrollPosition = () => window.pageYOffset || document.documentElement.scrollTop;
+
+    // Следим за появлением подвала в области видимости
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        document.documentElement.classList.add('footer--show');
+      } else {
+        document.documentElement.classList.remove('footer--show');
+      }
+    });
+
+    footerObserver.observe(footer);
 
     window.addEventListener('scroll', () => {
       if (scrollPosition() > lastScrollTop && scrollPosition() > firstSection.offsetHeight) {
@@ -718,7 +721,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       lastScrollTop = scrollPosition();
-    })
+    });
   }
   headerFunc();
 
@@ -740,8 +743,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Открытие/закрытие dropdown
   document.addEventListener('click', function (e) {
-    var isBtn = e.target.closest('.dropdown-btn');
-    var dropdowns = document.querySelectorAll('.dropdown');
+    const isBtn = e.target.closest('.dropdown-btn');
+    const dropdowns = document.querySelectorAll('.dropdown');
 
     dropdowns.forEach(function (drop) {
       if (drop.contains(e.target) && isBtn && drop.querySelector('.dropdown-btn') === isBtn) {
@@ -752,28 +755,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Обработка кликов по пунктам
+  // Обработка каждого dropdown отдельно
   document.querySelectorAll('.dropdown').forEach(dropdown => {
     const btn = dropdown.querySelector('.dropdown-btn');
     const inputJs = dropdown.querySelector('.dropdown-input--js');
     const labelJs = dropdown.querySelector('.dropdown-label--js');
     const inputHidden = dropdown.querySelector('input[type="hidden"]');
     const items = dropdown.querySelectorAll('.dropdown-item');
+    const content = dropdown.querySelector('.dropdown-content');
 
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        const radio = item.querySelector('.dropdown-radio');
-        const label = item.querySelector('.dropdown-label');
-        const value = radio.value;
-        const text = label.textContent || label.innerText;;
+    if (content) {
+      const MAX_HEIGHT = 200;
+      const SCROLL_THRESHOLD = 2;
 
-        inputJs.value = value;
-        labelJs.textContent = text;
-        inputHidden.value = value;
-        btn.classList.add('filled');
-        dropdown.classList.remove('show');
+      function updateLongClass() {
+        const isLong = content.scrollHeight > MAX_HEIGHT;
+        if (!isLong) {
+          content.classList.remove('dropdown-content--long');
+          return;
+        }
+
+        const isAtBottom = content.scrollTop + content.clientHeight >= content.scrollHeight - SCROLL_THRESHOLD;
+        content.classList.toggle('dropdown-content--long', !isAtBottom);
+      }
+
+      btn.addEventListener('click', () => {
+        requestAnimationFrame(() => {
+          if (dropdown.classList.contains('show')) {
+            content.scrollTop = 0;
+            updateLongClass();
+          } else {
+            content.classList.remove('dropdown-content--long');
+          }
+        });
       });
-    });
+
+      content.addEventListener('scroll', updateLongClass);
+
+      items.forEach(item => {
+        item.addEventListener('click', () => {
+          const radio = item.querySelector('.dropdown-radio');
+          const label = item.querySelector('.dropdown-label');
+          const value = radio.value;
+          const text = label.textContent || label.innerText;
+
+          inputJs.value = value;
+          labelJs.textContent = text;
+          inputHidden.value = value;
+          btn.classList.add('filled');
+          dropdown.classList.remove('show');
+          content.classList.remove('dropdown-content--long');
+        });
+      });
+    }
   });
 
   /**
@@ -795,6 +829,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Клик по миниатюре для увеличения и запуска основного видео
       videoThumb.addEventListener('click', () => {
         if (!videoThumb.classList.contains('active')) {
+          document.body.classList.add('no-scroll');
+          document.documentElement.classList.add('video--show');
+          lenis.stop();
           videoThumb.classList.add('active');
           iframeWrapper.innerHTML = `<iframe
         id="mainVideo"
@@ -820,6 +857,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.stopPropagation();
         if (videoThumb.classList.contains('active')) {
           // Если видео увеличено → возвращаем миниатюру
+          document.body.classList.remove('no-scroll');
+          document.documentElement.classList.remove('video--show');
+          lenis.start();
           videoThumb.classList.remove('active');
           iframeWrapper.innerHTML = `<iframe id="thumbIframe" src="${thumbSrc}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>`;
           isPaused = false;

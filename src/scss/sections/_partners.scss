@@ -198,8 +198,8 @@
     display: flex;
     flex-direction: column;
     border-bottom: 0.1rem solid var(--white-10);
-
     background-color: var(--blue);
+    transition: all 0.3s ease;
 
     position: sticky;
     top: 2rem;

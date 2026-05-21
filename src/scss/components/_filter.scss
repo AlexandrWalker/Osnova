@@ -100,6 +100,7 @@
 
     @include md {
       margin-left: 0;
+      color: var(--blue);
     }
 
     @include sm {
