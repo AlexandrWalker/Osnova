@@ -117,16 +117,16 @@ a {
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
-  font-weight: 350;
+  src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/Gotham-Light.woff2") format("woff2"), url("../fonts/Gotham-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Gotham-Book.woff2") format("woff2"), url("../fonts/Gotham-Book.woff") format("woff");
+  font-weight: 350;
   font-style: normal;
 }
 
@@ -189,16 +189,16 @@ a {
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
-  font-weight: 100;
+  src: url("../fonts/HalvarBreit-ExtraThin.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraThin.woff") format("woff");
+  font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: HalvarBreit;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-ExtraThin.woff2") format("woff2"), url("../fonts/HalvarBreit-ExtraThin.woff") format("woff");
-  font-weight: 200;
+  src: url("../fonts/HalvarBreit-Hairline.woff2") format("woff2"), url("../fonts/HalvarBreit-Hairline.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -1801,6 +1801,19 @@ body {
 
 .form-file--clear span {
   text-decoration: underline;
+}
+
+.form-errors {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 130%;
+  color: var(--red);
+}
+
+.form-wrap + .form-errors {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  padding-left: 2.2rem;
 }
 
 /* Стили для иконок */
@@ -7655,17 +7668,6 @@ canvas {
   overflow: visible;
 }
 
-.technique__slide {
-  opacity: 0 !important;
-  visibility: hidden;
-  overflow: visible !important;
-}
-
-.technique__slide.swiper-slide-active {
-  opacity: 1 !important;
-  visibility: visible;
-}
-
 .technique__item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8211,6 +8213,17 @@ canvas {
     --btn-padding-x: 5rem;
   }
 
+  .technique__slide {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    overflow: visible !important;
+  }
+
+  .technique__slide.swiper-slide-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
   .vacancy__item:hover .vacancy__item-title {
     -webkit-text-decoration-color: var(--white);
             text-decoration-color: var(--white);
@@ -8405,6 +8418,16 @@ canvas {
 
   .fancybox__slide {
     padding: 1rem;
+  }
+
+  [class^=swiper-button-]:not([class^=swiper-button-alt-]),
+  [class*=" swiper-button-"]:not([class*=" swiper-button-alt-"]) {
+    background-color: var(--blue);
+  }
+
+  [class^=swiper-button-]:not([class^=swiper-button-alt-]) i,
+  [class*=" swiper-button-"]:not([class*=" swiper-button-alt-"]) i {
+    color: #F2F5F9;
   }
 
   :root {
@@ -10135,6 +10158,10 @@ canvas {
     font-size: 1.3rem;
   }
 
+  .form-errors {
+    font-size: 1.2rem;
+  }
+
   .h1,
   h1 {
     font-size: 4rem;
@@ -10844,6 +10871,54 @@ canvas {
 
   .technique__item-content {
     gap: 1.5rem;
+  }
+
+  .swiper-slide .technique__item-title {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+
+  .swiper-slide-active .technique__item-title {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+
+  .swiper-slide-next .technique__item-title {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+
+  .technique__item-wrap:nth-child(3) {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+
+  .swiper-slide .technique__item-wrap {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+
+  .swiper-slide-active .technique__item-wrap {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+
+  .swiper-slide-next .technique__item-wrap {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+
+  .technique__item-tags p {
+    -webkit-transition: 0s;
+    -o-transition: 0s;
+    transition: 0s;
   }
 
   .vacancy__inner {
