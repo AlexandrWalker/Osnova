@@ -81,13 +81,19 @@
   }
 
   &__slide {
-    opacity: 0 !important;
-    visibility: hidden;
-    overflow: visible !important;
+
+    @include dosm {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      overflow: visible !important;
+    }
 
     &.swiper-slide-active {
-      opacity: 1 !important;
-      visibility: visible;
+
+      @include dosm {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
     }
   }
 
@@ -130,14 +136,26 @@
 
       .swiper-slide & {
         transform: translateX(-50%);
+
+        @include sm {
+          transform: none;
+        }
       }
 
       .swiper-slide-active & {
         transform: translate(0);
+
+        @include sm {
+          transform: none;
+        }
       }
 
       .swiper-slide-next & {
         transform: translateX(50%);
+
+        @include sm {
+          transform: none;
+        }
       }
     }
 
@@ -149,18 +167,34 @@
 
       &:nth-child(3) {
         transition: transform 1s ease 0.2s;
+
+        @include sm {
+          transform: none;
+        }
       }
 
       .swiper-slide & {
         transform: translateX(-50%);
+
+        @include sm {
+          transform: none;
+        }
       }
 
       .swiper-slide-active & {
         transform: translate(0);
+
+        @include sm {
+          transform: none;
+        }
       }
 
       .swiper-slide-next & {
         transform: translateX(50%);
+
+        @include sm {
+          transform: none;
+        }
       }
     }
 
@@ -178,6 +212,10 @@
         text-decoration-color: var(--sizyy);
         text-decoration-line: underline;
         transition: all 0.5s ease;
+
+        @include sm {
+          transition: 0s;
+        }
       }
     }
   }

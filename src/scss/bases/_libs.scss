@@ -49,6 +49,10 @@
   transition: all 0.3s ease;
   position: static;
 
+  @include md {
+    background-color: var(--blue);
+  }
+
   &:hover {
 
     @include domd {
@@ -75,6 +79,10 @@
     font-size: var(--swiper-btn-size);
     color: var(--blue);
     transition: all 0.3s ease;
+
+    @include md {
+      color: #F2F5F9;
+    }
   }
 
   &::after {

@@ -486,12 +486,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const technique = createSlider('.technique__slider', {
     spaceBetween: 20,
     speed: 600,
-    effect: "creative",
-    creativeEffect: {
-      prev: { translate: ["-20%", 0, -1] },
-      next: { translate: ["100%", 0, 0] }
+    effect: false,
+    navigation: { prevEl: ".technique-button-prev", nextEl: ".technique-button-next" },
+    breakpoints: {
+      601: {
+        effect: "creative",
+        creativeEffect: {
+          prev: { translate: ["-20%", 0, -1] },
+          next: { translate: ["100%", 0, 0] }
+        },
+      }
     },
-    navigation: { prevEl: ".technique-button-prev", nextEl: ".technique-button-next" }
   });
 
   const techniqueItem = createSlider('.technique__item-slider', {

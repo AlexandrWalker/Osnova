@@ -528,4 +528,22 @@
       }
     }
   }
+
+  &-errors {
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 130%;
+    color: var(--red);
+
+    @include sm {
+      font-size: 1.2rem;
+    }
+
+    .form-wrap+& {
+      font-size: 1.2rem;
+
+      margin-top: 0.5rem;
+      padding-left: 2.2rem;
+    }
+  }
 }
