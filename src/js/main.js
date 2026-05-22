@@ -307,6 +307,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  function initBgObserver() {
+    const blueSections = document.querySelectorAll('[data-bg="blue"]');
+
+    if (!blueSections.length) return;
+
+    function checkSections() {
+      const windowBottom = window.scrollY + window.innerHeight;
+
+      const isAnyActive = Array.from(blueSections).some(section => {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        const sectionBottom = section.getBoundingClientRect().bottom + window.scrollY;
+
+        // Блок активен если его верхняя граница прошла нижнюю границу окна
+        // и его нижняя граница ещё не прошла нижнюю границу окна
+        return sectionTop <= windowBottom && sectionBottom >= windowBottom;
+      });
+
+      document.documentElement.classList.toggle('blue--bg', isAnyActive);
+    }
+
+    window.addEventListener('scroll', checkSections);
+
+    // Проверяем сразу при загрузке
+    checkSections();
+  }
+
+  initBgObserver();
+
   /**
    * Инициализация слайдеров
    */

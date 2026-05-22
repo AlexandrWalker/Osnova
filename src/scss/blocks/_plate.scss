@@ -16,6 +16,7 @@
     display: block;
   }
 
+  html.blue--bg &,
   .footer--show & {
     background-color: var(--white);
   }
@@ -26,6 +27,7 @@
 
     transition: all 0.5s ease;
 
+    html.blue--bg &,
     .footer--show & {
       --btn-color: var(--blue);
       --btn-border-color: var(--blue);
