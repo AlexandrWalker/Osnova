@@ -48,6 +48,14 @@ body {
   cursor: default;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -148,22 +156,6 @@ a {
 }
 
 @font-face {
-  font-family: Gotham;
-  font-display: swap;
-  src: url("../fonts/Gotham-Thin.woff2") format("woff2"), url("../fonts/Gotham-Thin.woff") format("woff");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Gotham;
-  font-display: swap;
-  src: url("../fonts/Gotham-Ultra.woff2") format("woff2"), url("../fonts/Gotham-Ultra.woff") format("woff");
-  font-weight: 1000;
-  font-style: normal;
-}
-
-@font-face {
   font-family: HalvarBreit;
   font-display: swap;
   src: url("../fonts/HalvarBreit-Black.woff2") format("woff2"), url("../fonts/HalvarBreit-Black.woff") format("woff");
@@ -204,10 +196,10 @@ a {
 }
 
 @font-face {
-  font-family: HalvarBreit;
+  font-family: Gotham;
   font-display: swap;
-  src: url("../fonts/HalvarBreit-Light.woff2") format("woff2"), url("../fonts/HalvarBreit-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Gotham-Thin.woff2") format("woff2"), url("../fonts/Gotham-Thin.woff") format("woff");
+  font-weight: 100;
   font-style: normal;
 }
 
@@ -252,6 +244,22 @@ a {
 }
 
 @font-face {
+  font-family: Gotham;
+  font-display: swap;
+  src: url("../fonts/Gotham-Ultra.woff2") format("woff2"), url("../fonts/Gotham-Ultra.woff") format("woff");
+  font-weight: 1000;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: HalvarBreit;
+  font-display: swap;
+  src: url("../fonts/HalvarBreit-Light.woff2") format("woff2"), url("../fonts/HalvarBreit-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
   font-family: Montserrat;
   font-display: swap;
   src: url("../fonts/Montserrat-ExtraLight.woff2") format("woff2"), url("../fonts/Montserrat-ExtraLight.woff") format("woff");
@@ -262,16 +270,16 @@ a {
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
-  font-weight: 500;
+  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Montserrat;
   font-display: swap;
-  src: url("../fonts/Montserrat-Light.woff2") format("woff2"), url("../fonts/Montserrat-Light.woff") format("woff");
-  font-weight: 300;
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2"), url("../fonts/Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -716,6 +724,7 @@ body {
 }
 
 .breadcrumbs__inner::-webkit-scrollbar {
+  display: none;
   width: 0;
   height: 0;
   padding: 0;
@@ -4107,6 +4116,7 @@ canvas {
 }
 
 .page__press .filter::-webkit-scrollbar {
+  display: none;
   width: 0;
   height: 0;
   padding: 0;
@@ -4677,6 +4687,7 @@ canvas {
   z-index: 2;
 }
 
+.completed__markers svg,
 .completed__markers img {
   max-width: 100%;
   width: auto;
@@ -4841,7 +4852,7 @@ canvas {
   gap: 5rem;
 }
 
-.completed svg {
+.completed__map svg {
   max-width: 100%;
   width: auto;
   height: 100%;
@@ -4851,19 +4862,19 @@ canvas {
   z-index: 1;
 }
 
-.completed svg-link {
+.completed__map svg-link {
   cursor: pointer;
   outline: none;
   text-decoration: none;
 }
 
-.completed path {
+.completed__map path {
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
-.completed filter {
+.completed__map filter {
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -4875,6 +4886,24 @@ canvas {
 
 .completed .lines-line {
   background-color: var(--blue-10);
+}
+
+.completed .nsk--1,
+.completed .nsk--5 {
+  display: none;
+}
+
+.completed .barnaul--2 {
+  display: none;
+}
+
+.completed .kemerovo--2 {
+  display: none;
+}
+
+.completed .omsk--2,
+.completed .omsk--4 {
+  display: none;
 }
 
 .contacts {
@@ -5478,7 +5507,7 @@ canvas {
 }
 
 .exp__head .btn {
-  max-width: 42.6rem;
+  max-width: 43rem;
   width: 100%;
 }
 
@@ -9121,6 +9150,7 @@ canvas {
     display: none;
   }
 
+  .completed__markers svg,
   .completed__markers img {
     width: 100%;
     height: auto;
