@@ -1649,10 +1649,8 @@ if (tasks) {
           $($prevBlock).css('transform', 'scale(0.92)');
           scale = 0.92;
         }
-
         scroll = top; // Update scroll position
       });
-
     }
   });
 }
